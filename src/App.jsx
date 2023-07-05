@@ -15,6 +15,7 @@ function App() {
 				console.log(res.data);
 			} catch (error) {
 				// Handle error
+				console.log(error);
 			}
 		};
 
