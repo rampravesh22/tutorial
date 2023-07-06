@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Quate from "./Quate";
+import Quote from "./Quote";
 
 function App() {
 	const [quote, setQuote] = useState({});
@@ -28,9 +28,9 @@ function App() {
 		<div className="min-h-[100vh] flex justify-center items-center">
 			{loading ? (
 				<h1>Loading...</h1>
-			) : (
-				<Quate author={quote.author} content={quote.content}></Quate>
-			)}
+			) : quote ? (
+				<Quote author={quote.author} content={quote.content}></Quote>
+			) : null}
 		</div>
 	);
 }
