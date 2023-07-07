@@ -10,9 +10,8 @@ function App() {
 		const getData = async () => {
 			try {
 				const res = await axios.get("https://api.quotable.io/random");
-				setLoading(false);
 				setQuote(res.data);
-				console.log(res.data);
+				setLoading(false);
 			} catch (error) {
 				// Handle error
 				console.log(error);
@@ -27,10 +26,10 @@ function App() {
 	return (
 		<div className="min-h-[100vh] flex justify-center items-center">
 			{loading ? (
-				<h1>Loading...</h1>
-			) : quote ? (
-				<Quote author={quote.author} content={quote.content}></Quote>
-			) : null}
+				<h1>Loading..</h1>
+			) : (
+				<Quote author={quote.author} content={quote.content} />
+			)}
 		</div>
 	);
 }
