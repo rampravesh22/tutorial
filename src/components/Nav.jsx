@@ -5,7 +5,7 @@ const Nav = () => {
 	return (
 		<header className="bg-slate-800 flex justify-between items-center flex-col md:flex-row text-white md:justify-between md:px-10">
 			<NavLink to={"/"} className="py-4 text-3xl font-bold">
-				<span className="origin-center inline-block animate-bounce p-0">
+				<span className="inline-block p-0 animate-bounce origin-center h-4">
 					*
 				</span>
 				<span className="text-pink-600">Jumbo</span>Notes
