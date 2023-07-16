@@ -1,9 +1,31 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-const Note = ({ note }) => {
+const Note = ({ note, propDeleteNote }) => {
 	const aDate = new Date(note.addedDate);
+	const [scale, setScale] = useState(false);
+	const [msg, setMsg] = useState("original msg");
+	const handleDelete = (id) => {
+		const deleteNote = async (id) => {
+			try {
+				const res = await axios.delete(
+					`http://localhost:8000/api/notes/${id}/`
+				);
+				console.log(res.data);
+				setMsg(res.data);
+			} catch (error) {
+				console.log(error);
+			}
+		};
+		deleteNote(id);
+		propDeleteNote({ id, msg });
+	};
 	return (
-		<div className="hover:scale-[.97] transition duration-200  relative space-x-2 shadow-lg rounded-lg hover  border-3 border-t-pink-600 border p-5 pb-24 h-[15rem] w-[20rem] text-ellipsis overflow-hidden flex-wrap">
+		<div
+			className={`group hover:scale-[.97] transition-all duration-200  relative space-x-2 shadow-lg rounded-lg hover  border-3 border-t-pink-600 border p-5 pb-24 h-[15rem] w-[20rem] text-ellipsis overflow-hidden flex-wrap ${
+				scale ? "animate-spin" : ""
+			}`}
+		>
 			<h1 className="font-bold pl-2 capitalize text-pink-600">
 				{note.title}
 			</h1>
@@ -18,6 +40,15 @@ const Note = ({ note }) => {
 					More
 				</span>
 			</NavLink>
+			<button
+				className="hidden absolute right-2 top-2 group-hover:block transition"
+				onClick={() => {
+					setScale(true);
+					handleDelete(note.id);
+				}}
+			>
+				<i className="fa-solid fa-trash text-red-600"></i>
+			</button>
 		</div>
 	);
 };

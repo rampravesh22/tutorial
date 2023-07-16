@@ -24,7 +24,6 @@ const AddNote = () => {
 				);
 				console.log(res);
 				setSuccess(true);
-				hideSuccessNotification();
 			} catch (error) {
 				console.log(error);
 			}
