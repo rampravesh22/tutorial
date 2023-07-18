@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useReducer } from "react";
 const ACTION = {
 	ADD: "ADD",
@@ -32,26 +32,34 @@ const reducer = (todos, action) => {
 
 const Home = () => {
 	const [todos, dispatch] = useReducer(reducer, []);
+	const inputRef = useRef();
 
 	const [todoInput, setTodoInput] = useState("");
-	const handleAdd = () => {
-		dispatch({
-			type: ACTION.ADD,
-			payload: { todoInput: todoInput },
-		});
+	const handleAdd = (e) => {
+		e.preventDefault();
+		if (todoInput.length >= 1) {
+			dispatch({
+				type: ACTION.ADD,
+				payload: { todoInput: todoInput },
+			});
+		}
+		return null;
+
 		setTodoInput("");
 	};
 	return (
 		<div>
-			<div>
+			<form onSubmit={handleAdd}>
 				<input
 					type="text"
 					placeholder="todo"
+					ref={inputRef}
 					value={todoInput}
+					name="todo"
 					onChange={(e) => setTodoInput(e.target.value)}
 				/>
-			</div>
-			<button onClick={handleAdd}>ADD</button>
+				<button type="submit">ADD</button>
+			</form>
 			<div>
 				<ul>
 					{todos.map((todo) => {
