@@ -1,7 +1,11 @@
+import Home from "./components/Home";
+
 function App() {
 	return (
 		<>
-			<div>Main</div>
+			<div>
+				<Home />
+			</div>
 		</>
 	);
 }
