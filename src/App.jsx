@@ -1,7 +1,13 @@
+import Home from "./Home";
+
 function App() {
 	return (
 		<>
-			<div>Main</div>
+			<Home>
+				<div style={{ color: "red", textTransform: "uppercase" }}>
+					This is props children
+				</div>
+			</Home>
 		</>
 	);
 }
