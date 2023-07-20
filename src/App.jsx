@@ -1,7 +1,11 @@
+import Home from "./Home";
+
 function App() {
 	return (
 		<>
-			<div>Main</div>
+			<div>
+				<Home></Home>
+			</div>
 		</>
 	);
 }
