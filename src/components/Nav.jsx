@@ -11,16 +11,24 @@ const Nav = () => {
 				<nav className="w-[30%] hidden md:block">
 					<ul className="md:justify-between md:flex-row text-white hidden md:flex">
 						<li>
-							<a href="">Home</a>
+							<a href="" className="hover:opacity-75">
+								Home
+							</a>
 						</li>
 						<li>
-							<a href="">Contact</a>
+							<a href="" className="hover:opacity-75">
+								Contact
+							</a>
 						</li>
 						<li>
-							<a href="">Login</a>
+							<a href="" className="hover:opacity-75">
+								Login
+							</a>
 						</li>
 						<li>
-							<a href="">About</a>
+							<a href="" className="hover:opacity-75">
+								About
+							</a>
 						</li>
 					</ul>
 				</nav>
