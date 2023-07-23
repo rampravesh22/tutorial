@@ -114,12 +114,13 @@ const StudentTable = ({ sid, student }) => {
 				</button>
 				{!modal ? null : (
 					<div
-						className="fixed cursor-auto bg-black inset-0 flex justify-center  bg-opacity-25 backdrop-blur-md items-center "
+						className="fixed cursor-auto z-40 bg-black inset-0 flex justify-center  bg-opacity-25 backdrop-blur-md items-center "
 						ref={modalRef}
 						onClick={handleModal}
 					>
 						<div className="bg-white h-1/2 w-1/2 rounded-md relative">
 							<button
+								type="button"
 								className="absolute -top-8 text-3xl text-white -right-4"
 								onClick={() => setModal(false)}
 							>
@@ -159,7 +160,10 @@ const StudentTable = ({ sid, student }) => {
 											value={inputs.rollNumber}
 											onChange={handleInput}
 										/>
-										<button className="bg-blue-600 self-start px-5 py-2 text-white rounded-md mt-2">
+										<button
+											className="bg-blue-600 self-start px-5 py-2 text-white rounded-md mt-2"
+											type="submit"
+										>
 											Submit
 										</button>
 									</div>
@@ -172,7 +176,7 @@ const StudentTable = ({ sid, student }) => {
 				)}
 			</td>
 			<td className="border py-2 px-2 text-start border-slate-700 group hover:text-red-600 cursor-pointer ...">
-				<button onClick={() => deleteModal(student.id)}>
+				<button onClick={() => deleteModal(student.id)} type="button">
 					<FontAwesomeIcon icon={faTrash} />
 				</button>
 				{deleteMod ? (
@@ -187,6 +191,7 @@ const StudentTable = ({ sid, student }) => {
 								Yes
 							</button>
 							<button
+								type="button"
 								className="bg-white text-black px-5 py-1 rounded-md"
 								onClick={() => {
 									setDeleteMod(false);
