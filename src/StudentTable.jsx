@@ -180,27 +180,23 @@ const StudentTable = ({ sid, student }) => {
 					<FontAwesomeIcon icon={faTrash} />
 				</button>
 				{deleteMod ? (
-					!loading ? (
-						<Loading />
-					) : (
-						<div className="absolute backdrop-blur-md inset-0 w-full h-full flex justify-center items-center">
-							<button
-								className="bg-red-700 mr-4 px-5 py-1 text-white rounded-md"
-								onClick={() => handleDelete(student.id)}
-							>
-								Yes
-							</button>
-							<button
-								type="button"
-								className="bg-white text-black px-5 py-1 rounded-md"
-								onClick={() => {
-									setDeleteMod(false);
-								}}
-							>
-								No
-							</button>
-						</div>
-					)
+					<div className="absolute backdrop-blur-md inset-0 w-full h-full flex justify-center items-center">
+						<button
+							className="bg-red-700 mr-4 px-5 py-1 text-white rounded-md"
+							onClick={() => handleDelete(student.id)}
+						>
+							Yes
+						</button>
+						<button
+							type="button"
+							className="bg-white text-black px-5 py-1 rounded-md"
+							onClick={() => {
+								setDeleteMod(false);
+							}}
+						>
+							No
+						</button>
+					</div>
 				) : null}
 			</td>
 		</tr>
