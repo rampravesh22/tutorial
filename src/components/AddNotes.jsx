@@ -9,14 +9,19 @@ const AddNotes = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		if (title.length < 1 || desc.length < 1) {
+			return null;
+		}
 		dispatch({ type: ACTIONS.ADD_NOTE, payload: { title, desc } });
+		setDesc("");
+		setTitle("");
 	};
 
 	return (
-		<div className="h-10 pt-5">
+		<div className="min-h-10 pt-5">
 			<form
 				action=""
-				className="flex w-2/3 justify-center m-auto"
+				className="flex w-[60%] md:justify-center flex-col items-stretch m-auto flex-wrap gap-3 justify-start md:flex-nowrap"
 				onSubmit={handleSubmit}
 			>
 				<input
@@ -25,19 +30,19 @@ const AddNotes = () => {
 					value={title}
 					placeholder="Title"
 					onChange={(e) => setTitle(e.target.value)}
-					className="px-3 py-2 rounded-md text-lg border-2 mr-3 focus:outline-blue-700"
+					className="px-3 py-2 rounded-md text-lg h-10 border-2  focus:outline-blue-700"
 				/>
-				<input
+				<textarea
 					type="text"
 					name="desc"
 					value={desc}
 					onChange={(e) => setDesc(e.target.value)}
 					placeholder="Desc"
 					className="px-3 py-2 rounded-md text-lg border-2 focus:outline-blue-700"
-				/>
+				></textarea>
 				<button
 					type="submit"
-					className="uppercase px-8 text-md font-bold text-white py-2 bg-blue-700 rounded-md ml-3"
+					className="uppercase self-start h-10 px-8 text-md font-bold text-white py-2 bg-blue-700 rounded-md  "
 				>
 					Add
 				</button>

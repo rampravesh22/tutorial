@@ -5,11 +5,14 @@ import { BiShowAlt } from "react-icons/bi";
 import { GlobalContext } from "./contextAPI";
 import ACTIONS from "../reducer/actions";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import { FiEdit } from "react-icons/fi";
 import { IoMdClose } from "react-icons/io";
+import UpdateNotes from "./UpdateNotes";
 const Note = ({ note, ind }) => {
 	const { notes, dispatch } = useContext(GlobalContext);
 	const [modal, setModal] = useState(false);
 	const [singelNote, setSingleNote] = useState({});
+	const [formModal, setFormModal] = useState(false);
 	const showNote = (id) => {
 		setModal(true);
 		const res = notes.find((note) => note.id == id);
@@ -34,6 +37,15 @@ const Note = ({ note, ind }) => {
 					type="button"
 				>
 					<BiShowAlt className="text-3xl hover:text-green-800 " />
+				</button>
+				<button
+					onClick={() => {
+						setFormModal(true);
+					}}
+					className="text-black-700 rounded-md px-4 py-1 "
+					type="button"
+				>
+					<FiEdit className="text-3xl hover:text-green-800 " />
 				</button>
 				<button
 					type="button"
@@ -65,6 +77,9 @@ const Note = ({ note, ind }) => {
 				</button>
 			</div>
 			{/* modal */}
+			{formModal ? (
+				<UpdateNotes note={note} setFormModal={setFormModal} />
+			) : null}
 			{modal ? (
 				<div
 					className="fixed inset-0 cursor-auto  backdrop-blur-lg  z-10  bg-black flex justify-center items-center"
@@ -77,9 +92,11 @@ const Note = ({ note, ind }) => {
 				>
 					<div className="relative w-1/2 h-1/2 after:content-[dfafjfskdjfdsjk]">
 						<div className="bg-white p-4  rounded-md  overflow-scroll z-50 absolute inset-0">
-							<h2 className="text-3xl">{note.title}</h2>
-							<hr />
-							<ReactMarkdown>{note.desc}</ReactMarkdown>
+							<h2 className="text-3xl ">{singelNote.title}</h2>
+							<hr className="mb-3 mt-2 bg-red-600  h-1" />
+							<ReactMarkdown className="mt-3">
+								{singelNote.desc}
+							</ReactMarkdown>
 						</div>
 						<button
 							className="-right-16  absolute -top-12 text-3xl"

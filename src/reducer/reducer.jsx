@@ -15,7 +15,16 @@ const reducer = (notes, action) => {
 			});
 
 		case ACTIONS.UPDATE_NOTE:
-			return;
+			return notes.map((note) => {
+				if (note.id === action.payload.id) {
+					return {
+						...note,
+						title: action.payload.title,
+						desc: action.payload.desc,
+					};
+				}
+				return note;
+			});
 
 		case ACTIONS.TOGGLE_COMPLETE:
 			return notes.map((note) => {
