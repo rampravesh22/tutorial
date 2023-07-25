@@ -1,8 +1,10 @@
+import Home from "./components/Home";
+import ContextAPI from "./components/contextAPI";
 function App() {
 	return (
-		<>
-			<div>Main</div>
-		</>
+		<ContextAPI>
+			<Home />
+		</ContextAPI>
 	);
 }
 
