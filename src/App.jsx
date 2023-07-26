@@ -5,7 +5,7 @@ function App() {
 		const newData = data;
 	};
 	return (
-		<div className="flex h-screen gap-3 justify-center">
+		<div className="flex h-screen gap-3 justify-center md:flex-row flex-col">
 			<Editor getData={getData} />
 		</div>
 	);
