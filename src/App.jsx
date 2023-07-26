@@ -1,8 +1,11 @@
+import React from "react";
+import MarkdownEditor from "./MarkdownEditor";
+
 function App() {
 	return (
-		<>
-			<div>Main</div>
-		</>
+		<div>
+			<MarkdownEditor />
+		</div>
 	);
 }
 

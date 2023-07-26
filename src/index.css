@@ -1,0 +1,76 @@
+/* .markdown-preview {
+	border: 1px solid #ddd;
+	padding: 1rem;
+} */
+.container {
+	display: flex;
+	gap: 2rem;
+	align-items: center;
+}
+.editor {
+	width: 50%;
+	overflow: hidden;
+	border: 2px solid black;
+	line-break: anywhere;
+}
+
+.editor textarea {
+	width: 98%;
+	height: 100%;
+	min-height: 618px;
+	outline: none;
+	border: none;
+	font-size: 1.5rem;
+	padding: 0.5rem;
+	padding-right: 2rem;
+	line-break: anywhere;
+}
+.markdown-preview {
+	height: 100%;
+	width: 50%;
+	border: 2px solid brown;
+	overflow: scroll;
+	word-wrap: normal;
+	line-break: anywhere;
+	min-height: 700px;
+	font-size: 1.2rem;
+}
+.markdown-preview p {
+	padding: 1rem;
+	background-color: red;
+}
+
+.markdown-preview h1:first-child {
+	background-color: brown;
+	color: white;
+	margin-top: 0;
+	margin-bottom: 0;
+	text-align: center;
+	padding: 1rem;
+	font-size: 1.5rem;
+}
+
+.editor h1:first-child {
+	background-color: rgb(15, 161, 197);
+	color: white;
+	margin-top: 0;
+	margin-bottom: 0;
+	padding: 1rem;
+	text-align: center;
+	font-size: 1.5rem;
+}
+
+@media screen and (max-width: 600px) {
+	.container {
+		flex-direction: column;
+	}
+	.editor textarea {
+		height: 100%;
+	}
+	.editor {
+		width: 90%;
+	}
+	.markdown-preview {
+		width: 90%;
+	}
+}
