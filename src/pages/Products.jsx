@@ -1,9 +1,8 @@
 import React from "react";
-import Product from "./Product";
 import { NavLink, Outlet } from "react-router-dom";
 const Products = () => {
 	return (
-		<div className="flex items-stretch sm:flex-row flex-col">
+		<div className="flex items-stretch sm:flex-row flex-col border-t-2">
 			<ul className="bg-slate-800 text-white space-y-4 pb-12 h-96 sm:w-60 pt-12 flex flex-col">
 				<li>
 					<NavLink

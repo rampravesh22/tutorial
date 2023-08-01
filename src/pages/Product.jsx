@@ -6,7 +6,7 @@ const Product = () => {
 	const { category } = useParams();
 	console.log(category);
 	return (
-		<div className="w-full">
+		<div className="">
 			<h1>{category}</h1>
 		</div>
 	);

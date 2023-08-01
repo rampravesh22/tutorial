@@ -18,7 +18,7 @@ const Register = () => {
 							id="email"
 							name="email"
 							placeholder="name@email.com"
-							className="border-2 px-2 py-1.5 rounded-md focus:outline-rose-600"
+							className="border-2 px-2 py-1.5 rounded-md focus:outline-slate-800"
 						/>
 					</div>
 					<div className="flex flex-col mt-6">
@@ -30,7 +30,7 @@ const Register = () => {
 							name="password"
 							id="password"
 							placeholder="password"
-							className="border-2 px-2 py-1.5 rounded-md focus:outline-rose-600"
+							className="border-2 px-2 py-1.5 rounded-md focus:outline-slate-800"
 						/>
 					</div>
 					<div className="flex flex-col mt-6">
@@ -42,7 +42,7 @@ const Register = () => {
 							name="confirm-password"
 							id="confirm-password"
 							placeholder="confirm password"
-							className="border-2 px-2 py-1.5 rounded-md focus:outline-rose-600"
+							className="border-2 px-2 py-1.5 rounded-md focus:outline-slate-800"
 						/>
 					</div>
 					<div className="mt-2">
@@ -50,7 +50,7 @@ const Register = () => {
 							type="checkbox"
 							id="terms-and-conditions"
 							placeholder="confirm password"
-							className="border-2 px-2 py-1.5 font-extralight accent-rose-600 mr-4 h-4 w-4 text-lg"
+							className="border-2 px-2 py-1.5 font-extralight accent-slate-800 mr-4 h-4 w-4 text-lg"
 						/>
 						<label htmlFor="email" className="text-xl">
 							I accept terms and condition.
@@ -58,13 +58,13 @@ const Register = () => {
 					</div>
 					<button
 						type="submit"
-						className="bg-rose-600 w-full text-white mt-3 py-2 rounded-lg"
+						className="bg-slate-800 w-full text-white mt-3 py-2 rounded-lg"
 					>
 						Create an account
 					</button>
 					<div className="mt-3">
 						<span>Already have an account? </span>
-						<Link className="text-rose-600" to="/login">
+						<Link className="text-slate-800" to="/login">
 							Login here
 						</Link>
 					</div>

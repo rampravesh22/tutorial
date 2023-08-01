@@ -4,14 +4,13 @@ import { NavLink } from "react-router-dom";
 
 const Header = () => {
 	const [isOpen, setIsOpen] = useState(false);
-
 	const handleToggle = () => {
 		setIsOpen(!isOpen);
 	};
 	const active = "underline";
 
 	return (
-		<div className="flex relative  bg-rose-600 md:items-center flex-col px-4 md:flex-row md:justify-between text-white py-4 md:px-5">
+		<div className="flex relative  bg-slate-800 md:items-center flex-col px-4 md:flex-row md:justify-between text-white py-4 md:px-5">
 			<div className="text-3xl  md:mb-0">
 				<NavLink to="/">Logo</NavLink>
 			</div>
@@ -100,7 +99,7 @@ const Header = () => {
 				</nav>
 			) : (
 				<nav className="hidden md:block">
-					<ul className="flex gap-x-10">
+					<ul className="flex gap-x-[2vw]">
 						<li>
 							<NavLink
 								to={"/"}
@@ -138,6 +137,7 @@ const Header = () => {
 								Register
 							</NavLink>
 						</li>
+
 						<li>
 							<NavLink
 								className={
@@ -149,6 +149,19 @@ const Header = () => {
 								}}
 							>
 								Login
+							</NavLink>
+						</li>
+						<li>
+							<NavLink
+								className={
+									"px-3 py-1 rounded-sm transition-all hover:text-slate-400"
+								}
+								to={"/logout"}
+								style={({ isActive }) => {
+									return { textDecoration: isActive ? active : "" };
+								}}
+							>
+								Logout
 							</NavLink>
 						</li>
 						<li>
