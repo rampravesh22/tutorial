@@ -1,0 +1,30 @@
+.analog-clock {
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	background-color: #f0f0f0;
+	position: relative;
+}
+
+.hand {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	background-color: black;
+	transform-origin: 0 0;
+}
+
+.seconds-hand {
+	width: 3px;
+	height: 100px;
+}
+
+.minutes-hand {
+	width: 2px;
+	height: 60px;
+}
+
+.hours-hand {
+	width: 3px;
+	height: 50px;
+}
