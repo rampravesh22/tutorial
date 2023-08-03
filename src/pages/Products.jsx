@@ -7,6 +7,14 @@ const Products = () => {
 				<li>
 					<NavLink
 						className={"hover:text-slate-500 px-4 py-2 "}
+						to={"product/all"}
+					>
+						All
+					</NavLink>
+				</li>
+				<li>
+					<NavLink
+						className={"hover:text-slate-500 px-4 py-2 "}
 						to={"product/phone"}
 					>
 						Phone

@@ -1,13 +1,17 @@
-import React from "react";
-import Products from "./Products";
+import React, { useContext } from "react";
 import { Outlet, useParams } from "react-router-dom";
+import { GlobalContext } from "../context/AppContext";
+import ProductItem from "../components/ProductItem";
 
 const Product = () => {
 	const { category } = useParams();
-	console.log(category);
+	const { products } = useContext(GlobalContext);
+
 	return (
-		<div className="">
-			<h1>{category}</h1>
+		<div className="flex md:flex-row flex-col content-center gap-3 flex-wrap justify-center md:my-0 my-10">
+			{products.map((product) => {
+				return <ProductItem product={product} key={product.id} />;
+			})}
 		</div>
 	);
 };
