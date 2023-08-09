@@ -15,57 +15,17 @@ const Products = () => {
 				<li>
 					<NavLink
 						className={"hover:text-slate-500 px-4 py-2 "}
-						to={"product/phone"}
+						to={"product/TW"}
 					>
-						Phone
+						Top Wear
 					</NavLink>
 				</li>
 				<li>
 					<NavLink
 						className={"hover:text-slate-500 px-4 py-2 "}
-						to={"product/grocerries"}
+						to={"product/BW"}
 					>
-						Grocerries
-					</NavLink>
-				</li>
-				<li>
-					<NavLink
-						className={"hover:text-slate-500 px-4 py-2 "}
-						to={"product/laptop"}
-					>
-						Laptop
-					</NavLink>
-				</li>
-				<li>
-					<NavLink
-						className={"hover:text-slate-500 px-4 py-2 "}
-						to={"product/foods"}
-					>
-						Foods
-					</NavLink>
-				</li>
-				<li>
-					<NavLink
-						className={"hover:text-slate-500 px-4 py-2 "}
-						to={"product/accessories"}
-					>
-						Accessories
-					</NavLink>
-				</li>
-				<li>
-					<NavLink
-						className={"hover:text-slate-500 px-4 py-2 "}
-						to="product/items"
-					>
-						Items
-					</NavLink>
-				</li>
-				<li>
-					<NavLink
-						className={"hover:text-slate-500 px-4 py-2 "}
-						to="product/data"
-					>
-						Data
+						Bottom Wear
 					</NavLink>
 				</li>
 			</ul>

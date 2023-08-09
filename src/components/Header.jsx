@@ -180,7 +180,7 @@ const Header = () => {
 								className={
 									"px-3 py-1 rounded-sm transition-all hover:text-slate-400"
 								}
-								to={"/products"}
+								to={"/products/product/all"}
 								style={({ isActive }) => {
 									return { textDecoration: isActive ? active : "" };
 								}}

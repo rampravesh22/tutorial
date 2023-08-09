@@ -8,7 +8,7 @@ const reducer = (products, action) => {
 			return;
 
 		case ACTIONS.UPDATE_PRODUCT:
-			return;
+			return action.payload.data;
 		case ACTIONS.SET_ALL_PRODUCT:
 			return action.payload.data;
 		default:
