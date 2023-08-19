@@ -10,7 +10,6 @@ const Product = () => {
 	const { category } = useParams();
 	const { products, dispatch } = useContext(GlobalContext);
 	useEffect(() => {
-		console.log("changes");
 		setCategoryState(category);
 	}, [category]);
 
