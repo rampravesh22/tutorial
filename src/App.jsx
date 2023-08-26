@@ -1,29 +1,56 @@
+import { useState } from "react";
+import "./app.css";
+import Content from "./components/Content";
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
+import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
 function App() {
+	const [show, setShow] = useState(false);
+
+	const handleHamburgerMenu = () => {
+		setShow(!show);
+	};
+
+	const hideSidebar = (e) => {
+		if (show) {
+			if (e.target !== document.querySelector("#sidebar")) {
+				setShow(false);
+			}
+		}
+	};
+
 	return (
-		<>
-			<div className="flex bg-slate-500 h-screen flex-col">
-				<header className="h-14 bg-white w-full flex justify-between items-center px-3 md:px-10">
-					<div className="logo text-3xl font-extrabold text-slate-800">
-						Tino
-					</div>
-					<nav>
-						<ul className="flex md:gap-8 gap-2">
-							<li>Home</li>
-							<li>Contact</li>
-							<li>About</li>
-							<li>Sign-Up</li>
-							<li>Login</li>
-						</ul>
-					</nav>
-				</header>
-				<main className="flex-grow flex">
-					<div className="sidbar bg-red-600 hidden md:block md:w-[30%] h-full"></div>
-					<div className="content bg-blue-700 w-full md:w-[70%] h-full"></div>
-				</main>
-				<footer className="w-full h-28 bg-green-700"></footer>
-			</div>
-		</>
+		<div className="flex flex-col min-h-screen justify-center">
+			<header className="flex bg-emerald-800 sticky top-0 w-full justify-between px-3 md:px-6 text-white py-4">
+				<div className="logo text-2xl">Doso</div>
+				<nav className="hidden sm:block">
+					<Navbar />
+				</nav>
+				{!show ? (
+					<button className="sm:hidden" onClick={handleHamburgerMenu}>
+						<RxHamburgerMenu className="text-2xl" />
+					</button>
+				) : null}
+				{show ? (
+					<button onClick={handleHamburgerMenu}>
+						<RxCross2 className="text-2xl sm:hidden" />
+					</button>
+				) : null}
+			</header>
+			<main
+				className="flex-grow"
+				id="sidebar"
+				onClick={(e) => hideSidebar(e)}
+			>
+				<Content />
+			</main>
+			<footer>
+				<Footer />
+			</footer>
+
+			<Sidebar show={show} setShow={setShow} />
+		</div>
 	);
 }
-
 export default App;
