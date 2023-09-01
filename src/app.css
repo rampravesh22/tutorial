@@ -1,0 +1,45 @@
+button {
+	background: blue;
+	color: white;
+	padding: 0.8rem 1rem;
+	font-size: 1rem;
+	border-radius: 0.4rem;
+	transition: all 0.4s ease-in-out;
+}
+
+button:hover {
+	background-color: rgb(12, 12, 178);
+	color: rgb(255, 255, 255);
+}
+button:focus {
+	box-shadow: 0 0 2px 3px red;
+}
+.btns {
+	display: flex;
+	justify-content: center;
+	gap: 0.4rem;
+	align-items: center;
+}
+.scale {
+	border: 2px solid black;
+	padding: 0.4rem 0.7rem;
+	margin: 0.3rem;
+}
+.container {
+	margin-top: 0.5rem;
+	height: 100vh;
+	background-color: azure;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.box {
+	height: 100px;
+	width: 100px;
+	background-color: palevioletred;
+	font-weight: bold;
+	display: flex;
+	font-size: 0.8rem;
+	justify-content: center;
+	align-items: center;
+}
