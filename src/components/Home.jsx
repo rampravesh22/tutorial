@@ -31,7 +31,7 @@ const Home = () => {
 			setTimeout(() => {
 				setSuccess(false);
 			}, 3000);
-		}, 2000);
+		}, 500);
 	};
 
 	return (
