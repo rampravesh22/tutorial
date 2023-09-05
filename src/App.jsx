@@ -7,6 +7,7 @@ function App() {
 	const { success, deleteNote } = useContext(GlobalContext);
 	return (
 		<>
+			<h1>Hello testing</h1>
 			<Home />
 			{success ? (
 				<Success
