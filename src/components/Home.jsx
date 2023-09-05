@@ -35,10 +35,10 @@ const Home = () => {
 	};
 
 	return (
-		<div className="bg-slate-900 h-16 flex justify-center items-center">
+		<div className="bg-slate-900 sticky top-0 z-10  h-28 sm:h-16 flex m-auto justify-center items-center">
 			<form
 				action=""
-				className="flex gap-3 w-[80%]"
+				className="flex gap-3 flex-col sm:flex-row w-[80%] m-auto justify-center"
 				onSubmit={handleSubmit}
 			>
 				<input
@@ -47,14 +47,14 @@ const Home = () => {
 					onChange={(e) => setInput(e.target.value)}
 					type="text"
 					placeholder="enter note content"
-					className="border-none outline-none w-[80%] px-2 py-1.5 rounded-md  focus:ring focus:ring-red-600"
+					className="border-none outline-none w-full sm:w-[80%] px-2 py-1.5 rounded-md  focus:ring focus:ring-red-600"
 				/>
 
 				<button
 					type="submit"
 					ref={btnRef}
 					disabled={disable}
-					className="btn focus:ring ring-red-600 uppercase"
+					className="btn focus:ring self-start ring-red-600 uppercase"
 				>
 					{loading ? <Loader /> : "Add"}
 				</button>
