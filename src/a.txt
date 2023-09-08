@@ -1,0 +1,4 @@
+Name = Rampravesh
+Age = 24
+Father = Surendra Chaudhari
+Village = Semara Raja Karmahiya Tola

@@ -1,7 +1,9 @@
+import FileInputComponent from "./FileInputComponent";
+import "./App.css";
 function App() {
 	return (
 		<>
-			<div>Main</div>
+			<FileInputComponent />
 		</>
 	);
 }

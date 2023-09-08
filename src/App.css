@@ -1,0 +1,10 @@
+#file::-webkit-file-upload-button {
+	display: none;
+}
+
+#file {
+	font-size: 1.4rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
