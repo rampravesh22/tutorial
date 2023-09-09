@@ -46,26 +46,17 @@ function FileInputComponent() {
 					<div className="border-2 p-3">
 						<h2 className="text-2xl">File Details:</h2>
 						<p>
-							<span className="font-bold text-blue-700">
-								Name:
-							</span>
+							<span className="font-bold text-blue-700">Name:</span>
 							{selectedFile.name}
 						</p>
 						<p>
-							<span className="font-bold text-blue-700">
-								Size
-							</span>{" "}
-							: (
+							<span className="font-bold text-blue-700">Size</span> : (
 							{`${
 								selectedFile.size < 1024
-									? (
-											selectedFile.size /
-											(1024 * 1024)
-									  ).toFixed(2)
-									: (
-											selectedFile.size /
-											(1024 * 1024 * 1024)
-									  ).toFixed(2)
+									? (selectedFile.size / (1024 * 1024)).toFixed(2)
+									: (selectedFile.size / (1024 * 1024 * 1024)).toFixed(
+											2
+									  )
 							} GB`}
 							)
 						</p>
