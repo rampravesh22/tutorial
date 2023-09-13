@@ -2,7 +2,7 @@ import React from "react";
 
 const Login = () => {
 	return (
-		<div className="flex flex-col md:flex-row h-screen gap-12 md:gap-0 justify-center bg-[#f0f2f5] justify-center items-center">
+		<div className="flex flex-col md:flex-row h-screen gap-12 md:gap-0  bg-[#f0f2f5] justify-center items-center">
 			<div className="left w-[80%] md:w-[40%]  md:text-left text-center">
 				<h1 className="text-[#1877f2] text-6xl font-semibold">facebook</h1>
 				<p className="text-3xl">
