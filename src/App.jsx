@@ -1,7 +1,7 @@
 function App() {
 	return (
 		<>
-			<div>Main</div>
+			<div>{import.meta.env.VITE_firstName}</div>
 		</>
 	);
 }
