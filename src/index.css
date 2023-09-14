@@ -1,0 +1,36 @@
+:root {
+	--color-primary: #2584ff;
+}
+
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+.loader-wrapper {
+	display: flex;
+	justify-content: center;
+}
+
+.loader1 {
+	height: 4px;
+	background: linear-gradient(
+		90deg,
+		rgba(2, 0, 36, 1) 0%,
+		rgb(255, 157, 10) 25%,
+		rgba(255, 0, 187, 1) 50%,
+		rgb(10, 4, 56) 100%
+	);
+	animation: loading1 infinite backwards 1s ease-in-out;
+}
+
+@keyframes loading1 {
+	0% {
+		width: 0;
+	}
+	100% {
+		width: 100%;
+	}
+}
