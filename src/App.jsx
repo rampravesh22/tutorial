@@ -1,7 +1,9 @@
+import SupplierList from "./components/SuplierList";
+
 function App() {
 	return (
 		<>
-			<div>Main</div>
+			<SupplierList />
 		</>
 	);
 }
