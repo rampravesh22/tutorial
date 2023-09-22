@@ -1,0 +1,52 @@
+{
+  "students": [
+    {
+      "id": "Wed Sep 20 2023 15:08:56 GMT+0530 (India Standard Time)",
+      "name": "Akhilesh Chaudhari",
+      "age": 12,
+      "email": "Nitin.Shukla@gmail.com"
+    },
+    {
+      "id": "Wed Sep 20 2023 15:11:13 GMT+0530 (India Standard Time)",
+      "name": "Mohan Kapoor",
+      "age": 16,
+      "email": "Nitin.Shukla@gmail.com"
+    },
+    {
+      "id": "Wed Sep 20 2023 15:12:44 GMT+0530 (India Standard Time)",
+      "name": "Nitin Shukla",
+      "age": 21,
+      "email": "Ajay.Sahu@gmail.com"
+    },
+    {
+      "id": "Wed Sep 20 2023 15:13:33 GMT+0530 (India Standard Time)",
+      "name": "Nitin Shukla",
+      "age": 11,
+      "email": "Pappu.Paswan@gmail.com"
+    },
+    {
+      "id": "Wed Sep 20 2023 15:20:10 GMT+0530 (India Standard Time)",
+      "name": "Sharavan Chaudhari",
+      "age": 7,
+      "email": "Rohan.Gupta@gmail.com"
+    },
+    {
+      "id": "Wed Sep 20 2023 15:20:17 GMT+0530 (India Standard Time)",
+      "name": "Ajay Sahu",
+      "age": 4,
+      "email": "Abhishek.Patel@gmail.com"
+    },
+    {
+      "id": "Wed Sep 20 2023 15:22:29 GMT+0530 (India Standard Time)",
+      "name": "Amar Chaudhari",
+      "age": 22,
+      "email": "Abhishek.Patel@gmail.com"
+    },
+    {
+      "id": "Wed Sep 20 2023 15:23:47 GMT+0530 (India Standard Time)",
+      "name": "Nitin Shukla",
+      "age": 25,
+      "email": "Nitin.Shukla@gmail.com"
+    }
+  ]
+}
