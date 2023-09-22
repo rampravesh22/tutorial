@@ -4,7 +4,9 @@ import Home from "./components/Home";
 const App = () => {
 	return (
 		<>
-			<Home></Home>
+			<div className="main min-h-screen bg-gradient-to-r from-emerald-500 to-blue-700">
+				<Home></Home>
+			</div>
 		</>
 	);
 };
