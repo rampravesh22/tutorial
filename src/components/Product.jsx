@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { useGlobalContext } from "../context/contextapi";
 
 const Product = ({ product }) => {
-	const { setCart } = useGlobalContext();
+	const { setCart, products } = useGlobalContext();
+
 	const handleAddToCart = () => {
 		const cartCount = localStorage.getItem("cart");
 		const count = parseInt(cartCount) + 1;
 		setCart(count);
-		console.log(count);
 		localStorage.setItem("cart", count);
 	};
+
 	return (
 		<div className="product-wrapper  flex flex-col border-red-600 h-[400px] overflow-hidden p-4 w-[300px] shadow shadow-black rounded-md ">
 			<div className="flex-grow">
@@ -18,7 +19,6 @@ const Product = ({ product }) => {
 						src={product.thumbnail}
 						alt=""
 						className="w-full h-[200px] object-cover rounded-lg group-hover:scale-125 transition-all"
-						loading="lazy"
 					/>
 					<div className="discount absolute  text-xs left-2 top-2 shadow-md">
 						<p className="bg-green-600 text-white rounded-md px-3 py-1">

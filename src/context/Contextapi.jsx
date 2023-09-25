@@ -12,7 +12,6 @@ const ContextProvider = ({ children }) => {
 	useEffect(() => {
 		if (localStorage.getItem("cart")) {
 			const cartCount = localStorage.getItem("cart");
-			console.log(cartCount);
 			setCart(parseInt(cartCount));
 		} else {
 			localStorage.setItem("cart", "0");
