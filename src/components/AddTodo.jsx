@@ -1,13 +1,21 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTodo } from "../features/todoSlice";
+import axios from "axios";
 
 const AddTodo = () => {
 	const [input, setInput] = useState("");
 	const dispatch = useDispatch();
 	const handleSubmit = (e) => {
-		const todo = { id: new Date() };
-		dispatch(addTodo(input));
+		e.preventDefault();
+		const todo = { content: input, completed: false };
+		const addData = async () => {
+			const res = await axios.post("http://localhost:3000/todos", todo);
+			console.log(res);
+		};
+		addData();
+		dispatch(addTodo(todo));
+		setInput("");
 	};
 	return (
 		<div className="wrapper">
