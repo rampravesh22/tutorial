@@ -22,6 +22,7 @@ const Todo = () => {
 				console.log(error);
 			}
 		};
+
 		setTimeout(() => {
 			deleteApi(todoId);
 			dispatch(deleteTodo(todoId));
