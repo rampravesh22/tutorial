@@ -3,7 +3,6 @@ import React, { useRef, useState } from "react";
 const Home = () => {
 	const [modal, setModal] = useState(false);
 	const modalRef = useRef();
-	const [roll, setRoll] = useState();
 
 	const handleModal = (e) => {
 		if (e.target === modalRef.current) {
@@ -25,7 +24,7 @@ const Home = () => {
 			</div>
 			{!modal ? null : (
 				<div
-					className="w-full absolute  bg-white h-screen left-0 top-0  grid place-items-center"
+					className="w-full absolute  bg-red-500 h-screen left-0 top-0  grid place-items-center"
 					ref={modalRef}
 					onClick={handleModal}
 				>
