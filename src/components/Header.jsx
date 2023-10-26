@@ -19,7 +19,7 @@ const Header = () => {
 	return (
 		<div className="flex items-center p-3 ">
 			<div className="logo flex items-center">
-				<GrGamepad className="text-emerald-600 font-bold text-3xl dark:text-white" />
+				<GrGamepad className="text-emerald-600  font-bold text-3xl dark:text-white" />
 			</div>
 			<div className="search flex border rounded-full mx-5 p-2 bg-slate-200 flex-grow items-center">
 				<HiOutlineMagnifyingGlass />
