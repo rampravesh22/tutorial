@@ -5,8 +5,8 @@ import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 
 const Home = () => {
-	const api_key = import.meta.env.VITE_api_key;
-	console.log(api_key);
+	// const api_key = import.meta.env.VITE_api_key;
+	const api_key = "87be5013e52646bcb417300f8725f7f6";
 	const { setGenres, loading, setLoading } = useContext(GlobalContext);
 	const getData = async () => {
 		setLoading(true);
