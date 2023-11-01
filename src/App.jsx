@@ -1,6 +1,6 @@
 import Home from "./pages/Home";
 import Header from "./components/Header";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { GlobalContext } from "./context/ContextProvider";
 
 function App() {

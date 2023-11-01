@@ -9,13 +9,19 @@ const Home = () => {
 	const api_key = "87be5013e52646bcb417300f8725f7f6";
 	const { setGenres, loading, setLoading } = useContext(GlobalContext);
 	const getData = async () => {
+		const options = {
+			method: "GET",
+			url: "https://rawg-video-games-database.p.rapidapi.com/games",
+			headers: {
+				"X-RapidAPI-Key":
+					"182cf17d78msha0051da9f591707p1d1fc7jsn25f9ada7876d",
+				"X-RapidAPI-Host": "rawg-video-games-database.p.rapidapi.com",
+			},
+		};
 		setLoading(true);
 		try {
-			const res = await axios.get(
-				`https://api.rawg.io/api/genres?key=${api_key}`
-			);
-			console.log(res);
-
+			const res = await axios.request(options);
+			console.log(res.data);
 			setLoading(false);
 		} catch (error) {
 			console.log(error);
