@@ -1,0 +1,11 @@
+:root {
+	--color-primary: #2584ff;
+}
+
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
