@@ -1,11 +1,9 @@
-import { createClient } from "@supabase/supabase-js";
 import { useState, useEffect } from "react";
 import supabase from "./supabaseClient";
-function App() {
+const App = () => {
 	const [todos, setTodos] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [title, setTitle] = useState("");
-	const [description, setDescription] = useState("");
 
 	useEffect(() => {
 		const getStudents = async () => {
@@ -15,7 +13,7 @@ function App() {
 				let res = await supabase.from("todo").select("*");
 
 				if (res.error) {
-					console.log(error);
+					console.log("error occured", error);
 				}
 				setTimeout(() => {
 					setLoading(false);
@@ -31,33 +29,35 @@ function App() {
 		getStudents();
 	}, []);
 
-	const handleSubmit = async () => {
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		setLoading(true);
 		try {
-			const res = await supabase
-				.from("todo")
-				.insert([{ title, description }])
-				.select();
+			const res = await supabase.from("todo").insert([{ title }]).single();
 			if (res.error) {
 				throw Error("there is some error while creating row");
 			}
+			if (res.data) {
+				setLoading(false);
+			}
 			console.log(res.data);
-		} catch (error) {}
+		} catch (error) {
+			setLoading(false);
+		}
 	};
 	return (
 		<>
-			{loading && (
-				<div
-					className={` w-full  fixed mt-0 transition-all inset-0 backdrop-blur-md  py-5 flex items-center justify-center`}
-				>
-					<div className="w-16 h-16 mx-auto  rounded-full border-[7px] border-e-black animate-spin"></div>
-				</div>
-			)}
 			{!loading &&
 				todos.map((todo, index) => <div key={index}>{todo.name}</div>)}
 			<div className="flex justify-center mt-5">
-				<div className="shadow-md w-1/2 p-3">
-					<form action="" onSubmit={handleSubmit}>
-						<h2 className="text-center bg-purple-600 text-white mb-6 py-1.5 text-xl uppercase rounded-md">
+				<div className="shadow-md w-1/2 p-3 h-[200px] max-w-[400px] min-w-[300px]">
+					<form
+						action=""
+						onSubmit={handleSubmit}
+						method="post"
+						className="flex flex-col"
+					>
+						<h2 className="text-center border-2 bg-gray-700 text-white mb-6 py-1.5 text-xl uppercase rounded-md">
 							Add Todo
 						</h2>
 						<input
@@ -66,30 +66,32 @@ function App() {
 							id="title"
 							name="title"
 							autoComplete="off"
+							value={title}
 							required
 							autoFocus
-							className="border w-full placeholder:capitalize h-10 px-2 rounded focus:outline-purple-600"
+							className="border border-gray-600 w-full placeholder:capitalize h-10 px-2 rounded focus:outline-purple-600"
 							placeholder="title"
 						/>
 						<br />
-						<textarea
-							onChange={(e) => setDescription(e.target.value)}
-							name="description"
-							id="description"
-							required
-							cols="30"
-							placeholder="description"
-							className="w-full border placeholder:capitalize mt-4 p-2 h-24 rounded resize-none focus:outline-purple-600"
-							rows="10"
-						></textarea>
-						<button className="bg-purple-600 text-white px-7 py-1 rounded hover:bg-purple-700 mt-4">
-							Submit
+
+						<button
+							type="submit"
+							className="bg-purple-600 self-end text-white px-7 py-1 rounded hover:bg-purple-700 mt-"
+						>
+							+ Add
 						</button>
 					</form>
 				</div>
 			</div>
+			{loading && (
+				<div
+					className={` w-full mt-4 transition-all inset-0 backdrop-blur-md  py-5 flex items-center justify-center`}
+				>
+					<div className="w-10 h-10 mx-auto  rounded-full border-[3px] border-e-black animate-spin"></div>
+				</div>
+			)}
 		</>
 	);
-}
+};
 
 export default App;
