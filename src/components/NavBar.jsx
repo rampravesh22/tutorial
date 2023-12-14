@@ -8,6 +8,7 @@ const NavBar = () => {
 	const setActive = (pathValue) => {
 		return path === pathValue;
 	};
+
 	return (
 		<div className="flex items-center justify-between">
 			<div className="logo font-bold text-3xl flex items-center">
