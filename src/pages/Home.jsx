@@ -20,7 +20,7 @@ const Home = () => {
 						Tempora repellat aperiam.
 					</span>
 				</div>
-				<div className="carousel w-full mt-4 h-[300px]  bg-red-600">
+				<div className="carousel w-full mt-4 h-[300px]  ">
 					<div id="item1" className="carousel-item w-full z-0">
 						<img src={carousal1} className="w-full object-cover" />
 					</div>
