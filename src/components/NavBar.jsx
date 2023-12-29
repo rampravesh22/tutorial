@@ -110,7 +110,10 @@ const NavBar = () => {
 			</div>
 			{menu ? (
 				<nav className="lg:hidden self-center mt-4">
-					<ul className="uppercase flex flex-col gap-3 text-center">
+					<ul
+						className="uppercase flex flex-col gap-3 text-center"
+						onClick={() => setMenu(!menu)}
+					>
 						<li>
 							<NavLink
 								to="/"
