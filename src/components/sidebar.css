@@ -1,0 +1,19 @@
+
+ul {
+	list-style: none;
+}
+
+li:hover {
+	background-color: rgba(0, 0, 0, 0.059);
+	opacity: 1;
+}
+.parent {
+	min-height: 560px !important;
+}
+
+.new_sidebar {
+	height: 560px !important;
+	margin-bottom: 0;
+	background-color:rgba(128, 0, 0, 0.747);
+}
+
