@@ -58,16 +58,18 @@ const Signup = () => {
 
 			try {
 				const serverRes = await axios.post(
-					"http://localhost:3000/signup",
+					"http://localhost:3000/api/register",
 					data
 				);
-				setTimeout(() => {
-					toast.dismiss(toastId);
+				toast.dismiss(toastId);
+				if (serverRes.data.created) {
 					toast.success("Sign up sucessful");
-					console.log(serverRes.data);
-					setPasswordError(false);
-					setLoading(false);
-				}, 1000);
+				} else {
+					toast.error("Email already exists");
+				}
+				console.log(serverRes.data);
+				setPasswordError(false);
+				setLoading(false);
 			} catch (error) {
 				toast.dismiss(toastId);
 				setLoading(false);

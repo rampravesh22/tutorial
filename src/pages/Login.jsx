@@ -2,7 +2,6 @@ import { AiOutlineEye } from "react-icons/ai";
 import { AiOutlineEyeInvisible } from "react-icons/ai";
 import React, { useState } from "react";
 import loginSignUpImage from "../assets/login-animation.gif";
-import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 const Login = () => {
 	const [showPassword, setShowPassword] = useState(false);
@@ -10,6 +9,7 @@ const Login = () => {
 		email: "",
 		password: "",
 	});
+
 	const hanldeInputChange = (e) => {
 		const name = e.target.name;
 		const value = e.target.value;

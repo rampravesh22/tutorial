@@ -2,10 +2,17 @@ import { BsCartDash } from "react-icons/bs";
 import { AiOutlineUser } from "react-icons/ai";
 import React, { useState } from "react";
 import { myLogo } from "../assets";
-import { NavLink, Link } from "react-router-dom";
+import { twMerge } from "tailwind-merge";
+import { NavLink, Link, useLocation } from "react-router-dom";
 
 const Header = () => {
 	const [showProfileMenu, setProfileMenu] = useState(false);
+	const location = useLocation();
+	const path = location.pathname;
+
+	const setActive = (pathValue) => {
+		return pathValue === path;
+	};
 	return (
 		<header className="shadow-md fixed top-0 bg-white z-50 w-full h-16 ">
 			{/* desktop */}
@@ -19,9 +26,21 @@ const Header = () => {
 					</div>
 				</NavLink>
 				<div className=" flex gap-4 md:gap-7 pr-3 justify-center items-center">
-					<nav className="flex gap-4 md:gap-6 text-base md:text-lg">
-						<NavLink to="/">Home</NavLink>
-						<NavLink to="/menu">Menu</NavLink>
+					<nav className="flex gap-4 md:gap-6 text-base md:text-lg items-center">
+						<NavLink
+							to="/"
+							className={twMerge(
+								setActive("/" ? "font-bold" : "bg-red-400 ")
+							)}
+						>
+							Home
+						</NavLink>
+						<NavLink
+							to="/menu"
+							className={twMerge(setActive("/menu" ? "font-bold" : ""))}
+						>
+							Menu
+						</NavLink>
 						<NavLink to="/about">About</NavLink>
 						<NavLink to="/contact">Contact</NavLink>
 					</nav>
@@ -39,7 +58,7 @@ const Header = () => {
 							<AiOutlineUser className="" />
 						</button>
 						{showProfileMenu && (
-							<div className="absolute -bottom-20 gap-2 flex flex-col right-2 shadow drop-shadow-md p-4 bg-white">
+							<div className="absolute border -bottom-20 gap-2 flex flex-col right-2 shadow drop-shadow-md p-4 bg-white">
 								<Link to="/newproduct" className="hover:text-blue-700">
 									New Product
 								</Link>
