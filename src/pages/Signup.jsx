@@ -137,7 +137,7 @@ const Signup = () => {
 								value={data.firstName}
 								required
 								onChange={hanldeInputChange}
-								className="w-full mt-1 bg-slate-200 px-2 py-1 rounded  focus:outline-blue-600"
+								className="w-full mt-1 bg-slate-200 px-2 py-1 rounded  focus:outline-blue-600 "
 							/>
 						</div>
 						<div className="mt-5">
