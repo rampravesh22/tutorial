@@ -2,7 +2,7 @@ import { AiOutlineEye } from "react-icons/ai";
 import { AiOutlineEyeInvisible } from "react-icons/ai";
 import React, { useState } from "react";
 import loginSignUpImage from "../assets/login-animation.gif";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { imageToBase64 } from "../utils/imageToBase64";
 import axios from "axios";
 import { Toaster } from "react-hot-toast";
@@ -24,6 +24,7 @@ const initialData = {
 	proifleImage: "",
 };
 const Signup = () => {
+	const navigate = useNavigate();
 	const [showPassword, setShowPassword] = useState(false);
 	const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 	const [passwordError, setPasswordError] = useState(false);
@@ -42,6 +43,7 @@ const Signup = () => {
 
 		try {
 			const imageData = await imageToBase64(newFile);
+			// preState : initial state for useState
 			setData((preState) => {
 				return { ...preState, proifleImage: imageData };
 			});
@@ -64,6 +66,7 @@ const Signup = () => {
 				toast.dismiss(toastId);
 				if (serverRes.data.created) {
 					toast.success("Sign up sucessful");
+					navigate("/login");
 				} else {
 					toast.error("Email already exists");
 				}
@@ -88,7 +91,7 @@ const Signup = () => {
 				toastOptions={{
 					className: "shadow-md border-2 drop-shadow-md",
 				}}
-			></Toaster>
+			/>
 			<div className="p-3 md:p-4 flex justify-center items-center h-full">
 				<div className="w-full rounded max-w-md bg-white m-auto flex justify-center items-center flex-col p-4">
 					<h1 className="text-center text-xl py-2 text-white mb-2 bg-red-600 w-full">
@@ -253,6 +256,7 @@ const Signup = () => {
 								)}
 							</div>
 						</div>
+
 						{passwordError && (
 							<p className="text-xs  text-red-700">
 								Password did not match.Please check your password.
