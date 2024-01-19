@@ -9,6 +9,7 @@ import NewProduct from "./pages/NewProduct";
 import Signup from "./pages/Signup";
 
 function App() {
+	const name = "rampravesh";
 	return (
 		<BrowserRouter>
 			<Routes>
