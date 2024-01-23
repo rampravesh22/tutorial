@@ -9,18 +9,17 @@ import NewProduct from "./pages/NewProduct";
 import Signup from "./pages/Signup";
 
 function App() {
-	const name = "rampravesh";
 	return (
 		<BrowserRouter>
 			<Routes>
 				<Route path="/" element={<Layout />}>
-					<Route path="/" element={<Home />}></Route>
-					<Route path="menu" element={<Menu />}></Route>
-					<Route path="contact" element={<Contact />}></Route>
-					<Route path="about" element={<About />}></Route>
-					<Route path="login" element={<Login />}></Route>
-					<Route path="newproduct" element={<NewProduct />}></Route>
-					<Route path="signup" element={<Signup />}></Route>
+					<Route path="/" element={<Home />} />
+					<Route path="menu" element={<Menu />} />
+					<Route path="contact" element={<Contact />} />
+					<Route path="about" element={<About />} />
+					<Route path="login" element={<Login />} />
+					<Route path="newproduct" element={<NewProduct />} />
+					<Route path="signup" element={<Signup />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>

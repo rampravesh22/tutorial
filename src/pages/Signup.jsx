@@ -5,7 +5,6 @@ import loginSignUpImage from "../assets/login-animation.gif";
 import { Link, useNavigate } from "react-router-dom";
 import { imageToBase64 } from "../utils/imageToBase64";
 import axios from "axios";
-import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
 const dummyData = {
 	firstName: "Rampravesh",
@@ -60,7 +59,7 @@ const Signup = () => {
 
 			try {
 				const serverRes = await axios.post(
-					"http://localhost:3000/api/register",
+					"http://localhost:3000/user/register",
 					data
 				);
 				toast.dismiss(toastId);
@@ -86,12 +85,6 @@ const Signup = () => {
 
 	return (
 		<>
-			<Toaster
-				position="top-right"
-				toastOptions={{
-					className: "shadow-md border-2 drop-shadow-md",
-				}}
-			/>
 			<div className="p-3 md:p-4 flex justify-center items-center h-full">
 				<div className="w-full rounded max-w-md bg-white m-auto flex justify-center items-center flex-col p-4">
 					<h1 className="text-center text-xl py-2 text-white mb-2 bg-red-600 w-full">

@@ -1,32 +1,55 @@
 import { AiOutlineEye } from "react-icons/ai";
 import { AiOutlineEyeInvisible } from "react-icons/ai";
-import React, { useState } from "react";
+import { useState } from "react";
 import loginSignUpImage from "../assets/login-animation.gif";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import axios from "axios";
+import { useSelector } from "react-redux";
 const Login = () => {
 	const [showPassword, setShowPassword] = useState(false);
-	const [inputs, setInputs] = useState({
-		email: "",
-		password: "",
+	const userData = useSelector((state) => state.user);
+	console.log(userData);
+
+	const [loading, setLoading] = useState(false);
+	const navigate = useNavigate();
+	const [data, setData] = useState({
+		email: "ram1@gmail.com",
+		password: "ram123",
 	});
 
 	const hanldeInputChange = (e) => {
 		const name = e.target.name;
 		const value = e.target.value;
-		setInputs((preState) => {
+		setData((preState) => {
 			return { ...preState, [name]: value };
 		});
 	};
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const { email, password } = inputs;
-		if (email && password) {
-			if (password === confirmPassword) {
-				alert("successfull");
+		setLoading(true);
+		const toastId = toast.loading("Please wait, Signing in.");
+		try {
+			const serverRes = await axios.post(
+				"http://localhost:3000/user/login",
+				data
+			);
+			toast.dismiss(toastId);
+			if (serverRes?.data?.success) {
+				toast.success("Login sucessful");
+				console.log(serverRes.data.userData);
+				navigate("/");
 			} else {
-				alert("password did not matched");
+				toast.error("User with this email does not exist. Please sign up.");
 			}
+			setLoading(false);
+		} catch (error) {
+			setTimeout(() => {
+				setLoading(false);
+				toast.dismiss(toastId);
+				toast.error("Something went wrong.");
+			}, 1000);
 		}
 	};
 
@@ -53,7 +76,7 @@ const Login = () => {
 							required
 							onChange={hanldeInputChange}
 							name="email"
-							value={inputs.email}
+							value={data.email}
 							autoComplete="off"
 							className="w-full mt-1 bg-slate-200 px-2 py-1 rounded focus:outline-blue-600"
 						/>
@@ -69,10 +92,10 @@ const Login = () => {
 								onChange={hanldeInputChange}
 								required
 								name="password"
-								value={inputs.password}
+								value={data.password}
 								className="w-full  bg-slate-200 h-full px-2 py-1 rounded focus:outline-blue-600"
 							/>
-							{inputs.password.length > 0 && (
+							{data.password.length > 0 && (
 								<div
 									className="absolute right-1 text-xl top-[50%] translate-y-[-50%]
                      "
@@ -101,12 +124,13 @@ const Login = () => {
 
 					<button
 						type="submit"
+						disabled={loading ? true : false}
 						className="bg-red-600 mt-10 px-6 self-end text-white py-2 rounded-md uppercase hover:bg-red-700"
 					>
 						Login
 					</button>
 					<p className="text-sm mt-4 self-end">
-						Don't have account?{" "}
+						Don&apos;t have account?{" "}
 						<Link to="/signup" className="text-red-600 underline">
 							Sign up
 						</Link>
