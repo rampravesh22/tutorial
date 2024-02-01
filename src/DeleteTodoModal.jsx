@@ -1,25 +1,26 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import supabase from "./supabaseClient";
 import { GlobalContext } from "./ContextProvider";
 
 const DeleteTodoModal = ({ setDeleteTodoModal, todoId, setDelelteSuccess }) => {
 	const { setTodos } = useContext(GlobalContext);
+	const [loading, setLoading] = useState(false);
 	const handleDeleteTodo = async (e) => {
 		e.stopPropagation();
-		console.log(todoId);
 		try {
+			setLoading(true);
 			const { data } = await supabase
 				.from("todos")
 				.delete()
 				.eq("id", todoId)
 				.select();
-			console.log(data);
 			setDeleteTodoModal(false);
 			setTodos((preState) =>
 				preState.filter((todo) => {
 					return todo.id !== data[0].id;
 				})
 			);
+			setLoading(false);
 			setDelelteSuccess(true);
 			setTimeout(() => {
 				setDelelteSuccess(false);
@@ -56,8 +57,12 @@ const DeleteTodoModal = ({ setDeleteTodoModal, todoId, setDelelteSuccess }) => {
 						</button>
 						<button
 							onClick={handleDeleteTodo}
-							className="bg-red-600 px-5 py-1 rounded-md text-white"
+							disabled={loading}
+							className="bg-red-600 flex gap-2 px-5 items-center py-1 rounded-md text-white"
 						>
+							{loading && (
+								<span className="w-4  h-4 animate-spin  rounded-full border border-e-black"></span>
+							)}
 							Delete
 						</button>
 					</div>

@@ -38,13 +38,13 @@ const AddTodo = () => {
 				onClick={() => setShowModal(true)}
 				className="bg-blue-600 flex items-center gap-2 hover:bg-blue-700 px-6 py-2 text-white  rounded-md"
 			>
-				Add
+				Add Todo
 				<AiOutlinePlus />
 			</button>
 			{showModal && (
 				<div
 					ref={modal}
-					className="fixed inset-0  z-20 backdrop-blur-sm flex justify-center items-center"
+					className="fixed inset-0  z-20 bg-[rgba(0,0,0,.5)] flex justify-center items-center"
 					onClick={(e) => setShowModal(!(modal.current === e.target))}
 				>
 					<div className="relative w-[40%] min-w-[400px] max-w-[500px] border-red-600 p-5 border h-[200px] bg-white shadow-2xl rounded">
@@ -76,6 +76,7 @@ const AddTodo = () => {
 							/>
 							<button
 								type="submit"
+								disabled={loading}
 								className="self-end flex items-center gap-2  bg-blue-700 px-4 py-1 text-white mt-3 rounded-md"
 							>
 								Submit

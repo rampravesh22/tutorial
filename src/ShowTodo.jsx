@@ -3,19 +3,18 @@ import { MdOutlineDelete, MdOutlineEdit } from "react-icons/md";
 import React, { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "./ContextProvider";
 import Loader from "./Loader";
-import supabase from "./supabaseClient";
 import DeleteTodoModal from "./DeleteTodoModal";
 import EditTodoModal from "./EditTodoModal";
+import SuccessMessage from "./SuccessMessage";
 
 const ShowTodo = () => {
 	const { todos, loading } = useContext(GlobalContext);
 	const [deleteTodoModal, setDeleteTodoModal] = useState(false);
+	const [editSuccess, setEditSuccess] = useState(false);
 	const [editLoader, setEditLoader] = useState(false);
-	const [todoData, setTodoData] = useState({});
 	const [editTodoModal, setEditTodoModal] = useState(false);
 	const [todoId, setTodoId] = useState("");
 	const [deleteSuccess, setDelelteSuccess] = useState(false);
-	const [editSuccess, setEditSuccess] = useState(false);
 
 	const handleDeleteModal = (id) => {
 		setDeleteTodoModal(true);
@@ -29,27 +28,18 @@ const ShowTodo = () => {
 
 	const handleEditModal = async (id) => {
 		setEditTodoModal(true);
-		try {
-			setEditLoader(true);
-			const { data } = await supabase.from("todos").select("*").eq("id", id);
-			setTodoId(id);
-			setTodoData(data[0]);
-			setEditLoader(false);
-		} catch (error) {
-			console.log(error);
-		}
+		setTodoId(id);
 	};
 	return (
 		<div className="flex-grow flex flex-col items-center mt-5  ">
-			<div
-				className={`text-center ${
-					deleteSuccess ? "scale-y-100" : "scale-y-0"
-				} w-1/2 bg-green-700 py-2 rounded-md origin-top transition-all uppercase text-white`}
-			>
+			<SuccessMessage check={deleteSuccess}>
 				Todo Delete Successful
-			</div>
+			</SuccessMessage>
+			<SuccessMessage check={editSuccess}>
+				Todo Edit Successful
+			</SuccessMessage>
 
-			{!loading ? (
+			{!loading && todos ? (
 				<ul className="w-1/2">
 					{todos.map((todo, index) => {
 						return (
@@ -57,7 +47,7 @@ const ShowTodo = () => {
 								key={index}
 								className="border text-xl group relative flex items-center justify-between shadow-md mt-4 py-2 px-2"
 							>
-								{todo.content}
+								<span className="capitalize">{todo.content}</span>
 
 								<div className="space-x-2 absolute right-1 hidden group-hover:block bg-white">
 									<button onClick={() => handleEditModal(todo.id)}>
@@ -85,9 +75,9 @@ const ShowTodo = () => {
 				<EditTodoModal
 					todoId={todoId}
 					setEditTodoModal={setEditTodoModal}
-					setEditSuccess={setEditSuccess}
 					editLoader={editLoader}
-					todoData={todoData}
+					setEditLoader={setEditLoader}
+					setEditSuccess={setEditSuccess}
 				/>
 			)}
 		</div>
