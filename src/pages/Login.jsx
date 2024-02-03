@@ -2,14 +2,12 @@ import React, { useEffect, useState } from "react";
 
 const Login = ({ setLoginModal, loginModal }) => {
 	const [formData, setFormData] = useState({
-		name: "",
 		email: "",
 		password: "",
-		confirmPassword: "",
 	});
 	useEffect(() => {
 		document.body.style.overflow = loginModal ? "hidden" : "auto";
-	});
+	}, [loginModal]);
 
 	const handleFormChange = (e) => {
 		setFormData((presState) => ({
@@ -19,32 +17,23 @@ const Login = ({ setLoginModal, loginModal }) => {
 	};
 	return (
 		<div
-			className={`fixed inset-0 bg-black bg-[rgba(0,0,0,.5)] flex justify-center items-center  z-40  ${
+			onClick={(e) =>
+				setLoginModal(!(e.target === document.getElementById("loginModal")))
+			}
+			id="loginModal"
+			className={`fixed inset-0 bg-black bg-[rgba(0,0,0,.7)] flex justify-center items-center  z-40  ${
 				loginModal ? "scale-100" : "scale-0"
 			} `}
 		>
 			<div
-				className={`h-[550px] w-[550px] p-4 rounded-md ${
+				className={`h-[500px] bg-gradient-to-r text-white from-cyan-600 to-blue-800 w-[500px]  flex flex-col justify-evenly p-10 rounded-md ${
 					loginModal ? "scale-100" : "scale-90"
 				} bg-white z-50 transition `}
 			>
-				<h1 className="bg-blue-600 py-2 text-2xl text-center rounded-md">
-					Please Register Here
+				<h1 className="text-white font-bold  py-2 text-4xl text-center rounded-md">
+					Please Login Here
 				</h1>
 				<form action="" className="mt-4 gap-4 flex-col flex items-center ">
-					<div className="w-full">
-						<label htmlFor="name" className="text-black text-xl">
-							Name
-						</label>
-						<input
-							type="text"
-							id="name"
-							name="name"
-							className="border-gray-400 px-2 text-black rounded-md border w-full text-xl "
-							onChange={handleFormChange}
-							value={formData.name}
-						/>
-					</div>
 					<div className="w-full">
 						<label htmlFor="email" className="text-black text-xl">
 							Email
@@ -54,8 +43,9 @@ const Login = ({ setLoginModal, loginModal }) => {
 							id="email"
 							name="email"
 							onChange={handleFormChange}
+							placeholder="Email"
 							value={formData.email}
-							className="w-full text-black  border-gray-400 px-2 rounded-md border text-xl"
+							className="w-full text-black placeholder:text-sm h-10  border-gray-400 px-2 rounded-md border text-xl"
 						/>
 					</div>
 					<div className="w-full">
@@ -66,27 +56,20 @@ const Login = ({ setLoginModal, loginModal }) => {
 							type="password"
 							id="password"
 							name="password"
+							placeholder="Password"
 							onChange={handleFormChange}
-							className="w-full text-black  border-gray-400 px-2 rounded-md border text-xl"
+							className="w-full text-black  placeholder:text-sm h-10 border-gray-400 px-2 rounded-md border text-xl"
 							value={formData.password}
 						/>
 					</div>
-					<div className="w-full">
-						<label
-							className="text-black text-xl"
-							htmlFor="confirmPassword"
-						>
-							Confirm Password
-						</label>
-						<input
-							type="password"
-							id="confirmPassword"
-							name="confirmPasword"
-							onChange={handleFormChange}
-							className="w-full text-black  border-gray-400 px-2 rounded-md border text-lg"
-							value={formData.confirmPassword}
-						/>
-					</div>
+					<button
+						className="bg-emerald-600 hover:bg-emerald-700 self-center py-2 rounded-md w-[150px] text-white"
+						onClick={(e) => {
+							e.stopPropagation();
+						}}
+					>
+						Login
+					</button>
 				</form>
 			</div>
 		</div>

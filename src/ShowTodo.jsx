@@ -1,5 +1,5 @@
 import { BiEdit } from "react-icons/bi";
-import { MdOutlineDelete, MdOutlineEdit } from "react-icons/md";
+import { MdOutlineDelete } from "react-icons/md";
 import React, { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "./ContextProvider";
 import Loader from "./Loader";

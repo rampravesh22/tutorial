@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useAsyncError } from "react-router-dom";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 const Nav = () => {
 	const [loginModal, setLoginModal] = useState(false);
@@ -27,6 +27,10 @@ const Nav = () => {
 				</ul>
 			</nav>
 			<Login loginModal={loginModal} setLoginModal={setLoginModal} />
+			<Register
+				registerModal={registerModal}
+				setRegisterModal={setRegisterModal}
+			/>
 		</div>
 	);
 };
