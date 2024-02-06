@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect } from "react";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import { GlobalContext } from "./ContextProvider";
 
 const Nav = () => {
-	const [loginModal, setLoginModal] = useState(false);
-	const [registerModal, setRegisterModal] = useState(false);
+	const { loginModal, setLoginModal, registerModal, setRegisterModal } =
+		useContext(GlobalContext);
+	useEffect(() => {
+		document.body.style.overflow =
+			loginModal || registerModal ? "hidden" : "auto";
+	}, [loginModal, registerModal]);
 	return (
 		<div className="flex justify-between px-8 bg-gray-800 text-white items-center">
 			<div className="font-bold text-4xl">

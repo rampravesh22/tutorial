@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import supabase from "./supabaseClient";
 import { GlobalContext } from "./ContextProvider";
 
-const DeleteTodoModal = ({ setDeleteTodoModal, todoId, setDelelteSuccess }) => {
+const DeleteTodoModal = ({ setDeleteTodoModal, todoId, setDeleteSuccess }) => {
 	const { setTodos } = useContext(GlobalContext);
 	const [loading, setLoading] = useState(false);
 	const handleDeleteTodo = async (e) => {
@@ -21,9 +21,9 @@ const DeleteTodoModal = ({ setDeleteTodoModal, todoId, setDelelteSuccess }) => {
 				})
 			);
 			setLoading(false);
-			setDelelteSuccess(true);
+			setDeleteSuccess(true);
 			setTimeout(() => {
-				setDelelteSuccess(false);
+				setDeleteSuccess(false);
 			}, 2000);
 		} catch (error) {
 			console.log(error);

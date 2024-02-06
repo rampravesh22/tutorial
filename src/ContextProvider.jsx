@@ -3,20 +3,25 @@ import supabase from "./supabaseClient";
 
 export const GlobalContext = createContext();
 
-const ContenxtProvider = ({ children }) => {
+const ContextProvider = ({ children }) => {
 	const [todos, setTodos] = useState([]);
 	const [loading, setLoading] = useState(false);
+	const [loginModal, setLoginModal] = useState(false);
+	const [registerModal, setRegisterModal] = useState(false);
 	useEffect(() => {
-		async function getData() {
+		const getData = async () => {
 			try {
 				setLoading(true);
-				const { data } = await supabase.from("todos").select("*");
+				const { data, error } = await supabase.from("todos").select("*");
 				setTodos(data);
+				if (error) {
+					console.log(error);
+				}
 				setLoading(false);
 			} catch (error) {
 				console.log(error);
 			}
-		}
+		};
 		getData();
 	}, []);
 	const value = {
@@ -24,6 +29,10 @@ const ContenxtProvider = ({ children }) => {
 		setTodos,
 		loading,
 		setLoading,
+		loginModal,
+		setLoginModal,
+		registerModal,
+		setRegisterModal,
 	};
 
 	return (
@@ -31,4 +40,4 @@ const ContenxtProvider = ({ children }) => {
 	);
 };
 
-export default ContenxtProvider;
+export default ContextProvider;
