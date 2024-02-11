@@ -1,10 +1,15 @@
 import { AiOutlineClose } from "react-icons/ai";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import MiniLoader from "../MiniLoader";
+import supabase from "../supabaseClient";
+import { GlobalContext } from "../ContextProvider";
 
 const Login = ({ loginModal, setLoginModal }) => {
+	const [loginLoading, setLoginLoading] = useState(false);
+	const { token, setToken } = useContext(GlobalContext);
 	const [formData, setFormData] = useState({
-		email: "",
-		password: "",
+		email: "rpc7863@gmail.com",
+		password: "ram123",
 	});
 
 	const handleFormChange = (e) => {
@@ -14,6 +19,22 @@ const Login = ({ loginModal, setLoginModal }) => {
 		}));
 	};
 
+	const handleLoginSubmit = async (e) => {
+		e.preventDefault();
+		try {
+			setLoginLoading(true);
+			const { data } = await supabase.auth.signInWithPassword({
+				email: formData.email,
+				password: formData.password,
+			});
+			localStorage.setItem("token", data.session.access_token);
+			setToken(data.session.access_token);
+			setLoginLoading(false);
+			setLoginModal(false);
+		} catch (error) {
+			console.log(error);
+		}
+	};
 	return (
 		<div
 			onClick={(e) => {
@@ -46,6 +67,7 @@ const Login = ({ loginModal, setLoginModal }) => {
 				<form
 					action=""
 					className="mt-4 mb-10 gap-4 flex-col flex items-center "
+					onSubmit={handleLoginSubmit}
 				>
 					<div className="w-full">
 						<label htmlFor="email" className=" text-xl">
@@ -76,12 +98,13 @@ const Login = ({ loginModal, setLoginModal }) => {
 						/>
 					</div>
 					<button
-						className="bg-emerald-600 mt-10 hover:bg-emerald-700 self-center py-2 rounded-md w-[300px] text-white"
+						type="submit"
+						className="bg-emerald-600 mt-10 flex justify-center items-center gap-2 hover:bg-emerald-700 self-center py-2 rounded-md w-[300px] text-white"
 						onClick={(e) => {
 							e.stopPropagation();
 						}}
 					>
-						Login
+						{loginLoading && <MiniLoader className="h-5 w-5" />}Login
 					</button>
 				</form>
 			</div>

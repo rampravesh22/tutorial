@@ -2,7 +2,12 @@ import React, { useContext, useState } from "react";
 import supabase from "./supabaseClient";
 import { GlobalContext } from "./ContextProvider";
 
-const DeleteTodoModal = ({ setDeleteTodoModal, todoId, setDeleteSuccess }) => {
+const DeleteTodoModal = ({
+	setDeleteTodoModal,
+	deleteTodoModal,
+	todoId,
+	setDeleteSuccess,
+}) => {
 	const { setTodos } = useContext(GlobalContext);
 	const [loading, setLoading] = useState(false);
 	const handleDeleteTodo = async (e) => {
@@ -41,9 +46,15 @@ const DeleteTodoModal = ({ setDeleteTodoModal, todoId, setDeleteSuccess }) => {
 					)
 				}
 				id="deleteModalContainer"
-				className="fixed inset-0  flex justify-center items-center"
+				className={`fixed inset-0 ${
+					deleteTodoModal ? "scale-100" : "scale-0"
+				} flex justify-center items-center`}
 			>
-				<div className="h-32 w-[300px] shadow-md rounded-md border-pink-500 border flex flex-col p-3 bg-white text-black opacity-100">
+				<div
+					className={`h-32 w-[300px] ${
+						deleteTodoModal ? "scale-100" : "scale-90"
+					} shadow-md transition-transform rounded-md border-pink-500 border flex flex-col p-3 bg-white text-black opacity-100`}
+				>
 					<h1 className="text-2xl text-center">Confirm Delete</h1>
 					<div className="mt-5 flex justify-evenly">
 						<button

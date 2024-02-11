@@ -39,7 +39,6 @@ const ShowTodo = () => {
 			<SuccessMessage check={editSuccess}>
 				Todo Edit Successful
 			</SuccessMessage>
-
 			{!loading && todos ? (
 				<ul className="sm:w-1/2 w-[97%] transition-all duration-200">
 					{todos.map((todo, index) => {
@@ -65,13 +64,12 @@ const ShowTodo = () => {
 			) : (
 				<Loader />
 			)}
-			{deleteTodoModal ? (
-				<DeleteTodoModal
-					setDeleteTodoModal={setDeleteTodoModal}
-					todoId={todoId}
-					setDeleteSuccess={setDeleteSuccess}
-				/>
-			) : null}
+			<DeleteTodoModal
+				setDeleteTodoModal={setDeleteTodoModal}
+				todoId={todoId}
+				setDeleteSuccess={setDeleteSuccess}
+				deleteTodoModal={deleteTodoModal}
+			/>
 			{editTodoModal && (
 				<EditTodoModal
 					todoId={todoId}

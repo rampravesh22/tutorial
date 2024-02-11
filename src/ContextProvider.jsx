@@ -8,7 +8,9 @@ const ContextProvider = ({ children }) => {
 	const [loading, setLoading] = useState(false);
 	const [loginModal, setLoginModal] = useState(false);
 	const [registerModal, setRegisterModal] = useState(false);
+	const [token, setToken] = useState(null);
 	useEffect(() => {
+		setToken(localStorage.getItem("token"));
 		const getData = async () => {
 			try {
 				setLoading(true);
@@ -33,6 +35,8 @@ const ContextProvider = ({ children }) => {
 		setLoginModal,
 		registerModal,
 		setRegisterModal,
+		token,
+		setToken,
 	};
 
 	return (
