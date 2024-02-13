@@ -55,7 +55,7 @@ const AddTodo = () => {
 				onClick={(e) => setShowModal(!(modal.current === e.target))}
 			>
 				<div
-					className={`relative w-[40%] min-w-[400px] max-w-[500px] border-red-600 p-5 border min-h-[210px] bg-white shadow-2xl rounded  transition-transform duration-[10]  ${
+					className={`relative w-[85%] md:w-[40%] md:min-w-[400px] max-w-[500px] border-red-600 p-5 border min-h-[210px] bg-white shadow-2xl rounded  transition-transform duration-[10]  ${
 						showModal ? "scale-100" : "scale-90"
 					} `}
 				>
