@@ -1,9 +1,11 @@
+import Fight from "./Fight";
+
 function App() {
-	return (
-		<>
-			<div className="">App</div>
-		</>
-	);
+   return (
+      <>
+         <Fight />
+      </>
+   );
 }
 
 export default App;
