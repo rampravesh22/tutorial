@@ -93,11 +93,7 @@ const Signup = () => {
 					<div className="flex justify-center items-center flex-col">
 						<div className="w-20 h-20 flex justify-center items-center relative overflow-hidden border border-red-500 shadow-md rounded-full drop-shadow-md">
 							<img
-								src={
-									data.proifleImage
-										? data.proifleImage
-										: loginSignUpImage
-								}
+								src={data.proifleImage ? data.proifleImage : loginSignUpImage}
 								className="w-[70%]"
 								alt=""
 							/>
@@ -181,9 +177,7 @@ const Signup = () => {
 										{!showPassword ? (
 											<button
 												type="button"
-												onClick={() =>
-													setShowPassword(!showPassword)
-												}
+												onClick={() => setShowPassword(!showPassword)}
 												className="flex justify-center items-center"
 											>
 												<AiOutlineEyeInvisible />
@@ -192,9 +186,7 @@ const Signup = () => {
 											<button
 												type="button"
 												className="flex justify-center items-center"
-												onClick={() =>
-													setShowPassword(!showPassword)
-												}
+												onClick={() => setShowPassword(!showPassword)}
 											>
 												<AiOutlineEye />
 											</button>
@@ -224,9 +216,7 @@ const Signup = () => {
 											<button
 												type="button"
 												onClick={() =>
-													setShowConfirmPassword(
-														!showConfirmPassword
-													)
+													setShowConfirmPassword(!showConfirmPassword)
 												}
 												className="flex justify-center items-center"
 											>
@@ -237,9 +227,7 @@ const Signup = () => {
 												type="button"
 												className="flex justify-center items-center"
 												onClick={() =>
-													setShowConfirmPassword(
-														!showConfirmPassword
-													)
+													setShowConfirmPassword(!showConfirmPassword)
 												}
 											>
 												<AiOutlineEye />
