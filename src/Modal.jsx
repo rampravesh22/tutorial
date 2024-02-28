@@ -18,6 +18,7 @@ const Modal = () => {
 			</div>
 			{/* modal container */}
 			<div
+				id="editModalContainer"
 				onClick={(e) => {
 					if (e.target === document.getElementById("editModalContainer")) {
 						setToggleModal(false);
@@ -38,7 +39,6 @@ const Modal = () => {
 						{/* close button */}
 						<button
 							onClick={(e) => {
-								console.log("close button");
 								e.stopPropagation();
 								setToggleModal(false);
 							}}
