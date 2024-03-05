@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const initialSubjects = [
 	{ name: "Math", checked: false },
@@ -35,13 +35,13 @@ function App() {
 			});
 		}
 	};
-
+	console.table(subjects);
 	return (
 		<>
 			<div className="">
-				<form action="" className=" flex flex-col w-32 gap-3 m-auto">
+				<form action="" className=" flex mt-5  flex-col w-32 gap-3 m-auto">
 					{subjects.map((subject, index) => (
-						<div key={index} className=" space-x-3 flex gap-4 flex-row">
+						<div key={index} className="flex items-center gap-2">
 							<input
 								type="checkbox"
 								name={subject.name.toLowerCase()}
@@ -49,7 +49,7 @@ function App() {
 								checked={subject.checked}
 								value={subject.name.toLowerCase()}
 								onChange={handleCheckChange}
-								className="accent-pink-700 h-10 w-10"
+								className=" transition-colors duration-500 border w-12  h-12   checked:accent-yellow-500 checked:rounded-sm"
 							/>
 							<label htmlFor={subject.name.toLowerCase()}>{subject.name}</label>
 						</div>
