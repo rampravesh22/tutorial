@@ -35,9 +35,7 @@ function App() {
 			});
 		}
 	};
-	useEffect(() => {
-		console.table(subjects);
-	}, [subjects]);
+
 	return (
 		<>
 			<div className="">
