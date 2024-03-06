@@ -9,7 +9,7 @@ function App() {
 	return (
 		<>
 			<div className="">
-				<form action="" className="flex gap-4">
+				<form action="" className="flex border gap-4">
 					<span>Gender</span>
 					<label htmlFor="male">Male</label>
 					<input
