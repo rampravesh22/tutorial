@@ -6,7 +6,7 @@ import { twMerge } from "tailwind-merge";
 import { NavLink, Link, useLocation } from "react-router-dom";
 
 const Header = () => {
-	const [showProfileMenu, setProfileMenu] = useState(false);
+	const [showProfileMenu, setShowProfileMenu] = useState(false);
 	const location = useLocation();
 	const path = location.pathname;
 
@@ -29,9 +29,7 @@ const Header = () => {
 					<nav className="flex gap-4 md:gap-6 text-base md:text-lg items-center">
 						<NavLink
 							to="/"
-							className={twMerge(
-								setActive("/" ? "font-bold" : "bg-red-400 ")
-							)}
+							className={twMerge(setActive("/" ? "font-bold" : "bg-red-400 "))}
 						>
 							Home
 						</NavLink>
@@ -41,7 +39,9 @@ const Header = () => {
 						>
 							Menu
 						</NavLink>
-						<NavLink to="/about">About</NavLink>
+						<NavLink className="" to="/about">
+							About
+						</NavLink>
 						<NavLink to="/contact">Contact</NavLink>
 					</nav>
 					<div className="relative text-2xl">
@@ -52,7 +52,7 @@ const Header = () => {
 					</div>
 					<div
 						className=" flex items-center justify-center "
-						onClick={() => setProfileMenu(!showProfileMenu)}
+						onClick={() => setShowProfileMenu(!showProfileMenu)}
 					>
 						<button className="border-2 text-2xl border-solid border-slate-600 rounded-full cursor-pointer">
 							<AiOutlineUser className="" />
