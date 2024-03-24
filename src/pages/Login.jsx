@@ -5,11 +5,13 @@ import loginSignUpImage from "../assets/login-animation.gif";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../app/userSlice";
 const Login = () => {
 	const [showPassword, setShowPassword] = useState(false);
-	const userData = useSelector((state) => state.user);
+	const userData = useSelector((state) => state.user.userData);
 	console.log(userData);
+	const dispatch = useDispatch();
 
 	const [loading, setLoading] = useState(false);
 	const navigate = useNavigate();
@@ -35,10 +37,11 @@ const Login = () => {
 				"http://localhost:3000/user/login",
 				data
 			);
+
 			toast.dismiss(toastId);
 			if (serverRes?.data?.success) {
 				toast.success("Login sucessful");
-				console.log(serverRes.data.userData);
+				dispatch(login(serverRes.data.userData));
 				navigate("/");
 			} else {
 				toast.error("User with this email does not exist. Please sign up.");
