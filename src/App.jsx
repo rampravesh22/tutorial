@@ -11,7 +11,7 @@ function App() {
 	}, []);
 	return (
 		<div className="h-screen bg-gray-300 flex  items-center">
-			<div id="box" className="size-20 bg-pink-700"></div>
+			<div id="box" className="size-20 ml-20 bg-pink-700"></div>
 		</div>
 	);
 }
