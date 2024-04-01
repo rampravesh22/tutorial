@@ -3,7 +3,7 @@ import gsap from "gsap";
 
 function App() {
 	useEffect(() => {
-		gsap.to("#box", {
+		gsap.from("#box", {
 			delay: 1,
 			scale: 3,
 			duration: 1,
