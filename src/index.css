@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.parent {
+	border: 2px solid red;
+	height: 300px;
+
+	display: flex;
+	min-height: 300px;
+}
+.child {
+	height: 100px;
+	width: 800px;
+	border: black 2px solid;
+	flex-grow: 1;
+}
