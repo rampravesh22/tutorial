@@ -13,7 +13,7 @@ const Product = ({ product }) => {
 	return (
 		<>
 			{!loading ? (
-				<div className="card w-[90%] md:w-72 transition-all hover:ring-1 hover:ring-neutral rounded border bg-base-100 shadow-xl h-[450px]">
+				<div className="card w-[90%] md:w-72 transition-all hover:ring-1 hover:ring-neutral rounded border bg-base-100 shadow-xl min-h-[450px]">
 					<Link to={`/product/${product._id}`}>
 						<figure>
 							<img src={product.image} alt="Shoes" />
