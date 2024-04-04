@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import { Link } from "react-router-dom";
 const Product = ({ product }) => {
 	const [loading, setLoading] = useState(true);
 	useEffect(() => {
@@ -13,20 +13,25 @@ const Product = ({ product }) => {
 	return (
 		<>
 			{!loading ? (
-				<div className="card w-[90%] rounded border md:w-80 bg-base-100 shadow-xl h-[450px]">
-					<figure>
-						<img src={product.image} alt="Shoes" />
-					</figure>
+				<div className="card w-[90%] md:w-72 transition-all hover:ring-1 hover:ring-neutral rounded border bg-base-100 shadow-xl h-[450px]">
+					<Link to={`/product/${product._id}`}>
+						<figure>
+							<img src={product.image} alt="Shoes" />
+						</figure>
+					</Link>
 					<div className="card-body">
-						<h2 className="card-title">Shoes!</h2>
-						<p>If a dog chews shoes whose shoes does he choose?</p>
-						<div className="card-actions justify-end">
+						<Link className="hover:underline" to={`/product/${product._id}`}>
+							<h2 className="card-title">{product.name}</h2>
+						</Link>
+						<p className="truncate">{product.description}</p>
+						<div className="card-actions justify-end items-center">
+							<p className="font-bold">₹{product.price}</p>
 							<button className="btn btn-neutral">Buy Now</button>
 						</div>
 					</div>
 				</div>
 			) : (
-				<div className="skeleton w-[90%] rounded border md:w-80 h-[450px]"></div>
+				<div className="w-[90%] skeleton rounded border flex flex-col gap-3 md:w-80 h-[450px]"></div>
 			)}
 		</>
 	);

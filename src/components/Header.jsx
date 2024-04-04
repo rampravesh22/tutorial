@@ -4,26 +4,33 @@ import { CgMenu } from "react-icons/cg";
 import { useState } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { BiUserCircle } from "react-icons/bi";
+import { Link } from "react-router-dom";
 const Header = () => {
 	const [hamMenu, setHamMenu] = useState(false);
 	return (
 		<>
 			{/* desktop menu */}
 			<div className="navbar flex bg-neutral text-white justify-between items-center pr-8">
-				<a className="btn btn-ghost group text-xl flex gap-1">
+				<Link to={"/"} className="btn btn-ghost group text-xl flex gap-1">
 					<FaSuperpowers className="group-hover:animate-spin " />
 					<span>
 						<span className="">Pro</span>Shop
 					</span>
-				</a>
+				</Link>
 				<div className=" gap-10 text-xl items-center hidden md:flex">
-					<button className="flex items-center gap-1  hover:text-base-300">
+					<Link
+						to={"/cart"}
+						className="flex items-center gap-1  hover:text-base-300"
+					>
 						<AiOutlineShoppingCart className="text-2xl " />
 						Cart
-					</button>
-					<button className="flex items-center gap-1 hover:text-base-300">
+					</Link>
+					<Link
+						to={"/signin"}
+						className="flex items-center gap-1 hover:text-base-300"
+					>
 						<BiUserCircle className="text-2xl" /> Sign in
-					</button>
+					</Link>
 				</div>
 				{!hamMenu ? (
 					<button className="md:hidden" onClick={() => setHamMenu(!hamMenu)}>
