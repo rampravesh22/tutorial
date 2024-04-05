@@ -31,7 +31,7 @@ const Product = ({ product }) => {
 					</div>
 				</div>
 			) : (
-				<div className="w-[90%] skeleton rounded border flex flex-col gap-3 md:w-80 h-[450px]"></div>
+				<div className="w-[90%] skeleton rounded border flex flex-col gap-3 md:w-72 h-[450px]"></div>
 			)}
 		</>
 	);

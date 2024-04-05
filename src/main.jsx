@@ -13,7 +13,7 @@ import HomeScreen from "./screens/HomeScreen.jsx";
 const router = createBrowserRouter(
 	createRoutesFromElements(
 		<Route path="/" element={<App />}>
-			<Route index path="/" element={<HomeScreen />}></Route>
+			<Route index path="/" element={<HomeScreen />} />
 		</Route>
 	)
 );
