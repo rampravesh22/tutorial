@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-
+import { useState } from "react";
 const Tab = () => {
 	const [activeTab, setActiveTab] = useState(0);
 	const tabs = [
@@ -40,23 +39,27 @@ const Tab = () => {
 				Tab Management
 			</h1>
 			<div className="w-[400px] shadow border-black rounded flex items-center-center flex-col m-auto border mt-20">
-				<button className="flex justify-center mt-10 gap-4">
+				<div className="flex justify-center mt-10">
 					{tabs.map((tab) => {
 						return (
-							<div
+							<button
 								onClick={() => {
 									handleTabChange(tab.value);
 								}}
 								key={tab.label}
-								className={`border transition-all border-zinc-800 px-6 rounded-md ${
-									tab.value === activeTab ? "bg-zinc-800 text-white " : ""
+								className={` transition-all border-black px-6  ${
+									tab.value === activeTab && tab.value == 0
+										? "border-t border-e"
+										: tab.value === tabs.length - 1 && tab.value === activeTab
+										? "border-t border-s "
+										: ""
 								}`}
 							>
 								{tab.label}
-							</div>
+							</button>
 						);
 					})}
-				</button>
+				</div>
 				<div className="flex mt-10 flex-col px-10 pb-5">
 					<h1 className="font-bold">{tabs[activeTab].title}</h1>
 					<p>{tabs[activeTab].desscription}</p>
