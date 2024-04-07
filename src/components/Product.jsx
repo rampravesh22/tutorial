@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Rating from "./Rating";
 const Product = ({ product }) => {
 	const [loading, setLoading] = useState(true);
 	useEffect(() => {
 		const id = setTimeout(() => {
 			setLoading(false);
-		}, 2000);
+		}, 500);
 		return () => {
 			clearTimeout(id);
 		};
@@ -24,8 +25,15 @@ const Product = ({ product }) => {
 							<h2 className="card-title">{product.name}</h2>
 						</Link>
 						<p className="truncate">{product.description}</p>
-						<div className="card-actions justify-end items-center">
+						<div className="card-actions justify-start items-start flex-col">
+							<div>
+								<Rating
+									value={product.rating}
+									text={`${product.numReviews} reviews`}
+								/>
+							</div>
 							<p className="font-bold">₹{product.price}</p>
+
 							<button className="btn btn-neutral">Buy Now</button>
 						</div>
 					</div>

@@ -6,7 +6,7 @@ function App() {
 	return (
 		<div className="flex flex-col h-screen">
 			<Header />
-			<main className="flex-grow">
+			<main className="flex-grow mt-20">
 				<Outlet />
 			</main>
 			<Footer />

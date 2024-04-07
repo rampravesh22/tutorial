@@ -10,7 +10,7 @@ const Header = () => {
 	return (
 		<>
 			{/* desktop menu */}
-			<div className="navbar flex bg-neutral text-white justify-between items-center pr-8">
+			<div className="navbar flex fixed z-20 bg-neutral text-white justify-between items-center pr-8">
 				<Link to={"/"} className="btn btn-ghost group text-xl flex gap-1">
 					<FaSuperpowers className="group-hover:animate-spin " />
 					<span>
@@ -47,8 +47,8 @@ const Header = () => {
 			</div>
 			{/* mobile menu */}
 			<div
-				className={`flex gap-3 text-lg flex-col origin-top transition-all pl-8  py-4 bg-neutral text-white  ${
-					hamMenu ? "scaley-y-100" : "scale-y-0"
+				className={`flex pt-5 pb-8 gap-2 text-lg z-10 fixed  w-full flex-col transition-all pl-8   bg-neutral text-white  ${
+					hamMenu ? "top-16" : "-top-16"
 				}  md:hidden`}
 			>
 				<button className="flex items-center gap-1  hover:text-base-300">
