@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer components {
+	.skeleton {
+		border-radius: 0.2rem;
+	}
+}
