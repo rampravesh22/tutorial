@@ -11,6 +11,7 @@ const ProductScreen = () => {
 	const [loading, setLoading] = useState(true);
 	const product = products.find((product) => product._id === productId);
 	useEffect(() => {
+		// this is for testing
 		const getData = () => {
 			setTimeout(() => {
 				setLoading(false);
@@ -20,21 +21,29 @@ const ProductScreen = () => {
 	});
 	return (
 		<>
+			<div className="text-center mt-3">
+				<button
+					className="text-center btn btn-neutral"
+					onClick={() => window.location.reload()}
+				>
+					Reload
+				</button>
+			</div>
 			{loading ? (
 				<div className="h-full mb-20 mt-10 p-10">
 					{/* skeleton loading */}
-					<div className="flex md:gap-4 flex-col gap-y-10  md:justify-center w-full items-center md:items-start">
+					<div className="flex md:gap-4  flex-col gap-y-10  md:justify-center w-full items-center md:items-start">
 						{/* go back button */}
 						<div className="skeleton btn self-start mb-5  btn-sm w-28 transition-all h-10 space-x-0  group"></div>
-						<div className="flex gap-3 md:flex-row flex-col">
+						<div className="flex gap-3  w-full md:flex-row flex-col">
 							{/* image  */}
-							{/* imgae containe */}
-							<div className="w-full md:w-1/3 skeleton h-[300px]"></div>
+							{/* imgae container */}
+							<div className="w-full h-[300px] md:w-1/3 skeleton "></div>
 
 							{/* detailes container */}
 							<div className="w-full md:w-1/3">
 								{/* title */}
-								<h1 className="font-bold text-3xl skeleton md:h-[108px]"></h1>
+								<h1 className="font-bold text-3xl skeleton md:h-[65px]"></h1>
 								<div className="divider"></div>
 								{/* rating and reviews */}
 								<div className="flex gap-5 ">
@@ -48,11 +57,10 @@ const ProductScreen = () => {
 									<span className="h-6 w-16 skeleton"> </span>
 								</div>
 								<div className="divider"></div>
-								<div>
-									<h1 className="font-bold skeleton h-6 w-24"></h1>
-									{/* <p className="h-[300px] skeleton w-[400px]">
-										{product.description}
-									</p> */}
+								{/* description */}
+								<div className="flex flex-col gap-3">
+									<div className="font-bold skeleton h-6 w-24"></div>
+									<div className="font-bold skeleton h-[90px] w-full "></div>
 								</div>
 							</div>
 							{/* cart container */}
@@ -85,8 +93,8 @@ const ProductScreen = () => {
 					</div>
 				</div>
 			) : (
-				<div className="h-full mb-20 mt-10 p-10">
-					<div className="flex md:gap-4 flex-col gap-y-10  md:justify-center w-full items-center md:items-start">
+				<div className="h-full mb-20  mt-10 p-10">
+					<div className="flex md:gap-4 flex-col  gap-y-10  md:justify-center w-full items-center md:items-start">
 						<Link
 							to="/"
 							className="btn self-start mb-5 btn-neutral btn-sm  h-10 space-x-0  group"
@@ -104,7 +112,8 @@ const ProductScreen = () => {
 							</div>
 
 							<div className="w-full md:w-1/3">
-								<h1 className="font-bold text-3xl">{product.name}</h1>
+								{/* title */}
+								<h1 className="font-bold text-3xl ">{product.name}</h1>
 								<div className="divider"></div>
 								<Rating
 									value={product.rating}

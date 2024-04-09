@@ -10,11 +10,11 @@ const Header = () => {
 	return (
 		<>
 			{/* desktop menu */}
-			<div className="navbar flex fixed z-20 bg-neutral text-white justify-between items-center pr-8">
+			<div className="navbar  flex fixed z-20 bg-neutral text-white justify-between items-center pr-8">
 				<Link to={"/"} className="btn btn-ghost group text-xl flex gap-1">
 					<FaSuperpowers className="group-hover:animate-spin " />
 					<span>
-						<span className="">Pro</span>Shop
+						<span className="">Shoppingo</span>
 					</span>
 				</Link>
 				<div className=" gap-10 text-xl items-center hidden md:flex">
