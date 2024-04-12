@@ -6,7 +6,7 @@ const Product = ({ product }) => {
 	useEffect(() => {
 		const id = setTimeout(() => {
 			setLoading(false);
-		}, 800);
+		}, 400);
 		return () => {
 			clearTimeout(id);
 		};

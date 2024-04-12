@@ -5,6 +5,7 @@ import { useState } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { BiUserCircle } from "react-icons/bi";
 import { Link } from "react-router-dom";
+
 const Header = () => {
 	const [hamMenu, setHamMenu] = useState(false);
 	return (
