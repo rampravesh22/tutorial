@@ -1,7 +1,11 @@
+import Auth from "./components/Auth";
+
 function App() {
 	return (
 		<>
-			<div className="">App</div>
+			<div className="bg-gray-200">
+				<Auth />
+			</div>
 		</>
 	);
 }
