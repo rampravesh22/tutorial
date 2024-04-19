@@ -1,6 +1,5 @@
 import { RiCloseFill } from "react-icons/ri";
 import { TbMenu } from "react-icons/tb";
-import { RxFramerLogo } from "react-icons/rx";
 import React, { useEffect, useState } from "react";
 
 const Navbar = () => {
