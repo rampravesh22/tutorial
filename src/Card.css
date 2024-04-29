@@ -1,0 +1,24 @@
+/* Card.css .card-container {
+	display: flex;
+}
+
+.card {
+	opacity: 0;
+	transition: opacity 0.5s ease-in;
+}
+
+.card:nth-child(1) {
+	transition-delay: 0s;
+}
+
+.card:nth-child(2) {
+	transition-delay: 0.2s;
+}
+
+.card:nth-child(3) {
+	transition-delay: 0.4s;
+}
+
+.card.show {
+	opacity: 1;
+} */
