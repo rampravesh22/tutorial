@@ -17,12 +17,12 @@ const App = () => {
 				}`}
 			></div>
 			<div
-				className={`card bg-green-500 card h-40 w-[90%] delay-[1500ms] transition-all rounded  ${
+				className={` bg-green-500 card h-40 w-[90%] delay-[1500ms] transition-all rounded  ${
 					showCards ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
 				}`}
 			></div>
 			<div
-				className={`card  bg-blue-500 card h-40 w-[90%] transition-all rounded delay-[2000ms]  ${
+				className={`  bg-blue-500 card h-40 w-[90%] transition-all rounded delay-[2000ms]  ${
 					showCards ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
 				}`}
 			></div>
