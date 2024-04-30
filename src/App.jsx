@@ -17,7 +17,7 @@ function App() {
 				wrapper="span"
 				cursor={true}
 				repeat={0}
-				className="bg-teal-700 border-black border block text-white rounded-md px-7"
+				className="bg-zinc-700 border-black border block text-white rounded-md px-7"
 				style={{ fontSize: "2em", display: "inline-block" }}
 			/>
 		</div>
