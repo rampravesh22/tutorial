@@ -1,7 +1,7 @@
 import { TypeAnimation } from "react-type-animation";
 function App() {
 	return (
-		<div className="h-screen flex justify-center items-center font-nunito">
+		<div className="h-[100svh] flex justify-center items-center font-nunito">
 			<TypeAnimation
 				sequence={[
 					"Chetan", // Types 'One'
