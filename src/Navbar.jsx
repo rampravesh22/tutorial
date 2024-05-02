@@ -6,13 +6,17 @@ const Navbar = () => {
 	const [menu, setMenu] = useState(false);
 	return (
 		<div className="bg-blue-800 relative  text-white flex z-40 items-center px-5 h-12">
-			<div className="flex w-full z-50 justify-between items-center">
+			<div className="flex w-full  z-50 justify-between items-center">
 				<div className="text-xl ">Logo</div>
 				<button
 					onClick={() => setMenu(!menu)}
 					className="flex z-50 text-2xl items-center"
 				>
-					{menu ? <CgClose className="" /> : <LuMenu />}
+					{menu ? (
+						<CgClose className="transition-all duration-500" />
+					) : (
+						<LuMenu className="transition-all duration-500" />
+					)}
 				</button>
 			</div>
 			<div
