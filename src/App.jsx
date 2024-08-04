@@ -7,11 +7,7 @@ import ViewBasedAnimation from "./ViewBasedAnimation";
 function App() {
 	return (
 		<>
-			{/* <BasicMotion /> */}
-			{/* <Gesture />  */}
-			{/* <AnimationControls /> */}
-			{/* <ViewBasedAnimation /> */}
-			<ScrollBasedAnimation />
+			<BasicMotion />
 		</>
 	);
 }
