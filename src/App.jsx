@@ -1,5 +1,11 @@
+import UploadImage from "./UploadImage";
+
 function App() {
-	return <div>App</div>;
+	return (
+		<div>
+			<UploadImage />
+		</div>
+	);
 }
 
 export default App;
