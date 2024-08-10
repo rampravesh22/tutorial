@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import supabase from "./supabaseClient";
+import { GlobalContext } from "./ContextProvider";
 const Signin = () => {
 	const [loading, setLoading] = useState(false);
+	const { session, setSession } = useContext(GlobalContext);
 
 	const [inputs, setInputs] = useState({
 		email: "rpc7863@gmail.com",
@@ -13,7 +15,7 @@ const Signin = () => {
 		});
 	};
 
-	const handleSignUp = async (e) => {
+	const handleSignIn = async (e) => {
 		e.preventDefault();
 		setLoading(true);
 		const { data, error } = await supabase.auth.signInWithPassword(inputs);
@@ -21,15 +23,15 @@ const Signin = () => {
 		if (error) {
 			console.log(error);
 		} else {
-			// console.log(data.session.access_token);
 			localStorage.setItem("supabaseToken", data.session.access_token);
+			setSession(data.session.access_token);
 		}
 	};
 
 	return (
 		<div className="flex  justify-center mt-10">
 			<form
-				onSubmit={handleSignUp}
+				onSubmit={handleSignIn}
 				action=""
 				className="max-w-[500px] gap-5 w-[80%] flex justify-center flex-col"
 			>
