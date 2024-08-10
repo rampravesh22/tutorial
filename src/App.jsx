@@ -1,5 +1,10 @@
+import Home from "./Home";
+
 function App() {
-	return <div>App</div>;
+	const findValue = (test) => {
+		console.log(test);
+	};
+	return <Home findValue={(test) => findValue(test)}>App</Home>;
 }
 
 export default App;
