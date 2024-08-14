@@ -1,5 +1,11 @@
+import ResumeContainer from "./components/ResumeContainer";
+
 function App() {
-	return <div>App</div>;
+	return (
+		<div>
+			<ResumeContainer />
+		</div>
+	);
 }
 
 export default App;

@@ -17,3 +17,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@media print {
+	.page {
+		page-break-before: always;
+		border: none;
+		margin: 1px;
+		font-size: 0.9rem;
+	}
+
+	.page:first-of-type {
+		page-break-before: auto;
+		padding-top: 4rem;
+	}
+
+	/* .no-print {
+		display: none;
+	} */
+}
