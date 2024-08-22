@@ -7,7 +7,7 @@ import { GlobalContext } from "../../context/ContextProvider";
 
 const Login = () => {
 	const [loading, setLoading] = useState(false);
-	const { setToken } = useContext(GlobalContext);
+	const { setToken, setName } = useContext(GlobalContext);
 	const [inputs, setInputs] = useState({
 		email: "",
 		password: "ram123",
@@ -22,10 +22,14 @@ const Login = () => {
 		try {
 			setLoading(true);
 			const { data } = await axios.post(`${API_URL}/user/login`, inputs);
+			console.log(data);
 			localStorage.setItem("token", data.token);
+			localStorage.setItem("name", data.name);
+
 			console.log("inside of login.jsx", data.token);
 			setToken(data.token);
 			setLoading(false);
+			setName(data.name);
 		} catch (error) {
 			setLoading(false);
 		} finally {

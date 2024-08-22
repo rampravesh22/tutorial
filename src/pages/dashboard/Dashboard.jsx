@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../../context/ContextProvider";
 import axios from "axios";
 import { API_URL } from "../../api/api";
-import { Listbox, ListboxItem, User } from "@nextui-org/react";
 
 const Dashboard = () => {
 	const { token, setToken } = useContext(GlobalContext);
@@ -39,7 +38,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-const score = 35;
-const grade = score > 90 ? "A" : score < 90 && score > 80 ? "B" : "fail";
-
-console.log(grade);

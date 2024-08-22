@@ -15,7 +15,7 @@ import { GlobalContext } from "../../context/ContextProvider";
 
 export default function Header() {
 	// const navigate = useNavigate();
-	const { token, setToken } = useContext(GlobalContext);
+	const { token, setToken, name, setName } = useContext(GlobalContext);
 	const navigate = useNavigate();
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -38,7 +38,9 @@ export default function Header() {
 					className="sm:hidden"
 				/>
 				<NavbarBrand>
-					<p className="font-bold text-inherit">Auth</p>
+					<p className="font-bold text-inherit capitalize">
+						{name ? name : "User"}
+					</p>
 				</NavbarBrand>
 			</NavbarContent>
 
