@@ -1,14 +1,14 @@
 import { Button, Input, Link } from "@nextui-org/react";
 import axios from "axios";
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
-import { url } from "../../api/api";
+import { Link as RLink } from "react-router-dom";
+import { API_URL } from "../../api/api";
 
 const Register = () => {
 	const [loading, setLoading] = useState(false);
 	const [inputs, setInputs] = useState({
 		name: "ram",
-		email: "ram@gmail.com",
+		email: "@gmail.com",
 		password: "ram123",
 	});
 
@@ -20,19 +20,17 @@ const Register = () => {
 		e.preventDefault();
 		try {
 			setLoading(true);
-			const { data } = await axios.post(`${url}/user//register`, inputs);
-			console.log(data);
+			await axios.post(`${API_URL}/user/register`, inputs);
 			setLoading(false);
 		} catch (error) {
 			console.log(error);
 			setLoading(false);
 		} finally {
-			console.log("finally executed");
 		}
 	};
 	return (
 		<div className="mt-10">
-			<h1 className="text-center text-4xl">Register Page</h1>
+			<h1 className="text-center text-4xl">Register</h1>
 			<form
 				onSubmit={handleRegisterSubmit}
 				className="max-w-3xl w-4/6 mx-auto mt-4 flex flex-col gap-3"
@@ -44,6 +42,7 @@ const Register = () => {
 					label="Name"
 					variant="bordered"
 					onChange={handleInputChange}
+					required
 				/>
 				<Input
 					value={inputs.email}
@@ -52,6 +51,7 @@ const Register = () => {
 					label="Email"
 					variant="bordered"
 					onChange={handleInputChange}
+					required
 				/>
 				<Input
 					value={inputs.password}
@@ -60,6 +60,7 @@ const Register = () => {
 					label="Password"
 					variant="bordered"
 					onChange={handleInputChange}
+					required
 				/>
 				<Button
 					variant="solid"
@@ -71,7 +72,7 @@ const Register = () => {
 				</Button>
 				<span>
 					Already have an account?{" "}
-					<Link to={"/login"} as={NavLink}>
+					<Link to={"/login"} as={RLink}>
 						Login
 					</Link>
 				</span>

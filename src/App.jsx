@@ -6,6 +6,7 @@ import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Header from "./pages/header/Header";
+import Profile from "./pages/profile/Profile";
 
 const App = () => {
 	// 2. Wrap NextUIProvider at the root of your app
@@ -16,6 +17,7 @@ const App = () => {
 				<Route path="/login" element={<Login />}></Route>
 				<Route path="/register" element={<Register />}></Route>
 				<Route path="/dashboard" element={<Dashboard />}></Route>
+				<Route path="/profile" element={<Profile />}></Route>
 			</Routes>
 		</div>
 	);

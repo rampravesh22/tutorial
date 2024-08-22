@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import {
 	Navbar,
 	NavbarBrand,
@@ -10,30 +10,27 @@ import {
 	Link,
 	Button,
 } from "@nextui-org/react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { GlobalContext } from "../../context/ContextProvider";
 
 export default function Header() {
 	// const navigate = useNavigate();
-	const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-	const menuItems = [
-		{
-			menuName: "Profile",
-			link: "/profile",
-		},
-		{
-			menuName: "Dashboard",
-			link: "/dashboard",
-		},
-		{
-			menuName: "Logout",
-			link: "/logout",
-		},
-	];
+	const { token, setToken } = useContext(GlobalContext);
+	const navigate = useNavigate();
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+	const handleLogout = () => {
+		localStorage.removeItem("token");
+		setToken(null);
+		setIsMenuOpen(false);
+		navigate("/login");
+	};
 
 	return (
 		<Navbar
 			onMenuOpenChange={setIsMenuOpen}
-			className="bg-secondary text-white"
+			isMenuOpen={isMenuOpen}
+			className="bg-secondary-700 text-white"
 		>
 			<NavbarContent>
 				<NavbarMenuToggle
@@ -59,36 +56,86 @@ export default function Header() {
 			</NavbarContent>
 			<NavbarContent justify="end">
 				<NavbarItem className="hidden lg:flex">
-					<Link href="#">Login</Link>
+					<Link href="/login">Login</Link>
 				</NavbarItem>
-				<NavLink to="/register">
-					<Button
-						className="bg-success-700 text-white"
-						color="default"
-						href="#"
-						variant="flat"
-					>
-						Sign Up
-					</Button>
-				</NavLink>
+				{!token ? (
+					<NavLink to="/register">
+						<Button
+							className="bg-success-700 text-white"
+							color="default"
+							href="#"
+							variant="flat"
+						>
+							Sign Up
+						</Button>
+					</NavLink>
+				) : (
+					<NavLink>
+						<Button
+							onClick={handleLogout}
+							className="bg-danger-500 text-white"
+							variant="flat"
+						>
+							Logout
+						</Button>
+					</NavLink>
+				)}
 			</NavbarContent>
-			<NavbarMenu className="bg-secondary-600 pt-10 space-y-2 text-white">
-				{menuItems.map((item, index) => (
-					<NavbarMenuItem key={`${item}-${index}`}>
-						<NavLink to={item.link} className="text-white">
+			<NavbarMenu className="bg-secondary-900 pt-10 space-y-2 text-white">
+				{token ? (
+					<>
+						<NavbarMenuItem>
 							<Link
-								color={item.menuName === "Logout" ? "danger" : "#fffff"}
-								className={`w-full  ${
-									item.menuName === "Logout" ? "" : "text-white"
-								}`}
-								href="/dashboard"
+								as={NavLink}
+								onPress={() => {
+									navigate("/dashboard");
+									setIsMenuOpen(false);
+								}}
 								size="lg"
+								className="text-white  cursor-pointer"
 							>
-								{item.menuName}
+								Dashboard
 							</Link>
-						</NavLink>
+						</NavbarMenuItem>
+						<NavbarMenuItem>
+							<Link
+								as={NavLink}
+								onPress={() => {
+									navigate("/profile");
+									setIsMenuOpen(false);
+								}}
+								size="lg"
+								className="text-white cursor-pointer"
+							>
+								Profile
+							</Link>
+						</NavbarMenuItem>
+						<NavbarMenuItem>
+							<Button
+								onClick={handleLogout}
+								type="button"
+								size=""
+								color="danger"
+							>
+								Logout
+							</Button>
+						</NavbarMenuItem>
+					</>
+				) : (
+					<NavbarMenuItem>
+						<Link
+							as={NavLink}
+							onPress={() => {
+								navigate("/login");
+								setIsMenuOpen(false);
+							}}
+							size="lg"
+							className="text-white cursor-pointer"
+						>
+							Login
+						</Link>
 					</NavbarMenuItem>
-				))}
+				)}
 			</NavbarMenu>
 		</Navbar>
 	);
