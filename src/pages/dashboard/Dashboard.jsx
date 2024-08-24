@@ -2,28 +2,28 @@ import React, { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../../context/ContextProvider";
 import axios from "axios";
 import { API_URL } from "../../api/api";
+import { Skeleton } from "@nextui-org/react";
 
 const Dashboard = () => {
-	const { token, setToken } = useContext(GlobalContext);
+	const { token } = useContext(GlobalContext);
 	const [users, setUsers] = useState([]);
-	const [loading, setLoading] = useState(false);
+	const [loading, setLoading] = useState(true);
+
 	useEffect(() => {
 		const getUsers = async () => {
 			try {
-				console.log(token);
 				const { data } = await axios.get(`${API_URL}/user/allusers`, {
 					headers: {
 						"Content-Type": "application/json",
 						Authorization: `Bearer ${localStorage.getItem("token")}`,
 					},
 				});
-				console.log(data);
-
-				setTimeout(() => {
-					setUsers(data.users);
-				}, 2000);
+				setUsers(data.users);
+				setLoading(false);
 			} catch (error) {
 				console.log(error);
+			} finally {
+				setLoading(false);
 			}
 		};
 
@@ -32,7 +32,11 @@ const Dashboard = () => {
 
 	return (
 		<ul className="flex flex-col items-stretch list-none gap-2 p-5">
-			{users.length > 0 ? loading : null}
+			{loading
+				? Array.from({ length: 5 }).map((_, index) => {
+						return <Skeleton key={index} className="rounded-lg h-8" />;
+				  })
+				: users.map((user) => <li key={user._id}>{user.name}</li>)}
 		</ul>
 	);
 };

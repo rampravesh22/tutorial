@@ -14,8 +14,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../context/ContextProvider";
 
 export default function Header() {
-	// const navigate = useNavigate();
-	const { token, setToken, name, setName } = useContext(GlobalContext);
+	const { token, setToken, name } = useContext(GlobalContext);
 	const navigate = useNavigate();
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -72,7 +71,7 @@ export default function Header() {
 						</Button>
 					</NavLink>
 				) : (
-					<NavLink>
+					<NavbarItem>
 						<Button
 							onClick={handleLogout}
 							className="bg-danger-500 text-white"
@@ -80,7 +79,7 @@ export default function Header() {
 						>
 							Logout
 						</Button>
-					</NavLink>
+					</NavbarItem>
 				)}
 			</NavbarContent>
 			<NavbarMenu className="bg-secondary-900 pt-10 space-y-2 text-white">

@@ -1,15 +1,16 @@
 import { Button, Input, Link } from "@nextui-org/react";
 import axios from "axios";
 import React, { useContext, useState } from "react";
-import { Link as RLink } from "react-router-dom";
+import { Link as RLink, useNavigate } from "react-router-dom";
 import { API_URL } from "../../api/api";
 import { GlobalContext } from "../../context/ContextProvider";
 
 const Login = () => {
+	const navigate = useNavigate();
 	const [loading, setLoading] = useState(false);
 	const { setToken, setName } = useContext(GlobalContext);
 	const [inputs, setInputs] = useState({
-		email: "",
+		email: "rohit@gmail.com",
 		password: "ram123",
 	});
 
@@ -26,10 +27,10 @@ const Login = () => {
 			localStorage.setItem("token", data.token);
 			localStorage.setItem("name", data.name);
 
-			console.log("inside of login.jsx", data.token);
 			setToken(data.token);
 			setLoading(false);
 			setName(data.name);
+			navigate("/dashboard");
 		} catch (error) {
 			setLoading(false);
 		} finally {
