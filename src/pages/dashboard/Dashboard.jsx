@@ -5,20 +5,19 @@ import { API_URL } from "../../api/api";
 import { Skeleton } from "@nextui-org/react";
 
 const Dashboard = () => {
-	const { token } = useContext(GlobalContext);
 	const [users, setUsers] = useState([]);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		const getUsers = async () => {
 			try {
-				const { data } = await axios.get(`${API_URL}/user/allusers`, {
+				const { data } = await axios.get(`${API_URL}/user/getusers`, {
 					headers: {
 						"Content-Type": "application/json",
 						Authorization: `Bearer ${localStorage.getItem("token")}`,
 					},
 				});
-				setUsers(data.users);
+				setUsers(data);
 				setLoading(false);
 			} catch (error) {
 				console.log(error);
