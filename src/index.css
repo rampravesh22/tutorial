@@ -23,15 +23,15 @@
 		page-break-before: always;
 		border: none;
 		margin: 1px;
-		font-size: 0.9rem;
+		font-size: 0.8rem;
 	}
 
-	.page:first-of-type {
+	/* .page:first-of-type {
 		page-break-before: auto;
 		padding-top: 4rem;
-	}
-
-	/* .no-print {
-		display: none;
 	} */
+}
+
+@page {
+	margin: 0 30px 20px;
 }

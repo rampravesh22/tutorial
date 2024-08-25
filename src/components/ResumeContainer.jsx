@@ -1,29 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Resume from "./Resume";
-import { supabase } from "../supabaseClient";
+import { GlobalContext } from "../context/ContextProvider";
 
 const ResumeContainer = () => {
-	const [resumeData, setResumeData] = useState(null);
-
-	useEffect(() => {
-		const fetchData = async () => {
-			const { data, error } = await supabase
-				.from("resume")
-				.select("*")
-				.single();
-
-			if (error) console.log("Error fetching resume:", error);
-			else {
-				console.log(data);
-				setResumeData(data);
-			}
-		};
-
-		fetchData();
-	}, []);
-
+	const { data } = useContext(GlobalContext);
 	return (
-		<div>{resumeData ? <Resume data={resumeData} /> : <p>Loading...</p>}</div>
+		<div>
+			{data ? (
+				<Resume data={data} />
+			) : (
+				<p className="text-center mt-5 text-4xl">Loading...</p>
+			)}
+		</div>
 	);
 };
 

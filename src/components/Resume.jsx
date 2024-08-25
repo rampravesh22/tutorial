@@ -5,6 +5,7 @@ import Projects from "./Projects";
 import WorkExperience from "./WorkExperience";
 import Education from "./Education";
 import Certification from "./Certification";
+import PersonalDetails from "./PersonalDetails";
 
 const Resume = ({ data }) => {
 	const componentRef = useRef();
@@ -16,27 +17,24 @@ const Resume = ({ data }) => {
 	});
 
 	return (
-		<div className=" text-black  min-h-screen ">
-			<div className="text-center mt-2">
+		<div className=" text-black m-2 min-h-screen font-nunito">
+			<div className="text-center sticky top-2  flex justify-between px-2">
+				<p className="text-lg font-roboto-mono bg-teal-800 rounded-md text-white px-4 py-1">
+					Single page resume maker
+				</p>
 				<button
 					onClick={handlePrint}
-					className="bg-yellow-400 no-print text-gray-900 px-4 py-2 rounded-lg font-semibold hover:bg-yellow-500"
+					className="bg-yellow-400   no-print text-gray-900 px-4 py-2 rounded-lg font-semibold text-sm hover:bg-yellow-500"
 				>
 					Download Resume
 				</button>
 			</div>
 			<div
-				className="max-w-4xl m-4 mx-auto border border-black  page  rounded-lg print:px-0.5 p-8"
+				className="max-w-3xl m-4 mx-auto border border-black  page  rounded-lg print:px-0.5 p-8"
 				ref={componentRef}
 			>
 				{/* Header Section */}
-				<div className="text-center mb-4 flex justify-between">
-					<h3 className="text-3xl font-bold">{"Rampravesh Chaudhari"}</h3>
-					<p className="text-lg mt-2 text-blue-600">
-						{data.email} | {data.phone}
-					</p>
-				</div>
-
+				<PersonalDetails data={data} />
 				<div className="flex flex-col gap-4">
 					<TechnicalSkills />
 					<WorkExperience />

@@ -3,8 +3,8 @@ import React from "react";
 const EducationSubheading = ({ college, branch, percentage, address }) => {
 	return (
 		<div>
-			<div className="flex justify-between">
-				<span className="font-bold"> ➔ {college}</span>
+			<div className="flex justify-between px-2">
+				<span className="font-semibold"> ➔ {college}</span>
 				<span className="">{address}</span>
 			</div>
 			<div className="pl-4">
