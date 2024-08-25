@@ -1,6 +1,6 @@
 import React from "react";
-import Subheading from "./Subheading";
-import Heading from "./Heading";
+import Subheading from "../shared-components/Subheading";
+import Heading from "../shared-components/Heading";
 
 const TechnicalSkills = () => {
 	return (

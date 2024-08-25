@@ -1,5 +1,5 @@
 import React from "react";
-import icons from "../assets/socialIcons";
+import icons from "../../assets/socialIcons";
 
 const IconComponent = ({ iconName }) => {
 	const IconWrapper = icons[iconName];

@@ -1,11 +1,11 @@
 import React, { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
-import TechnicalSkills from "./TechnicalSkills";
-import Projects from "./Projects";
-import WorkExperience from "./WorkExperience";
-import Education from "./Education";
-import Certification from "./Certification";
-import PersonalDetails from "./PersonalDetails";
+import PersonalDetails from "./personal-details/PersonalDetails";
+import Certification from "./certification-details/Certification";
+import Education from "./education-details/Education";
+import Projects from "./projects/Projects";
+import TechnicalSkills from "./technical-skills/TechnicalSkills";
+import WorkExperience from "./work-experience/WorkExperience";
 
 const Resume = ({ data }) => {
 	const componentRef = useRef();
