@@ -1,25 +1,55 @@
+import { AiFillPlayCircle } from "react-icons/ai";
 import { BiSearchAlt2 } from "react-icons/bi";
 function App() {
 	return (
-		<form
-			onSubmit={(e) => {
-				e.preventDefault();
-				console.log("submitted");
-			}}
-			className="bg-slate-200 relative flex gap-5 p-3 my-6 mx-6 border"
-		>
-			<button
-				type="submit"
-				className="flex gap-2 top-[50%] translate-y-[-50%] left-5 absolute items-center "
-			>
-				<BiSearchAlt2 className="text-2xl " />
-			</button>
-			<input
-				type="text"
-				placeholder="search here"
-				className="w-full outline-none  p-1 pl-[40px] rounded-md"
-			/>
-		</form>
+		<div className="p-10 grid w-4/5 border-2 border-red-500 m-2 items-center justify-items-center  grid-cols-3 h-screen grid-rows-4 gap-5 lg:">
+			<div className="size-20   group flex   bg-slate-300 border border-black rounded-md">
+				<div className="bg-[rgba(0,0,0,.2)] transition-all hidden group-hover:flex w-full h-full   items-center">
+					<button
+						onClick={() => {
+							console.log("hello");
+						}}
+					>
+						<AiFillPlayCircle className="text-5xl  " />
+					</button>
+				</div>
+			</div>
+			<div className="size-20  group flex  items-center bg-slate-300 border border-black rounded-md">
+				<div className="bg-[rgba(0,0,0,.2)] hidden group-hover:flex w-full h-full   items-center">
+					<button>
+						<AiFillPlayCircle className="text-5xl " />
+					</button>
+				</div>
+			</div>
+			<div className="size-20  group flex  items-center bg-slate-300 border border-black rounded-md">
+				<div className="bg-[rgba(0,0,0,.2)] hidden group-hover:flex w-full h-full   items-center">
+					<button>
+						<AiFillPlayCircle className="text-5xl " />
+					</button>
+				</div>
+			</div>
+			<div className="size-20  group flex  items-center bg-slate-300 border border-black rounded-md">
+				<div className="bg-[rgba(0,0,0,.2)] hidden group-hover:flex w-full h-full   items-center">
+					<button>
+						<AiFillPlayCircle className="text-5xl " />
+					</button>
+				</div>
+			</div>
+			<div className="size-20  group flex  items-center bg-slate-300 border border-black rounded-md">
+				<div className="bg-[rgba(0,0,0,.2)] hidden group-hover:flex w-full h-full   items-center">
+					<button>
+						<AiFillPlayCircle className="text-5xl " />
+					</button>
+				</div>
+			</div>
+			<div className="size-20  group flex  items-center bg-slate-300 border border-black rounded-md">
+				<div className="bg-[rgba(0,0,0,.2)] hidden group-hover:flex w-full h-full   items-center">
+					<button>
+						<AiFillPlayCircle className="text-5xl " />
+					</button>
+				</div>
+			</div>
+		</div>
 	);
 }
 
