@@ -1,6 +1,11 @@
 /** @type {import('tailwindcss').Config} */
+const { nextui } = require("@nextui-org/react");
 export default {
-	content: ["./index.html", "./src/**/*.{js,jsx}"],
+	content: [
+		"./index.html",
+		"./src/**/*.{js,jsx}",
+		"./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
+	],
 	theme: {
 		fontFamily: {
 			"noto-sans": ["Noto Sans", "sans-serif"],
@@ -18,6 +23,6 @@ export default {
 			ubuntu: ["Ubuntu", "sans-serif"],
 		},
 	},
-
-	plugins: [],
+	darkMode: "class",
+	plugins: [nextui()],
 };

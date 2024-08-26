@@ -1,34 +1,37 @@
 import React from "react";
-import Subheading from "../shared-components/Subheading";
+
 import Heading from "../shared-components/Heading";
+import TechnicalSubheading from "./TechnicalSubheading";
+
+const skills = [{}];
 
 const TechnicalSkills = () => {
 	return (
 		<div>
 			<Heading>Technical Skills</Heading>
-			<Subheading subHeading="Language" value={"Python, Javascript"} />
-			<Subheading
+			<TechnicalSubheading subHeading="Language" value={"Python, Javascript"} />
+			<TechnicalSubheading
 				subHeading="Python Scripting"
 				value={"Web Scripting, Django, Beautiful Soup, Pandas, NumPy"}
 			/>
-			<Subheading
+			<TechnicalSubheading
 				subHeading="Web Developments"
 				value={"HTML, CSS, Redux Toolkit, Node.js, Express.js, REST APIs"}
 			/>
-			<Subheading
+			<TechnicalSubheading
 				subHeading="IT Constructs:"
 				value={"Data Structures and Algorithms, OOPS, DBMS"}
 			/>
-			<Subheading
+			<TechnicalSubheading
 				subHeading="WebDev Tools"
 				value={" VSCode, Postman, GitHub, Git"}
 			/>
-			<Subheading
+			<TechnicalSubheading
 				subHeading="Framework"
 				value={"ReactJS, Tailwind CSS, Bootstrap Framework, Django"}
 			/>
-			<Subheading subHeading="Database" value={"MySql, MongoDB"} />
-			<Subheading subHeading="DevOps Tool" value={"Docker"} />
+			<TechnicalSubheading subHeading="Database" value={"MySql, MongoDB"} />
+			<TechnicalSubheading subHeading="DevOps Tool" value={"Docker"} />
 		</div>
 	);
 };

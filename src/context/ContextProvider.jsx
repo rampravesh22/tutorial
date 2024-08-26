@@ -7,7 +7,6 @@ const ContextProvider = ({ children }) => {
 
 		if (error) console.log("Error fetching resume:", error);
 		else {
-			console.log(data);
 			setData(data);
 		}
 	};

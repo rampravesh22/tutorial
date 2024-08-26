@@ -1,10 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useGlobalContext } from "../../context/useGlobalContext";
 import IconComponent from "./IconComponent";
 
 const PersonalDetails = () => {
 	const { data } = useGlobalContext();
-	console.log(data);
 
 	return (
 		<>

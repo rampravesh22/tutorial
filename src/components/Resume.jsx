@@ -1,3 +1,4 @@
+import { FiDownload } from "react-icons/fi";
 import React, { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import PersonalDetails from "./personal-details/PersonalDetails";
@@ -24,9 +25,9 @@ const Resume = ({ data }) => {
 				</p>
 				<button
 					onClick={handlePrint}
-					className="bg-yellow-400   no-print text-gray-900 px-4 py-2 rounded-lg font-semibold text-sm hover:bg-yellow-500"
+					className="bg-yellow-400 flex items-center  no-print text-gray-900 px-4 py-2 gap-2 rounded-lg font-semibold text-sm hover:bg-yellow-500"
 				>
-					Download Resume
+					Download <FiDownload />
 				</button>
 			</div>
 			<div
