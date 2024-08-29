@@ -4,7 +4,7 @@ const Signup = () => {
 	const [loading, setLoading] = useState(false);
 	const [inputs, setInputs] = useState({
 		email: "",
-		password: "chetan1752",
+		password: "ram1752",
 	});
 	const handleChangeInput = (e) => {
 		setInputs((preState) => {
@@ -35,7 +35,7 @@ const Signup = () => {
 				<input
 					type="email"
 					name="email"
-					className="border border-black h-10 px-2 w-full rounded-md"
+					className="border bßorder-black h-10 px-2 w-full rounded-md"
 					placeholder="email"
 					required
 					value={inputs.email}

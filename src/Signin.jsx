@@ -6,8 +6,8 @@ const Signin = () => {
 	const { session, setSession } = useContext(GlobalContext);
 
 	const [inputs, setInputs] = useState({
-		email: "rpc7863@gmail.com",
-		password: "chetan1752",
+		email: "",
+		password: "ram1752",
 	});
 	const handleChangeInput = (e) => {
 		setInputs((preState) => {
@@ -20,6 +20,7 @@ const Signin = () => {
 		setLoading(true);
 		const { data, error } = await supabase.auth.signInWithPassword(inputs);
 		setLoading(false);
+		console.log(data.user);
 		if (error) {
 			console.log(error);
 		} else {
