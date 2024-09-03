@@ -1,9 +1,10 @@
+import { Button, Link } from "@nextui-org/react";
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, Link as RLink } from "react-router-dom";
 
 const Layout = () => {
 	return (
-		<div className="h-screen flex justify-center items-center">
+		<div className="">
 			<Outlet />
 		</div>
 	);

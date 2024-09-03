@@ -7,6 +7,8 @@ import Education from "./education-details/Education";
 import Projects from "./projects/Projects";
 import TechnicalSkills from "./technical-skills/TechnicalSkills";
 import WorkExperience from "./work-experience/WorkExperience";
+import { Button } from "@nextui-org/react";
+import { Link } from "react-router-dom";
 
 const Resume = ({ data }) => {
 	const componentRef = useRef();
@@ -18,11 +20,15 @@ const Resume = ({ data }) => {
 	});
 
 	return (
-		<div className=" text-black m-2 min-h-screen font-nunito">
-			<div className="text-center sticky top-2  flex justify-between px-2">
-				<p className="text-lg font-roboto-mono bg-teal-800 rounded-md text-white px-4 py-1">
-					Single page resume maker
-				</p>
+		<div className=" text-black flex flex-col  bg-white  m-2  font-nunito">
+			<div className="text-center    flex justify-between px-2">
+				<Button
+					as={Link}
+					to={"/dashboard"}
+					className="text-lg font-roboto-mono bg-teal-800 rounded-md text-white px-4 py-1"
+				>
+					Dahsboard
+				</Button>
 				<button
 					onClick={handlePrint}
 					className="bg-yellow-400 flex items-center  no-print text-gray-900 px-4 py-2 gap-2 rounded-lg font-semibold text-sm hover:bg-yellow-500"
