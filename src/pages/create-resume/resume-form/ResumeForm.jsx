@@ -1,79 +1,52 @@
 import React, { useReducer } from "react";
-import { Input, Button } from "@nextui-org/react";
+import { Input, Button, Textarea, DateInput } from "@nextui-org/react";
+import formReducer, {
+	addSkill,
+	updateTechSkillChangeInput,
+	updatePersonalDetail,
+	WorkExperienceChange,
+	addExpRow,
+} from "../../../redcuers/formReducer.js";
 
 // Reducer function
-const formReducer = (state, action) => {
-	switch (action.type) {
-		case "UPDATE_PERSONAL_DETAIL": {
-			return {
-				...state,
-				personalDetails: {
-					...state.personalDetails,
-					[action.name]: action.value,
-				},
-			};
-		}
-		case "ADD_SKILL": {
-			return {
-				...state,
-				technicalSkills: [
-					...state.technicalSkills,
-					{ skillKey: "", skillValue: "" },
-				],
-			};
-		}
-
-		case "REMOVE_SKILL": {
-			return;
-		}
-		case "UPDATE_SKILL": {
-			const updatedSkills = state.technicalSkills.map((skill, index) =>
-				index === action.index
-					? { ...skill, [action.name]: action.value }
-					: skill
-			);
-			return { ...state, technicalSkills: updatedSkills };
-		}
-		default: {
-			return state;
-		}
-	}
-};
-
 const ResumeForm = () => {
 	const initialState = {
 		personalDetails: { fullName: "", email: "", phone: "" },
 		technicalSkills: [{ skillKey: "", skillValue: "" }],
+		workExperience: [
+			{ companyName: "", startDate: "", endDate: "", description: "" },
+		],
 	};
-
 	const [state, dispatch] = useReducer(formReducer, initialState);
 
 	const handlePersonalDetailsChange = (e) => {
-		dispatch({
-			type: "UPDATE_PERSONAL_DETAIL",
-			name: e.target.name,
-			value: e.target.value,
-		});
+		dispatch(updatePersonalDetail(e.target.name, e.target.value));
 	};
 
 	const handleTechnicalSkillChange = (index, e) => {
-		dispatch({
-			type: "UPDATE_SKILL",
-			index,
-			name: e.target.name,
-			value: e.target.value,
-		});
+		dispatch(updateTechSkillChangeInput(index, e.target.name, e.target.value));
 	};
 
-	const handleAddSkill = () => {
-		dispatch({ type: "ADD_SKILL" });
+	const handleAddSkillRow = () => {
+		dispatch(addSkill());
 	};
 
+	const handleWorkExperienceChange = (index, e) => {
+		dispatch(WorkExperienceChange(index, e.target.name, e.target.value));
+	};
+
+	console.table(state.workExperience);
+
+	const handleAddSExpRow = () => {
+		dispatch(addExpRow());
+	};
 	return (
 		<div className="rounded-md border border-black m-6 max-w-3xl mx-auto w-[90%]">
-			<form>
+			<form className="flex flex-col gap-10">
 				<div className="p-4">
-					<h1 className="text-center font-bold mb-2">Personal Details</h1>
+					<h1 className="text-center font-bold mb-2 border w-fit mx-auto px-5 py-2 rounded-large border-secondary">
+						Personal Details
+					</h1>
 					<div className="flex flex-col gap-4">
 						<Input
 							type="text"
@@ -108,7 +81,9 @@ const ResumeForm = () => {
 					</div>
 				</div>
 				<div className="p-4">
-					<h1 className="text-center font-bold mb-2">Technical Skills</h1>
+					<h1 className="text-center font-bold mb-2 border w-fit mx-auto px-5 py-2 rounded-large border-secondary">
+						Technical Skills
+					</h1>
 					<div className="flex flex-col gap-4">
 						{state.technicalSkills.map((techSkill, index) => (
 							<div key={index} className="flex gap-2 items-center">
@@ -136,10 +111,81 @@ const ResumeForm = () => {
 							auto
 							flat
 							color="primary"
-							onClick={handleAddSkill}
+							onClick={handleAddSkillRow}
 							className="mt-2"
 						>
-							+ Add Skill
+							+ Add Skill Row
+						</Button>
+					</div>
+				</div>
+				{/* +++++++++++++++++work experience+++++++++++++++++++++++++++++ */}
+				{/* work experience */}
+				<div className="p-4">
+					<h1 className="text-center font-bold mb-2 border w-fit mx-auto px-5 py-2 rounded-large border-secondary">
+						Work Experience
+					</h1>
+					<div className="flex flex-col gap-4">
+						{state.workExperience.map((experience, index) => (
+							<div
+								key={index}
+								className="flex gap-2 items-center flex-col border p-2 border-slate-400 rounded-md"
+							>
+								<div className="flex gap-2">
+									<Input
+										type="text"
+										name="companyName"
+										label="Company Name"
+										value={experience.companyName}
+										variant="bordered"
+										maxLength={200}
+										onChange={(e) => handleWorkExperienceChange(index, e)}
+									/>
+									<DateInput
+										name="startDate"
+										label="Start Date"
+										value={
+											experience.startDate
+												? new Date(experience.startDate)
+												: null
+										}
+										onChange={(value) => {
+											handleWorkExperienceChange(index, {
+												target: { name: "startDate", value },
+											});
+										}}
+									/>
+									<DateInput
+										name="endDate"
+										label="End Date"
+										value={
+											experience.endDate ? new Date(experience.endDate) : null
+										}
+										onChange={(value) =>
+											handleWorkExperienceChange(index, {
+												target: { name: "endDate", value },
+											})
+										}
+									/>
+								</div>
+								<Textarea
+									name="description"
+									label="Description"
+									value={experience.description}
+									variant="bordered"
+									maxLength={2000}
+									onChange={(e) => handleWorkExperienceChange(index, e)}
+								/>
+							</div>
+						))}
+						<Button
+							type="button"
+							auto
+							flat
+							color="primary"
+							onClick={handleAddSExpRow}
+							className="mt-2"
+						>
+							+ Add Experience Row
 						</Button>
 					</div>
 				</div>

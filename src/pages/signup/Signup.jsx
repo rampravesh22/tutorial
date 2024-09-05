@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Input, Link } from "@nextui-org/react";
 import { supabase } from "../../supabaseClient";
 import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
@@ -10,9 +10,11 @@ const Signup = () => {
 	const toggleVisibility = () => setIsVisible(!isVisible);
 
 	const [loading, setLoading] = useState(false);
-	const [formData, setFormData] = useState(
-		JSON.parse(localStorage.getItem("formData"))
-	);
+	const [formData, setFormData] = useState({
+		fullName: "",
+		email: "",
+		password: "",
+	});
 	const [errorMessage, setErrorMessage] = useState(null);
 
 	const handleRegisterSumbit = async (e) => {
