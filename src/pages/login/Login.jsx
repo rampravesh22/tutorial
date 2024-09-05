@@ -11,9 +11,10 @@ const Login = () => {
 	const [isVisible, setIsVisible] = useState(false);
 	const toggleVisibility = () => setIsVisible(!isVisible);
 	const [loading, setLoading] = useState(false);
-	const [formData, setFormData] = useState(
-		JSON.parse(localStorage.getItem("formData"))
-	);
+	const [formData, setFormData] = useState({
+		email: "",
+		password: "",
+	});
 	const handleLoginSubmit = async (e) => {
 		e.preventDefault();
 		try {
