@@ -4,6 +4,7 @@ const App = () => {
 	const [todos, setTodos] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [title, setTitle] = useState("");
+	const [testing, setTesting] = useState()
 
 	useEffect(() => {
 		const getStudents = async () => {
@@ -13,7 +14,7 @@ const App = () => {
 				let res = await supabase.from("todo").select("*");
 
 				if (res.error) {
-					console.log("error occured", error);
+					console.log("error occured", res.error);
 				}
 				setTimeout(() => {
 					setLoading(false);
