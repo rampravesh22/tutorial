@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { LuShoppingCart } from "react-icons/lu";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { CartContext } from "./context/CartContext";
 const products = [
 	{ id: 1, name: "Laptop", price: 1000 },
 	{ id: 2, name: "Smartphone", price: 600 },
@@ -15,17 +16,21 @@ const products = [
 	{ id: 10, name: "Keyboard", price: 80 },
 ];
 const Home = () => {
-	const [cart, setCart] = useState([]);
+	const { cart, setCart, totalCart, setTotalCart } = useContext(CartContext);
 	const totalCarts = () => {
 		let sum = 0;
 		for (let i = 0; i < cart.length; i++) {
 			sum += cart[i].quantity;
 		}
-		return sum;
+		setTotalCart(sum);
 	};
 
+	useEffect(() => {
+		const sum = cart.reduce((acc, item) => acc + item.quantity, 0);
+		setTotalCart(sum);
+	}, [cart, totalCart]);
+
 	const addToCart = (product) => {
-		totalCarts();
 		const existingProduct = cart.find((item) => product.id === item.id);
 		if (existingProduct) {
 			setCart((preState) => {
@@ -38,38 +43,39 @@ const Home = () => {
 		} else {
 			setCart((preState) => [...preState, { ...product, quantity: 1 }]);
 		}
+		totalCarts();
 	};
 
-	console.table(cart);
 	return (
 		<div>
-			<div className="flex justify-between mt-5 px-20 py-2 text-2xl">
+			<div className="flex justify-between text-white items-center py-4  bg-zinc-900 px-20 mb-20 text-2xl">
 				<h2>Products</h2>
 				<Link to="/cart" className="relative">
-					<LuShoppingCart className="text-5xl" />
+					<LuShoppingCart className="text-5xl text-white" />
 					{cart.length ? (
 						<motion.span
 							initial={{ scale: 0 }}
 							animate={{ scale: 1 }}
 							transition={{ duration: 0.2, type: "spring" }}
-							className="bg-red-500 -top-4 -right-4 absolute rounded-full text-sm text-white  size-7 flex justify-center items-center"
+							className="bg-red-500 -top-2 -right-4 absolute rounded-full text-sm text-white  size-7 flex justify-center items-center"
 						>
-							{totalCarts()}
+							{totalCart}
 						</motion.span>
 					) : null}
 				</Link>
 			</div>
 			<div>
-				<div className="grid grid-cols-3 justify-center w-[60%]  justify-items-center content-center items-center mx-auto gap-6">
+				<div className="grid grid-cols-3  w-[60%]  justify-items-center items-center mx-auto gap-6">
 					{products.map((product, index) => {
 						return (
 							<div
 								key={index}
-								className="size-40 border-2 flex items-end p-3 border-black"
+								className="size-40 flex-col justify-between border-2 flex p-3 border-black"
 							>
+								<div>{product.name}</div>
 								<button
 									onClick={() => addToCart(product)}
-									className="bg-blue-500 px-6 py-2 text-white rounded-md"
+									className="bg-blue-500 px-6 py-2  text-white rounded-md"
 								>
 									Add to cart
 								</button>
