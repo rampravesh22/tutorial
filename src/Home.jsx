@@ -17,17 +17,11 @@ const products = [
 ];
 const Home = () => {
 	const { cart, setCart, totalCart, setTotalCart } = useContext(CartContext);
-	const totalCarts = () => {
-		let sum = 0;
-		for (let i = 0; i < cart.length; i++) {
-			sum += cart[i].quantity;
-		}
-		setTotalCart(sum);
-	};
 
 	useEffect(() => {
 		const sum = cart.reduce((acc, item) => acc + item.quantity, 0);
 		setTotalCart(sum);
+		localStorage.setItem("cart", JSON.stringify(cart));
 	}, [cart, totalCart]);
 
 	const addToCart = (product) => {
@@ -43,7 +37,6 @@ const Home = () => {
 		} else {
 			setCart((preState) => [...preState, { ...product, quantity: 1 }]);
 		}
-		totalCarts();
 	};
 
 	return (
