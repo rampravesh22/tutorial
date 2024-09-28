@@ -10,9 +10,10 @@ const Cart = () => {
 		useContext(CartContext);
 
 	const [loading, setLoading] = useState(false);
-	const [product, setProduct] = useState("");
+	const [product, setProduct] = useState({});
 	const [modal, setModal] = useState(false);
 	const [loadingId, setLoadingId] = useState(null);
+
 	const increaseQunatity = (id) => {
 		setCart((prevState) =>
 			prevState.map((item) => {
@@ -20,6 +21,7 @@ const Cart = () => {
 			})
 		);
 	};
+
 	useEffect(() => {
 		localStorage.setItem("cart", JSON.stringify(cart));
 	}, [cart]);
