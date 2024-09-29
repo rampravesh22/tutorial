@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "browserslist": "^4.24.0",
+    "caniuse-lite": "^1.0.30001664",
     "framer-motion": "^11.9.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
