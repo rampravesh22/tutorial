@@ -1,9 +1,21 @@
-import React, { createContext } from "react";
+import React, { createContext, useEffect, useReducer, useState } from "react";
+import cartReducer, { loadCartItems } from "../reducer/cartReducer";
 
 export const CartContext = createContext();
 
+const initialState = [];
+
 const CartContextProvider = ({ children }) => {
-	return <CartContext.Provider>{children}</CartContext.Provider>;
+	const [cart, dispatch] = useReducer(cartReducer, initialState);
+	useEffect(() => {
+		dispatch(loadCartItems());
+	}, []);
+
+	return (
+		<CartContext.Provider value={{ cart, dispatch }}>
+			{children}
+		</CartContext.Provider>
+	);
 };
 
 export default CartContextProvider;

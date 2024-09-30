@@ -1,14 +1,17 @@
-import Amazon from "./components/Amazon";
 import Cart from "./components/Cart";
 import Header from "./components/Header";
+import Home from "./components/Home";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
 	return (
-		<div>
+		<BrowserRouter>
 			<Header />
-			<Amazon />
-			<Cart />
-		</div>
+			<Routes>
+				<Route path="/" element={<Home />}></Route>
+				<Route path="/cart" element={<Cart />} />
+			</Routes>
+		</BrowserRouter>
 	);
 }
 
