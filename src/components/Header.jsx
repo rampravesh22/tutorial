@@ -27,7 +27,7 @@ export default function Header() {
 
 	const handleLogout = () => {
 		setIsLogged(null);
-		localStorage.setItem("token", "");
+		localStorage.removeItem("token");
 	};
 	return (
 		<Navbar onMenuOpenChange={setIsMenuOpen} className="bg-gray-900 text-white">

@@ -3,6 +3,7 @@ import { IncidentContext } from "../context/IncidentContext";
 
 const CreateIncident = () => {
 	const { setIncidents, incidents } = useContext(IncidentContext);
+	const [data, setData] = useState;
 
 	const [title, setTitle] = useState("new incident");
 	const [description, setDescription] = useState(
@@ -23,7 +24,7 @@ const CreateIncident = () => {
 		};
 
 		setIncidents((prevState) => [incidentData, ...prevState]);
-		console.log(incidents);
+		setTimeout(() => {}, []);
 	};
 
 	useEffect(() => {
