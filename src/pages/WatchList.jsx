@@ -15,15 +15,21 @@ const Watchlist = () => {
 	return (
 		<div>
 			<div className="text-center my-4 text-3xl">My Watchlist</div>
-			<div className="p-6 grid-cols-1 sm:grid-cols-2 justify-items-center gap-2 md:grid-cols-4 lg:grid-cols-7 grid">
-				{Array.from(new Set(watchlist)).map((movie, index) => {
-					return (
-						<div key={index}>
-							<WatchlistCard movie={movie.movie} id={movie.id} />
-						</div>
-					);
-				})}
-			</div>
+			{watchlist.length ? (
+				<div className="p-6 grid-cols-1 sm:grid-cols-2 justify-items-center gap-2 md:grid-cols-4 lg:grid-cols-7 grid">
+					{Array.from(new Set(watchlist)).map((movie, index) => {
+						return (
+							<div key={index}>
+								<WatchlistCard movie={movie.movie} id={movie.id} />
+							</div>
+						);
+					})}
+				</div>
+			) : (
+				<div className="text-center">
+					There are no movies are in watchlist right now.
+				</div>
+			)}
 		</div>
 	);
 };

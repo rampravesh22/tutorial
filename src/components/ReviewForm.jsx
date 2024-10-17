@@ -20,7 +20,9 @@ const ReviewForm = ({ onSubmit }) => {
 				placeholder="Write your review..."
 			/>
 			<Spacer y={1} />
-			<Button type="submit">Submit Review</Button>
+			<Button type="submit" color="secondary">
+				Submit Review
+			</Button>
 		</form>
 	);
 };

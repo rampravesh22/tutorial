@@ -5,7 +5,7 @@ import ReviewItem from "../components/ReviewItem";
 import { addReview, removeReview } from "../actions/reviewActions";
 
 const ReviewList = ({ movieId }) => {
-	const reviews = useSelector((state) => state.reviews.reviews[movieId] || []);
+	// const reviews = useSelector((state) => state.reviews.reviews[movieId] || []);
 	const dispatch = useDispatch();
 
 	const handleAddReview = (text) => {
@@ -18,16 +18,16 @@ const ReviewList = ({ movieId }) => {
 
 	return (
 		<div>
-			<div>Reviews</div>
+			<div className="text-3xl">Reviews</div>
 			<ReviewForm onSubmit={handleAddReview} />
 			<div />
-			{reviews.map((review) => (
+			{/* {reviews.map((review) => (
 				<ReviewItem
 					key={review.id}
 					review={review}
 					onDelete={() => handleDeleteReview(review.id)}
 				/>
-			))}
+			))} */}
 		</div>
 	);
 };

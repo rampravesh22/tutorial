@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, Skeleton, Button, CardHeader, Image } from "@nextui-org/react";
 import { Star } from "lucide-react";
-import { LuDelete, LuPlus } from "react-icons/lu";
+import { LuDelete, LuPlus, LuTrash2 } from "react-icons/lu";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromWatchlist } from "../actions/watchlistActions";
 import toast from "react-hot-toast";
@@ -43,7 +43,6 @@ const WatchlistCard = ({ movie, id }) => {
 	}
 
 	const handleRemoveFromWatchList = () => {
-		console.log(id);
 		const toastId = toast.loading("Removing from watchlist, please wait.");
 		setTimeout(() => {
 			dispatch(removeFromWatchlist(id));
@@ -83,7 +82,7 @@ const WatchlistCard = ({ movie, id }) => {
 					size="sm"
 				>
 					<span className="flex justify-center items-center">Remove</span>
-					<LuDelete />
+					<LuTrash2 />
 				</Button>
 			</div>
 		</Card>

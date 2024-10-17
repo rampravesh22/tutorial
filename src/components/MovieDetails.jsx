@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Card, Skeleton } from "@nextui-org/react";
+import { Button, Card, Skeleton, Textarea } from "@nextui-org/react";
 import ReviewList from "./ReviewList";
 import { useParams } from "react-router-dom";
 import api from "../utils/api";
@@ -16,7 +16,7 @@ export function Skeleton1() {
 			</Skeleton>
 			<div>
 				<Skeleton className="rounded-lg h-12 w-[600px]"></Skeleton>
-				<Skeleton className=" rounded-lg h-4 w-10 my-2" />
+				<Skeleton className="rounded-lg h-4 w-10 my-2" />
 				<Skeleton className="rounded-lg h-12 w-40 " />
 				<Skeleton className="rounded-lg h-6 w-80 mt-10" />
 				<Skeleton className="rounded-lg h-6 w-32 mt-8" />
@@ -31,12 +31,17 @@ const MovieDetails = () => {
 	const { id } = useParams();
 	const [movie, setMovie] = useState({});
 	const [loading, setLoading] = useState(true);
+	const [review, setReview] = useState("");
+	const [reviews, setReviews] = useState([]);
 	const dispatch = useDispatch();
+
 	useEffect(() => {
 		const getData = async () => {
 			setLoading(true);
 			const { data } = await api.get(`/movies/${id}`);
 			setMovie(data);
+			// Mock existing reviews - Replace with API data if available
+			setReviews(data.reviews || []);
 			setTimeout(() => {
 				setLoading(false);
 			}, 500);
@@ -54,6 +59,22 @@ const MovieDetails = () => {
 			});
 		}, 1000);
 	};
+
+	const handleReviewSubmit = () => {
+		if (review.trim()) {
+			const newReview = {
+				id: Date.now(),
+				content: review,
+				date: new Date().toLocaleDateString(),
+			};
+			setReviews([newReview, ...reviews]);
+			setReview("");
+			toast.success("Review added successfully!");
+		} else {
+			toast.error("Please write a review before submitting.");
+		}
+	};
+
 	if (loading) {
 		return (
 			<div className="flex gap-10 flex-wrap justify-center">
@@ -61,6 +82,7 @@ const MovieDetails = () => {
 			</div>
 		);
 	}
+
 	return (
 		<div className="p-10">
 			<div className="flex gap-5 flex-col md:flex-row ">
@@ -79,8 +101,8 @@ const MovieDetails = () => {
 					</div>
 					<div className="flex items-center mt-6 mx-2">
 						Rating
-						<div className="bg-yellow-500 size-14 rounded-full  mx-5 flex justify-center items-center">
-							<div className="size-12 rounded-full  bg-white flex justify-center items-center">
+						<div className="bg-yellow-500 size-14 rounded-full mx-5 flex justify-center items-center">
+							<div className="size-12 rounded-full bg-white flex justify-center items-center">
 								<span>{movie.rating}</span>
 								<LuStar className="text-yellow-600"></LuStar>
 							</div>
@@ -95,7 +117,7 @@ const MovieDetails = () => {
 					</div>
 					<Button
 						onClick={handleAddToWatchList}
-						className="flex items-center text-lg  mt-20"
+						className="flex items-center group text-lg mt-20"
 						color="secondary"
 						radius="full"
 						size="lg"
@@ -103,11 +125,15 @@ const MovieDetails = () => {
 						<span className="flex justify-center items-center">
 							Add to Watchlist
 						</span>
-						<LuPlus />
+						<LuPlus className="group-hover:rotate-90 transition-all duration-500" />
 					</Button>
 				</div>
 			</div>
-			<div></div>
+
+			{/* Movie Review Section */}
+			<div className="mt-16 p-6 bg-gray-800 rounded-lg shadow-lg text-white">
+				<ReviewList reviews={reviews} />
+			</div>
 		</div>
 	);
 };
