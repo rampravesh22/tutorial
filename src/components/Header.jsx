@@ -37,87 +37,94 @@ export default function Header() {
 			navigate("/login");
 		}, 1000);
 	};
-	return (
-		<Navbar onMenuOpenChange={setIsMenuOpen} className="bg-gray-900 text-white">
-			<NavbarContent>
-				<NavbarMenuToggle
-					aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-					className="sm:hidden"
-				/>
-				<NavbarBrand>
-					<NavLink
-						to="/"
-						className="font-bold text-inherit font-nunito md:text-3xl text-base"
-					>
-						Cinemas
-					</NavLink>
-				</NavbarBrand>
-			</NavbarContent>
+	if (isAuthenticated) {
+		return (
+			<Navbar
+				onMenuOpenChange={setIsMenuOpen}
+				className="bg-gray-900 text-white"
+			>
+				<NavbarContent>
+					<NavbarMenuToggle
+						aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+						className="sm:hidden"
+					/>
+					<NavbarBrand>
+						<NavLink
+							to="/"
+							className="font-bold text-inherit font-nunito md:text-3xl text-base"
+						>
+							Cinemas
+						</NavLink>
+					</NavbarBrand>
+				</NavbarContent>
 
-			<NavbarContent className="hidden sm:flex gap-4" justify="center">
-				<NavbarItem>
-					<Link
-						as={NavLink}
-						to="/watchlist"
-						color=""
-						className="text-white"
-						href="#"
-					>
-						Watch List
-					</Link>
-				</NavbarItem>
-			</NavbarContent>
-			<NavbarContent justify="end">
-				{!isAuthenticated ? (
-					<>
-						<NavbarItem className="hidden sm:flex">
-							<Link as={NavLink} to="/login" className="text-white">
-								Login
-							</Link>
-						</NavbarItem>
-						<NavbarItem>
+				<NavbarContent className="hidden sm:flex gap-4" justify="center">
+					<NavbarItem>
+						<Link
+							as={NavLink}
+							to="/watchlist"
+							color=""
+							className="text-white"
+							href="#"
+						>
+							Watch List
+						</Link>
+					</NavbarItem>
+				</NavbarContent>
+				<NavbarContent justify="end">
+					{!isAuthenticated ? (
+						<>
+							<NavbarItem className="hidden sm:flex">
+								<Link as={NavLink} to="/login" className="text-white">
+									Login
+								</Link>
+							</NavbarItem>
+							<NavbarItem>
+								<Button
+									as={NavLink}
+									to="/register"
+									className="text-white"
+									color="primary"
+									href="#"
+									variant="shadow"
+								>
+									Sign Up
+								</Button>
+							</NavbarItem>
+						</>
+					) : (
+						<>
 							<Button
 								as={NavLink}
-								to="/register"
+								onClick={handleLogout}
 								className="text-white"
-								color="primary"
+								color="danger"
 								href="#"
 								variant="shadow"
 							>
-								Sign Up
+								Logout
 							</Button>
-						</NavbarItem>
-					</>
-				) : (
-					<>
-						<Button
-							as={NavLink}
-							onClick={handleLogout}
-							className="text-white"
-							color="danger"
-							href="#"
-							variant="shadow"
-						>
-							Logout
-						</Button>
-					</>
-				)}
-			</NavbarContent>
-			<NavbarMenu className="bg-gray-900 text-white">
-				{menuItems.map((item, index) => (
-					<NavbarMenuItem key={`${item}-${index}`}>
-						<Link
-							className={`w-full ${
-								index === menuItems.length - 1 ? "text-pink-600" : "text-white"
-							}`}
-							href="#"
-							size="lg"
-						>
-							{item}
-						</Link>
-					</NavbarMenuItem>
-				))}
-			</NavbarMenu>
-		</Navbar>
-	);
+						</>
+					)}
+				</NavbarContent>
+				<NavbarMenu className="bg-gray-900 text-white">
+					{menuItems.map((item, index) => (
+						<NavbarMenuItem key={`${item}-${index}`}>
+							<Link
+								className={`w-full ${
+									index === menuItems.length - 1
+										? "text-pink-600"
+										: "text-white"
+								}`}
+								href="#"
+								size="lg"
+							>
+								{item}
+							</Link>
+						</NavbarMenuItem>
+					))}
+				</NavbarMenu>
+			</Navbar>
+		);
+	}
 }

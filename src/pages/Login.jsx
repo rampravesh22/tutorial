@@ -1,37 +1,32 @@
 import { Button, Input, Link } from "@nextui-org/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link as RLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../actions/authActions";
-import toast from "react-hot-toast";
 
 const Login = () => {
 	const navigate = useNavigate();
 	const [email, setEmail] = useState("ram@gmail.com");
 	const [password, setPassword] = useState("12345");
+	// const auth = useSelector((state) => state.auth);
 	const dispatch = useDispatch();
 
 	const handleLoginSubmit = (e) => {
 		e.preventDefault();
 
-		const toastId = toast.loading("Logging in, please wait.");
-
-		setTimeout(() => {
-			dispatch(login({ email, password }));
-			toast.success("Logged in successful.", { id: toastId });
-			navigate("/");
-		}, 600);
+		dispatch(login({ email, password }));
 	};
+
 	return (
-		<div className="h-full flex justify-center items-center">
+		<div className="h-full flex justify-center items-center flex-col">
 			<form
 				onSubmit={handleLoginSubmit}
-				className="shadow-lg px-5 py-8 border-gray-300 my-40 rounded-md border w-[80%] max-w-[450px] flex gap-3 flex-col"
+				className="shadow-lg px-5 py-8 mb-10 border-gray-300 mt-40 rounded-md border w-[80%] max-w-[450px] flex gap-3 flex-col"
 			>
 				<div className="text-3xl text-center mb-10 text-blue-700">Login</div>
-				<div className=" flex flex-col gap-5">
+				<div className="flex flex-col gap-5">
 					<div className="mb-4">
-						<label className="block text-gray-700 mb-2">Email </label>
+						<label className="block text-gray-700 mb-2">Email</label>
 						<input
 							type="email"
 							name="name"
@@ -43,7 +38,7 @@ const Login = () => {
 						/>
 					</div>
 					<div className="mb-4">
-						<label className="block text-gray-700 mb-2">Password </label>
+						<label className="block text-gray-700 mb-2">Password</label>
 						<input
 							type="password"
 							name="password"
@@ -59,7 +54,7 @@ const Login = () => {
 					Login
 				</Button>
 				<div>
-					Don&apos;t have an account ?{" "}
+					Don&apos;t have an account?{" "}
 					<Link as={RLink} to="/register">
 						Register
 					</Link>

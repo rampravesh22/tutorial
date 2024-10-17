@@ -14,14 +14,7 @@ const Register = () => {
 
 	const handleUserRegister = async (e) => {
 		e.preventDefault();
-
-		const toastId = toast.loading("Logging in, please wait.");
-
-		setTimeout(() => {
-			dispatch(register({ name, email, password }));
-			toast.success("Register in successful.", { id: toastId });
-			navigate("/");
-		}, 600);
+		dispatch(register({ name, email, password }));
 	};
 	return (
 		<div className="h-full flex justify-center items-center">

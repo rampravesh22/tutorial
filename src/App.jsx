@@ -57,7 +57,15 @@ const App = () => {
 							</PublicRoute>
 						}
 					/>
-					<Route path="/" element={<Home />} />
+					<Route
+						path="/"
+						element={
+							<PrivateRoute isAuthenticated={isAuthenticated}>
+								<Home />
+							</PrivateRoute>
+						}
+					/>
+
 					<Route
 						path="search"
 						element={
