@@ -21,7 +21,8 @@ const Login = () => {
 				value={username}
 				onChange={(e) => setUsername(e.target.value)}
 			/>
-			<Input.Password
+			<Input
+				type="password"
 				label="Password"
 				value={password}
 				onChange={(e) => setPassword(e.target.value)}

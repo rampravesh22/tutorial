@@ -8,34 +8,34 @@ const Header = () => {
 
 	return (
 		<div>
-			<Navbar isBordered>
-				<Navbar.Brand>
+			<div>
+				<div>
 					<div>Movie Management App</div>
-				</Navbar.Brand>
-				<Navbar.Content>
+				</div>
+				<div>
 					{isAuthenticated ? (
 						<>
-							<Navbar.Link as={Link} to="/search">
+							<Button as={Link} to="/search">
 								Search
-							</Navbar.Link>
-							<Navbar.Link as={Link} to="/watchlist">
+							</Button>
+							<Button as={Link} to="/watchlist">
 								Watchlist
-							</Navbar.Link>
-							<Navbar.Item>
+							</Button>
+							<div>
 								<Button auto flat as={Link} to="/logout">
 									Logout
 								</Button>
-							</Navbar.Item>
+							</div>
 						</>
 					) : (
-						<Navbar.Item>
-							<Button auto flat as={Link} to="/login">
+						<div>
+							<Link auto flat as={Link} to="/login">
 								Login
-							</Button>
-						</Navbar.Item>
+							</Link>
+						</div>
 					)}
-				</Navbar.Content>
-			</Navbar>
+				</div>
+			</div>
 		</div>
 	);
 };

@@ -1,6 +1,6 @@
 const initialState = {
 	user: null,
-	isAuthenticated: false,
+	isAuthenticated: true,
 	error: null,
 };
 
