@@ -1,33 +1,33 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Input, Button } from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 import MovieCard from "../components/MovieCard";
-import { addToWatchlist } from "../redux/actions/watchlistActions";
-import { searchMovies } from "../redux/actions/movieActions";
+import { searchMovies } from "../actions/searchMovieActions";
+import { addToWatchlist } from "../actions/watchlistActions";
 
 const MovieSearch = () => {
 	const [query, setQuery] = useState("");
 	const dispatch = useDispatch();
-	const { movies, loading, error } = useSelector((state) => state.movies);
+	const { searchedMovies, loading, error } = useSelector(
+		(state) => state.searchMovie
+	);
 
-	const handleSearch = () => {
-		dispatch(searchMovies(query));
-	};
+	const handleSearch = () => {};
 
 	return (
-		<div>
-			<Input
+		<div className="flex m-4 mx-10 border rounded-full border-slate-400 py-1 pl-6 pr-2">
+			<input
 				value={query}
 				onChange={(e) => setQuery(e.target.value)}
 				placeholder="Search movies..."
+				className="w-full outline-none "
 			/>
-			<Button auto onClick={handleSearch}>
+			<Button auto onClick={handleSearch} className="rounded-full">
 				Search
 			</Button>
-			{loading && <div>Loading</div>}
-			{error && <div color="error">Error: {error}</div>}
+
 			<div className="grid grid-cols-3">
-				{movies.map((movie) => (
+				{searchedMovies.map((movie) => (
 					<div key={movie.id}>
 						<MovieCard
 							movie={movie}

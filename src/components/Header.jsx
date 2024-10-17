@@ -1,43 +1,117 @@
-import React from "react";
-import { Navbar, Button } from "@nextui-org/react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import {
+	Navbar,
+	NavbarBrand,
+	NavbarContent,
+	NavbarItem,
+	NavbarMenuToggle,
+	NavbarMenu,
+	NavbarMenuItem,
+	Link,
+	Button,
+} from "@nextui-org/react";
+import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../actions/authActions";
 
-const Header = () => {
+export default function Header() {
+	const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 	const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+	const dispatch = useDispatch();
 
+	const menuItems = [
+		"Profile",
+		"Dashboard",
+		"Login",
+		"Help & Feedback",
+		"Log Out",
+	];
+
+	const handleLogout = () => {
+		dispatch(logout());
+	};
 	return (
-		<div>
-			<div>
-				<div>
-					<div>Movie Management App</div>
-				</div>
-				<div>
-					{isAuthenticated ? (
-						<>
-							<Button as={Link} to="/search">
-								Search
-							</Button>
-							<Button as={Link} to="/watchlist">
-								Watchlist
-							</Button>
-							<div>
-								<Button auto flat as={Link} to="/logout">
-									Logout
-								</Button>
-							</div>
-						</>
-					) : (
-						<div>
-							<Link auto flat as={Link} to="/login">
+		<Navbar onMenuOpenChange={setIsMenuOpen} className="bg-gray-900 text-white">
+			<NavbarContent>
+				<NavbarMenuToggle
+					aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+					className="sm:hidden"
+				/>
+				<NavbarBrand>
+					<NavLink
+						to="/"
+						className="font-bold text-inherit font-nunito md:text-3xl text-base"
+					>
+						Cinemas
+					</NavLink>
+				</NavbarBrand>
+			</NavbarContent>
+
+			{/* <NavbarContent className="hidden sm:flex gap-4" justify="center">
+				<NavbarItem>
+					<Link
+						as={NavLink}
+						to="/feedback"
+						color=""
+						className="text-white"
+						href="#"
+					>
+						Help & Feedback.
+					</Link>
+				</NavbarItem>
+			</NavbarContent> */}
+			<NavbarContent justify="end">
+				{!isAuthenticated ? (
+					<>
+						<NavbarItem className="hidden sm:flex">
+							<Link as={NavLink} to="/login" className="text-white">
 								Login
 							</Link>
-						</div>
-					)}
-				</div>
-			</div>
-		</div>
+						</NavbarItem>
+						<NavbarItem>
+							<Button
+								as={NavLink}
+								to="/register"
+								className="text-white"
+								color="primary"
+								href="#"
+								variant="shadow"
+							>
+								Sign Up
+							</Button>
+						</NavbarItem>
+					</>
+				) : (
+					<>
+						<Button
+							as={NavLink}
+							onClick={handleLogout}
+							to="/register"
+							className="text-white"
+							color="danger"
+							href="#"
+							variant="shadow"
+						>
+							Logout
+						</Button>
+					</>
+				)}
+			</NavbarContent>
+			<NavbarMenu className="bg-gray-900 text-white">
+				{menuItems.map((item, index) => (
+					<NavbarMenuItem key={`${item}-${index}`}>
+						<Link
+							className={`w-full ${
+								index === menuItems.length - 1 ? "text-pink-600" : "text-white"
+							}`}
+							href="#"
+							size="lg"
+						>
+							{item}
+						</Link>
+					</NavbarMenuItem>
+				))}
+			</NavbarMenu>
+		</Navbar>
 	);
-};
-
-export default Header;
+}

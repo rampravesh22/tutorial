@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import ReviewForm from "../components/ReviewForm";
 import ReviewItem from "../components/ReviewItem";
-import { addReview, removeReview } from "../redux/actions/reviewActions";
+import { addReview, removeReview } from "../actions/reviewActions";
 
 const ReviewList = ({ movieId }) => {
 	const reviews = useSelector((state) => state.reviews.reviews[movieId] || []);

@@ -5,15 +5,17 @@ import {
 } from "redux";
 import { thunk } from "redux-thunk";
 import authReducer from "../reducers/authReducer";
-import movieReducer from "../reducers/movieReducer";
+import searchMovieReducer from "../reducers/searchMovieReducer";
 import watchlistReducer from "../reducers/watchlistReducer";
 import reviewReducer from "../reducers/reviewReducer";
+import moviesDataReducer from "../reducers/moviesDataReducer";
 
 const rootReducer = combineReducers({
 	auth: authReducer,
-	movies: movieReducer,
+	searchMovie: searchMovieReducer,
 	watchlist: watchlistReducer,
 	reviews: reviewReducer,
+	moviesData: moviesDataReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));

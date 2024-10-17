@@ -1,11 +1,11 @@
 const initialState = {
-	movies: [],
+	searchedMovies: [],
 	selectedMovie: null,
 	loading: false,
 	error: null,
 };
 
-const movieReducer = (state = initialState, action) => {
+const searchMovieReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case "FETCH_MOVIES_REQUEST":
 			return { ...state, loading: true, error: null };
@@ -20,4 +20,4 @@ const movieReducer = (state = initialState, action) => {
 	}
 };
 
-export default movieReducer;
+export default searchMovieReducer;

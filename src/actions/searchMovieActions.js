@@ -1,4 +1,4 @@
-import api from "../../utils/api";
+import api from "../utils/api";
 
 export const searchMovies = (query) => async (dispatch) => {
 	dispatch({ type: "FETCH_MOVIES_REQUEST" });

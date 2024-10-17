@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import MovieCard from "../components/MovieCard";
-import { removeFromWatchlist } from "../redux/actions/watchlistActions";
+import { removeFromWatchlist } from "../actions/watchlistActions";
 
 const Watchlist = () => {
 	const watchlist = useSelector((state) => state.watchlist.watchlist);
