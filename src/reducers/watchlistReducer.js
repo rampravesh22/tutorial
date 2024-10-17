@@ -13,6 +13,12 @@ const watchlistReducer = (state = initialState, action) => {
 					(movie) => movie.id !== action.payload
 				),
 			};
+
+		case "SET_WATCHLIST":
+			return {
+				...state,
+				watchlist: action.payload,
+			};
 		default:
 			return state;
 	}

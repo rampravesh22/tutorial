@@ -10,11 +10,13 @@ import {
 	Link,
 	Button,
 } from "@nextui-org/react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../actions/authActions";
+import toast from "react-hot-toast";
 
 export default function Header() {
+	const navigate = useNavigate();
 	const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 	const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 	const dispatch = useDispatch();
@@ -28,7 +30,12 @@ export default function Header() {
 	];
 
 	const handleLogout = () => {
-		dispatch(logout());
+		const toastId = toast.loading("Logging out, please wait.");
+		setTimeout(() => {
+			dispatch(logout());
+			toast.success("Logout successful", { id: toastId });
+			navigate("/login");
+		}, 1000);
 	};
 	return (
 		<Navbar onMenuOpenChange={setIsMenuOpen} className="bg-gray-900 text-white">
@@ -47,19 +54,19 @@ export default function Header() {
 				</NavbarBrand>
 			</NavbarContent>
 
-			{/* <NavbarContent className="hidden sm:flex gap-4" justify="center">
+			<NavbarContent className="hidden sm:flex gap-4" justify="center">
 				<NavbarItem>
 					<Link
 						as={NavLink}
-						to="/feedback"
+						to="/watchlist"
 						color=""
 						className="text-white"
 						href="#"
 					>
-						Help & Feedback.
+						Watch List
 					</Link>
 				</NavbarItem>
-			</NavbarContent> */}
+			</NavbarContent>
 			<NavbarContent justify="end">
 				{!isAuthenticated ? (
 					<>
@@ -86,7 +93,6 @@ export default function Header() {
 						<Button
 							as={NavLink}
 							onClick={handleLogout}
-							to="/register"
 							className="text-white"
 							color="danger"
 							href="#"

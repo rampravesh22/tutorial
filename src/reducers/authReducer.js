@@ -10,7 +10,7 @@ const authReducer = (state = initialState, action) => {
 		case "LOGIN_SUCCESS":
 			return {
 				...state,
-				user: action.user,
+				user: action.payload.user,
 				isAuthenticated: true,
 				error: null,
 				token: action.payload.token,
@@ -38,6 +38,8 @@ const authReducer = (state = initialState, action) => {
 			};
 		case "LOGOUT":
 			localStorage.removeItem("token");
+			localStorage.removeItem("user");
+
 			return { ...state, user: null, isAuthenticated: false, error: null };
 		default:
 			return state;

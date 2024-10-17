@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Link as RLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../actions/authActions";
+import toast from "react-hot-toast";
 
 const Login = () => {
 	const navigate = useNavigate();
@@ -13,19 +14,13 @@ const Login = () => {
 	const handleLoginSubmit = (e) => {
 		e.preventDefault();
 
-		dispatch(login({ email, password }));
-		// const toastId = toast.loading("Logging in, please wait.");
+		const toastId = toast.loading("Logging in, please wait.");
 
-		// setTimeout(() => {
-		// 	toast.dismiss(toastId);
-		// 	if (email === "admin@gmail.com" && password === "admin") {
-		// 		toast.success("Logged in successful.");
-		// 		navigate("/dashboard");
-		// 		localStorage.setItem("token", "djfdjakfjaksjfskdjdksjlksdufsu");
-		// 	} else {
-		// 		toast.error("Wrong credentials.");
-		// 	}
-		// }, 600);
+		setTimeout(() => {
+			dispatch(login({ email, password }));
+			toast.success("Logged in successful.", { id: toastId });
+			navigate("/");
+		}, 600);
 	};
 	return (
 		<div className="h-full flex justify-center items-center">

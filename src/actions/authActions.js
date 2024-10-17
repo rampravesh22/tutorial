@@ -37,4 +37,6 @@ export const register = (credentials) => async (dispatch) => {
 	}
 };
 
-export const logout = () => ({ type: "LOGOUT" });
+export const logout = () => async (dispatch) => {
+	dispatch({ type: "LOGOUT" });
+};

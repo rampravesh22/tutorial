@@ -15,10 +15,9 @@ const Home = () => {
 		<div>
 			<MovieSearch />
 			<div className="grid grid-cols-1 justify-items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12 p-10">
-				{movies.length &&
-					movies.map((movie, index) => {
-						return <MovieCard key={index} movie={movie} />;
-					})}
+				{movies.map((movie, index) => {
+					return <MovieCard key={index} movie={movie} />;
+				})}
 			</div>
 		</div>
 	);

@@ -1,19 +1,27 @@
 import { Button, Input, Link } from "@nextui-org/react";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link as RLink } from "react-router-dom";
+import { Link as RLink, useNavigate } from "react-router-dom";
 import { register } from "../actions/authActions";
+import toast from "react-hot-toast";
 
 const Register = () => {
 	const [name, setName] = useState("ram");
 	const [email, setEmail] = useState("ram@gmail.com");
 	const [password, setPassword] = useState("12345");
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const handleUserRegister = async (e) => {
 		e.preventDefault();
 
-		dispatch(register({ name, email, password }));
+		const toastId = toast.loading("Logging in, please wait.");
+
+		setTimeout(() => {
+			dispatch(register({ name, email, password }));
+			toast.success("Register in successful.", { id: toastId });
+			navigate("/");
+		}, 600);
 	};
 	return (
 		<div className="h-full flex justify-center items-center">
