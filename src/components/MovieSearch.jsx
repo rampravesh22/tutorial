@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { Search, X, Loader2 } from "lucide-react";
 import api from "../utils/api";
-import { Button } from "@nextui-org/react";
+import { useNavigate } from "react-router-dom";
 
 const MovieSearch = () => {
 	const [query, setQuery] = useState("");
@@ -11,6 +11,7 @@ const MovieSearch = () => {
 	const dispatch = useDispatch();
 	const resultsRef = useRef(null);
 	const searchTimeoutRef = useRef(null);
+	const navigate = useNavigate();
 
 	// Debounced search function
 	const debouncedSearch = async (searchTerm) => {
@@ -117,37 +118,22 @@ const MovieSearch = () => {
 								Search Results ({searchedMovies.length})
 							</h3>
 						</div>
-						<div className="divide-y divide-gray-200">
+						<div className="divide-y divide-gray-200 flex flex-col items-start">
 							{searchedMovies.map((movie) => (
-								<div
+								<button
+									onClick={() => navigate(`/movie/${movie.id}`)}
 									key={movie.id}
-									className="p-4 hover:bg-gray-50 transition-colors duration-150 cursor-pointer"
+									className="p-4  hover:bg-gray-200 flex-col  w-full flex transition-colors duration-150 cursor-pointer"
 								>
-									<div className="flex items-center gap-4">
-										{movie.poster_path && (
-											<img
-												src={`/api/placeholder/92/138`}
-												alt={movie.title}
-												className="w-[92px] h-[138px] rounded-lg object-cover"
-											/>
-										)}
-										<div className="flex-1">
-											<h4 className="text-lg font-semibold text-gray-800 mb-2">
-												{movie.title}
-											</h4>
-											{movie.release_date && (
-												<p className="text-sm text-gray-600">
-													{new Date(movie.release_date).getFullYear()}
-												</p>
-											)}
-											{movie.overview && (
-												<p className="text-sm text-gray-600 mt-2 line-clamp-2">
-													{movie.overview}
-												</p>
-											)}
-										</div>
-									</div>
-								</div>
+									<h4 className="text-lg font-semibold text-gray-800 mb-2">
+										{movie.title}
+									</h4>
+									{movie.releaseDate && (
+										<p className="text-sm text-gray-600">
+											{new Date(movie.releaseDate).getFullYear()}
+										</p>
+									)}
+								</button>
 							))}
 						</div>
 					</div>
