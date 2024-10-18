@@ -31,8 +31,6 @@ const MovieDetails = () => {
 	const { id } = useParams();
 	const [movie, setMovie] = useState({});
 	const [loading, setLoading] = useState(true);
-	const [review, setReview] = useState("");
-	const [reviews, setReviews] = useState([]);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -40,8 +38,6 @@ const MovieDetails = () => {
 			setLoading(true);
 			const { data } = await api.get(`/movies/${id}`);
 			setMovie(data);
-			// Mock existing reviews - Replace with API data if available
-			setReviews(data.reviews || []);
 			setTimeout(() => {
 				setLoading(false);
 			}, 500);
@@ -58,21 +54,6 @@ const MovieDetails = () => {
 				id: toastId,
 			});
 		}, 1000);
-	};
-
-	const handleReviewSubmit = () => {
-		if (review.trim()) {
-			const newReview = {
-				id: Date.now(),
-				content: review,
-				date: new Date().toLocaleDateString(),
-			};
-			setReviews([newReview, ...reviews]);
-			setReview("");
-			toast.success("Review added successfully!");
-		} else {
-			toast.error("Please write a review before submitting.");
-		}
 	};
 
 	if (loading) {
@@ -130,9 +111,8 @@ const MovieDetails = () => {
 				</div>
 			</div>
 
-			{/* Movie Review Section */}
 			<div className="mt-16 p-6 bg-gray-800 rounded-lg shadow-lg text-white">
-				<ReviewList reviews={reviews} />
+				<ReviewList movieId={movie.id} />
 			</div>
 		</div>
 	);

@@ -5,10 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../actions/authActions";
 
 const Login = () => {
-	const navigate = useNavigate();
 	const [email, setEmail] = useState("ram@gmail.com");
 	const [password, setPassword] = useState("12345");
-	// const auth = useSelector((state) => state.auth);
+
 	const dispatch = useDispatch();
 
 	const handleLoginSubmit = (e) => {

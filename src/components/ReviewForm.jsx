@@ -13,14 +13,13 @@ const ReviewForm = ({ onSubmit }) => {
 	return (
 		<form onSubmit={handleSubmit}>
 			<Textarea
-				fullWidth
-				minRows={4}
 				value={text}
 				onChange={(e) => setText(e.target.value)}
 				placeholder="Write your review..."
+				className="text-black"
 			/>
 			<Spacer y={1} />
-			<Button type="submit" color="secondary">
+			<Button type="submit" size="md" color="secondary">
 				Submit Review
 			</Button>
 		</form>

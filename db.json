@@ -1,5 +1,50 @@
 {
-  "watchlist": [],
+  "watchlist": [
+    {
+      "userId": 1,
+      "movie": {
+        "id": 3,
+        "title": "Interstellar",
+        "genre": "Sci-Fi",
+        "releaseDate": "2014-11-07",
+        "rating": 8.6,
+        "description": "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
+        "cast": [
+          "Matthew McConaughey",
+          "Anne Hathaway",
+          "Jessica Chastain"
+        ],
+        "poster": "https://image.tmdb.org/t/p/w500/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg"
+      },
+      "id": 1
+    }
+  ],
+  "reviews": [
+    {
+      "userId": 1,
+      "movieId": 3,
+      "review": {
+        "text": "this is a great movie"
+      },
+      "id": 1
+    },
+    {
+      "userId": 1,
+      "movieId": 3,
+      "review": {
+        "text": "how are the rating for this movie"
+      },
+      "id": 2
+    },
+    {
+      "userId": 1,
+      "movieId": 6,
+      "review": {
+        "text": "dddd"
+      },
+      "id": 3
+    }
+  ],
   "movies": [
     {
       "id": 2,
