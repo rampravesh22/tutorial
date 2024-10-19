@@ -19,18 +19,7 @@
       "id": 1
     }
   ],
-  "bookings": [
-    {
-      "userId": 1,
-      "movieId": 6,
-      "movieDetails": {
-        "title": "The Matrix",
-        "poster_path": "https://image.tmdb.org/t/p/w500/aA5qHS0FbSXO8PxcxUIHbDrJyuh.jpg",
-        "release_date": "1999-03-31"
-      },
-      "id": 1
-    }
-  ],
+  "bookings": [],
   "reviews": [
     {
       "userId": 1,
@@ -50,11 +39,11 @@
     },
     {
       "userId": 1,
-      "movieId": 6,
+      "movieId": 2,
       "review": {
-        "text": "dddd"
+        "text": "thdjaf dsj"
       },
-      "id": 3
+      "id": 5
     }
   ],
   "movies": [

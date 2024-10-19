@@ -1,9 +1,33 @@
 const initialState = {
 	bookings: [],
+	isLoading: false,
+	error: null,
 };
 
 const bookingReducer = (state = initialState, action) => {
 	switch (action.type) {
+		case "FETCH_BOOKINGS_START":
+			return {
+				...state,
+				isLoading: true,
+				error: null,
+			};
+
+		case "FETCH_BOOKINGS_SUCCESS":
+			return {
+				...state,
+				isLoading: false,
+				bookings: Array.isArray(action.payload) ? action.payload : [],
+				error: null,
+			};
+
+		case "FETCH_BOOKINGS_ERROR":
+			return {
+				...state,
+				isLoading: false,
+				error: action.payload,
+			};
+
 		case "BOOK_MOVIE":
 			return {
 				...state,
@@ -14,6 +38,7 @@ const bookingReducer = (state = initialState, action) => {
 						movieId: action.payload.movieId,
 						userId: action.payload.userId,
 						movieDetails: action.payload.movieDetails,
+						showDateTime: action.payload.showDateTime,
 					},
 				],
 			};
@@ -22,14 +47,14 @@ const bookingReducer = (state = initialState, action) => {
 			return {
 				...state,
 				bookings: state.bookings.filter(
-					(booking) => booking.movieId !== action.payload
+					(booking) =>
+						!(
+							booking.movieId === action.payload.movieId &&
+							booking.showDateTime === action.payload.showDateTime
+						)
 				),
 			};
-		case "SET_BOOKINGS":
-			return {
-				...state,
-				bookings: action.payload,
-			};
+
 		default:
 			return state;
 	}

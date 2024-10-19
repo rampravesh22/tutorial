@@ -67,7 +67,7 @@ const MovieDetails = () => {
 
 	return (
 		<div className="p-10">
-			<div className="flex gap-5 flex-col md:flex-row ">
+			<div className="flex gap-40 flex-col md:flex-row ">
 				<div className="h-[600px] w-[600px] max-w-[400px] rounded-lg group overflow-hidden border shadow-2xl border-zinc-400 p-1  bg-zinc-200">
 					<img
 						src={movie.poster}
@@ -75,8 +75,8 @@ const MovieDetails = () => {
 						className="object-cover w-full h-full rounded-lg group-hover:scale-125 transition-all duration-500"
 					/>
 				</div>
-				<div>
-					<div className="text-5xl">{movie.title}</div>
+				<div className="max-w-[600px]">
+					<div className="text-5xl ">{movie.title}</div>
 					<div className="flex gap-5 items-center px-3">
 						<div className="size-1 bg-gray-700 rounded-full"></div>
 						<p>{movie.genre}</p>
@@ -97,7 +97,7 @@ const MovieDetails = () => {
 						<div className="text-lg font-semibold">Overview</div>
 						<p>{movie.description}</p>
 					</div>
-					<div className="flex gap-5 mt-20 items-center">
+					<div className="flex flex-col gap-5 mt-6 ">
 						<Button
 							onClick={handleAddToWatchList}
 							className="flex items-center group  "
