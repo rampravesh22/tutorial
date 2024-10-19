@@ -110,7 +110,7 @@ const MovieDetails = () => {
 							</span>
 							<LuPlus className="group-hover:rotate-90 transition-all duration-500" />
 						</Button>
-						<MovieBooking movieId={movie.id} />
+						<MovieBooking movieId={movie.id} movieDetails={movie} />
 					</div>
 				</div>
 			</div>

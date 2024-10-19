@@ -1,6 +1,7 @@
 const initialState = {
 	bookings: [],
 };
+
 const bookingReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case "BOOK_MOVIE":
@@ -33,4 +34,5 @@ const bookingReducer = (state = initialState, action) => {
 			return state;
 	}
 };
+
 export default bookingReducer;

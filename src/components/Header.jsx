@@ -70,6 +70,16 @@ export default function Header() {
 							Watch List
 						</Link>
 					</NavbarItem>
+					<NavbarItem>
+						<Link
+							as={NavLink}
+							to="/booked-movies"
+							className=" bg-gray-200 px-5 py-2 rounded-md text-black"
+							href="#"
+						>
+							Booked Movies
+						</Link>
+					</NavbarItem>
 				</NavbarContent>
 				<NavbarContent justify="end">
 					{!isAuthenticated ? (

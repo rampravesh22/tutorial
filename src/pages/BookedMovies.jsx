@@ -53,9 +53,6 @@ const BookedMovies = () => {
 							</div>
 						</div>
 						<div className="p-4">
-							<p className="text-gray-600 line-clamp-3 mb-4">
-								{booking.movieDetails.overview}
-							</p>
 							<Button
 								color="danger"
 								onClick={() => handleCancelBooking(booking.movieId)}
