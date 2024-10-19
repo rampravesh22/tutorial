@@ -7,6 +7,7 @@ import api from "../utils/api";
 import { addToWatchlist } from "../actions/watchlistActions";
 import { LuPlus, LuStar } from "react-icons/lu";
 import toast from "react-hot-toast";
+import MovieBooking from "./MovieBooking";
 
 export function Skeleton1() {
 	return (
@@ -96,18 +97,21 @@ const MovieDetails = () => {
 						<div className="text-lg font-semibold">Overview</div>
 						<p>{movie.description}</p>
 					</div>
-					<Button
-						onClick={handleAddToWatchList}
-						className="flex items-center group text-lg mt-20"
-						color="secondary"
-						radius="full"
-						size="lg"
-					>
-						<span className="flex justify-center items-center">
-							Add to Watchlist
-						</span>
-						<LuPlus className="group-hover:rotate-90 transition-all duration-500" />
-					</Button>
+					<div className="flex gap-5 mt-20 items-center">
+						<Button
+							onClick={handleAddToWatchList}
+							className="flex items-center group  "
+							color="secondary"
+							radius="full"
+							size="lg"
+						>
+							<span className="flex justify-center items-center">
+								Add to Watchlist
+							</span>
+							<LuPlus className="group-hover:rotate-90 transition-all duration-500" />
+						</Button>
+						<MovieBooking movieId={movie.id} />
+					</div>
 				</div>
 			</div>
 

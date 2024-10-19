@@ -3,22 +3,23 @@
     {
       "userId": 1,
       "movie": {
-        "id": 3,
-        "title": "Interstellar",
-        "genre": "Sci-Fi",
-        "releaseDate": "2014-11-07",
-        "rating": 8.6,
-        "description": "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
+        "id": 7,
+        "title": "Forrest Gump",
+        "genre": "Drama",
+        "releaseDate": "1994-07-06",
+        "rating": 8.8,
+        "description": "The story of a man with a low IQ who achieves great things in his life.",
         "cast": [
-          "Matthew McConaughey",
-          "Anne Hathaway",
-          "Jessica Chastain"
+          "Tom Hanks",
+          "Robin Wright",
+          "Gary Sinise"
         ],
-        "poster": "https://image.tmdb.org/t/p/w500/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg"
+        "poster": "https://image.tmdb.org/t/p/w500/saHP97rTPS5eLmrLQEcANmKrsFl.jpg"
       },
       "id": 1
     }
   ],
+  "bookings": [],
   "reviews": [
     {
       "userId": 1,

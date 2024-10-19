@@ -9,6 +9,7 @@ import searchMovieReducer from "../reducers/searchMovieReducer";
 import watchlistReducer from "../reducers/watchlistReducer";
 import reviewReducer from "../reducers/reviewReducer";
 import moviesDataReducer from "../reducers/moviesDataReducer";
+import bookingReducer from "../reducers/bookingReducer";
 
 const rootReducer = combineReducers({
 	auth: authReducer,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
 	watchlist: watchlistReducer,
 	reviews: reviewReducer,
 	moviesData: moviesDataReducer,
+	bookings: bookingReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));

@@ -13,6 +13,7 @@ import Login from "./pages/Login";
 import Layout from "./components/Layout";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
+import BookedMovies from "./pages/BookedMovies";
 
 const PrivateRoute = ({ isAuthenticated, children }) => {
 	return isAuthenticated ? children : <Navigate to="/login" />;
@@ -71,6 +72,14 @@ const App = () => {
 						element={
 							<PrivateRoute isAuthenticated={isAuthenticated}>
 								<MovieSearch />
+							</PrivateRoute>
+						}
+					/>
+					<Route
+						path="booked-movies"
+						element={
+							<PrivateRoute isAuthenticated={isAuthenticated}>
+								<BookedMovies />
 							</PrivateRoute>
 						}
 					/>
