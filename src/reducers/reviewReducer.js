@@ -36,6 +36,18 @@ const reviewReducer = (state = initialState, action) => {
 					[action.payload.movieId]: action.payload.reviews,
 				},
 			};
+		case "EDIT_REVIEW": {
+			const { movieId, reviewId, updatedReview } = action.payload;
+			return {
+				...state,
+				reviews: {
+					...state.reviews,
+					[movieId]: state.reviews[movieId].map((review) =>
+						review.id === reviewId ? { ...review, ...updatedReview } : review
+					),
+				},
+			};
+		}
 		default:
 			return state;
 	}

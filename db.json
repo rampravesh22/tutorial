@@ -17,6 +17,24 @@
         "poster": "https://image.tmdb.org/t/p/w500/saHP97rTPS5eLmrLQEcANmKrsFl.jpg"
       },
       "id": 1
+    },
+    {
+      "userId": 1,
+      "movie": {
+        "id": 2,
+        "title": "The Dark Knight",
+        "genre": "Action",
+        "releaseDate": "2008-07-18",
+        "rating": 9,
+        "description": "When the menace known as the Joker wreaks havoc, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
+        "cast": [
+          "Christian Bale",
+          "Heath Ledger",
+          "Aaron Eckhart"
+        ],
+        "poster": "https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg"
+      },
+      "id": 2
     }
   ],
   "bookings": [],
@@ -25,15 +43,15 @@
       "userId": 1,
       "movieId": 3,
       "review": {
-        "text": "this is a great movie"
+        "text": "this is really great movie. nolan really nailed it."
       },
       "id": 1
     },
     {
       "userId": 1,
-      "movieId": 3,
+      "movieId": 6,
       "review": {
-        "text": "how are the rating for this movie"
+        "text": "The matrix is masterpiece. but third part is not that good."
       },
       "id": 2
     },
@@ -41,9 +59,9 @@
       "userId": 1,
       "movieId": 2,
       "review": {
-        "text": "thdjaf dsj"
+        "text": "what is this"
       },
-      "id": 5
+      "id": 3
     }
   ],
   "movies": [
@@ -828,6 +846,12 @@
       "email": "ram66@gmail.com",
       "password": "12345",
       "id": 11
+    },
+    {
+      "name": "ram",
+      "email": "ram33@gmail.com",
+      "password": "12345",
+      "id": 12
     }
   ]
 }

@@ -16,7 +16,7 @@ const ReviewForm = ({ onSubmit }) => {
 				value={text}
 				onChange={(e) => setText(e.target.value)}
 				placeholder="Write your review..."
-				className="text-black"
+				className="text-black border rounded-md"
 			/>
 			<Spacer y={1} />
 			<Button type="submit" size="md" color="secondary">
