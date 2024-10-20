@@ -7,8 +7,8 @@ import { Mail, Lock } from "lucide-react";
 import { login } from "../actions/authActions";
 
 const Login = () => {
-	const [email, setEmail] = useState("ram@gmail.com");
-	const [password, setPassword] = useState("12345");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
 	const dispatch = useDispatch();
 
 	const handleLoginSubmit = async (e) => {

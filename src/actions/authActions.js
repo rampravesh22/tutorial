@@ -2,7 +2,7 @@ import toast from "react-hot-toast";
 import api from "../utils/api";
 
 const generateToken = () => {
-	return Math.random().toString(36).substring(2); // Simple token for demonstration
+	return Math.random().toString(36).substring(2);
 };
 export const login = (credentials) => async (dispatch) => {
 	try {

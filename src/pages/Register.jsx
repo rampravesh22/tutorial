@@ -8,11 +8,10 @@ import { Mail, Lock, User } from "lucide-react";
 import toast from "react-hot-toast";
 
 const Register = () => {
-	const [name, setName] = useState("ram");
-	const [email, setEmail] = useState("ram@gmail.com");
-	const [password, setPassword] = useState("12345");
+	const [name, setName] = useState("");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
 	const dispatch = useDispatch();
-	const navigate = useNavigate();
 
 	const handleUserRegister = async (e) => {
 		e.preventDefault();

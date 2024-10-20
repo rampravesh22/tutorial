@@ -1,43 +1,6 @@
 import toast from "react-hot-toast";
 import api from "../utils/api";
-// export const bookMovie = (movieId) => async (dispatch, getState) => {
-// 	const { auth, bookings, moviesData } = getState();
 
-// 	const isMovieBooked = bookings.bookings.some(
-// 		(booking) => booking.movieId === movieId
-// 	);
-
-// 	if (isMovieBooked) {
-// 		console.log("Movie already booked");
-// 		return;
-// 	}
-
-// 	const toastId = toast.loading("Movie booking...");
-
-// 	try {
-// 		const response = await api.post("/bookings", {
-// 			userId: auth.user.id,
-// 			movieId,
-// 		});
-// 		// Get the booking ID from the response
-// 		const bookingData = response.data;
-
-// 		setTimeout(() => {
-// 			toast.success("Booking successful.", { id: toastId });
-// 			dispatch({
-// 				type: "BOOK_MOVIE",
-// 				payload: {
-// 					id: bookingData.id, // Include the booking ID
-// 					movieId,
-// 					userId: auth.user.id,
-// 				},
-// 			});
-// 		}, 400);
-// 	} catch (error) {
-// 		console.error("Failed to book movie:", error);
-// 		toast.error("Failed to book movie");
-// 	}
-// };
 export const bookMovie =
 	(movieId, movieDetails, showDateTime) => async (dispatch, getState) => {
 		const { auth, bookings } = getState();
