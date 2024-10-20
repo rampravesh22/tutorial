@@ -1,4 +1,3 @@
-import React, { useContext } from "react";
 import {
 	Navbar,
 	NavbarBrand,
@@ -12,12 +11,13 @@ import {
 } from "@nextui-org/react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../actions/authActions";
 import toast from "react-hot-toast";
+import { useState } from "react";
+import { logout } from "../actions/authActions";
 
 export default function Header() {
 	const navigate = useNavigate();
-	const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 	const dispatch = useDispatch();
 

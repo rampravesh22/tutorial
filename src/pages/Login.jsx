@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Button, Input, Link } from "@nextui-org/react";
 import { Link as RLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { login } from "../actions/authActions";
 import { motion } from "framer-motion";
 import { Mail, Lock } from "lucide-react";
+import { login } from "../actions/authActions";
 
 const Login = () => {
 	const [email, setEmail] = useState("ram@gmail.com");

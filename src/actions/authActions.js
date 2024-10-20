@@ -46,14 +46,23 @@ export const register = (credentials) => async (dispatch) => {
 			`/users?email=${credentials.email}`
 		);
 		if (existingUserResponse.data.length > 0) {
-			toast.error("User already exists", { id: toastId });
-			dispatch({ type: "REGISTER_FAILURE", payload: "User already exists" });
+			setTimeout(() => {
+				toast.error(`User already exists with email ${credentials.email}`, {
+					id: toastId,
+					className: "text-center",
+				});
+				dispatch({ type: "REGISTER_FAILURE", payload: "User already exists" });
+			}, 400);
+
 			return;
 		}
 
 		const response = await api.post("/users", credentials);
-		dispatch({ type: "REGISTER_SUCCESS", payload: response.data });
-		toast.success("Registered successfully.", { id: toastId });
+
+		setTimeout(() => {
+			dispatch({ type: "REGISTER_SUCCESS", payload: response.data });
+			toast.success("Registered successfully.", { id: toastId });
+		}, 400);
 	} catch (error) {
 		dispatch({ type: "REGISTER_FAILURE", payload: error.message });
 	}
