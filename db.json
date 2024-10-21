@@ -37,7 +37,20 @@
       "id": 2
     }
   ],
-  "bookings": [],
+  "bookings": [
+    {
+      "userId": 1,
+      "movieId": 7,
+      "showDateTime": "2024-10-26T22:00",
+      "movieDetails": {
+        "title": "Forrest Gump",
+        "poster_path": "https://image.tmdb.org/t/p/w500/saHP97rTPS5eLmrLQEcANmKrsFl.jpg",
+        "release_date": "1994-07-06",
+        "overview": "The story of a man with a low IQ who achieves great things in his life."
+      },
+      "id": 1
+    }
+  ],
   "reviews": [
     {
       "userId": 1,
