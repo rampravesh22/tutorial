@@ -1,3 +1,19 @@
-export const BLOG_REQUEST = "BLOG_REQUEST";
-export const BLOG_SUCCESS = "BLOG_SUCCESS";
-export const BLOG_FAIL = "BLOG_FAIL";
+export const FETCH_ALL_REQUEST = "FETCH_ALL_REQUEST";
+export const FETCH_ALL_SUCCESS = "FETCH_ALL_SUCCESS";
+export const FETCH_ALL_FAIL = "FETCH_ALL_FAIL";
+
+export const FETCH_ONE_REQUEST = "FETCH_ONE_REQUEST";
+export const FETCH_ONE_SUCCESS = "FETCH_ONE_SUCCESS";
+export const FETCH_ONE_FAIL = "FETCH_ONE_FAIL";
+
+export const DELETE_REQUEST = "DELETE_REQUEST";
+export const DELETE_SUCCESS = "DELETE_SUCCESS";
+export const DELETE_FAIL = "DELETE_FAIL";
+
+export const EDIT_REQUEST = "EDIT_REQUEST";
+export const EDIT_SUCCESS = "EDIT_SUCCESS";
+export const EDIT_FAIL = "EDIT_FAIL";
+
+export const CREATE_REQUEST = "CREATE_REQUEST";
+export const CREATE_SUCCESS = "CREATE_SUCCESS";
+export const CREATE_FAIL = "CREATE_FAIL";
