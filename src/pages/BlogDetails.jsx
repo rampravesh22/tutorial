@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { deleteBlog, fetchSingleBlog } from "../redux/actions/blogActions";
 import Loader from "../components/Loader";
 import { LuPencil, LuTrash2 } from "react-icons/lu";
@@ -32,6 +32,8 @@ const BlogDetails = () => {
 			<p>{blog?.content}</p>
 			<div className="flex justify-end gap-2 mt-2">
 				<Button
+					as={Link}
+					to={`/edit-blog/${blog?._id}`}
 					variant="bordered"
 					size="sm"
 					className="flex items-center gap-2 text-blue-600 border"

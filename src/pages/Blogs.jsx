@@ -15,7 +15,11 @@ const Blogs = () => {
 	}
 	return (
 		<div className="max-w-[700px] w-[95%] mx-auto mt-5 flex flex-col gap-5">
-			{blogs.length && blogs.map((blog) => <Blog key={blog._id} blog={blog} />)}
+			{blogs.length ? (
+				blogs.map((blog, index) => <Blog key={index} blog={blog} />)
+			) : (
+				<div className="text-center text-3xl">There is no blog.</div>
+			)}
 		</div>
 	);
 };
