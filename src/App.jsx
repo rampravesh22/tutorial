@@ -1,12 +1,14 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 
 const PrivatRoute = ({ isAuthenticated, children }) => {
-	return isAuthenticated ? children : <Login />;
+	return isAuthenticated ? children : <Navigate to="/login" />;
 };
+
+const PublicRoute = () => {};
 
 function App() {
 	return (
