@@ -8,7 +8,9 @@ const PrivatRoute = ({ isAuthenticated, children }) => {
 	return isAuthenticated ? children : <Navigate to="/login" />;
 };
 
-const PublicRoute = () => {};
+const PublicRoute = ({ isAuthenticated, children }) => {
+	return !isAuthenticated ? children : <Navigate to="/" />;
+};
 
 function App() {
 	return (
