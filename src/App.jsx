@@ -3,8 +3,13 @@ import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import { Toaster } from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { LOGIN } from "./redux/action-types/authActionTypes";
+import AddTodo from "./pages/AddTodo";
 
-const PrivatRoute = ({ isAuthenticated, children }) => {
+const PrivateRoute = ({ isAuthenticated, children }) => {
 	return isAuthenticated ? children : <Navigate to="/login" />;
 };
 
@@ -13,16 +18,59 @@ const PublicRoute = ({ isAuthenticated, children }) => {
 };
 
 function App() {
+	const dispatch = useDispatch();
+	const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
+	useEffect(() => {
+		const token = localStorage.getItem("token");
+		const user = JSON.parse(localStorage.getItem("user"));
+		if (token && user) {
+			dispatch({ type: LOGIN, payload: { user, token } });
+		}
+	}, [dispatch]);
+
 	return (
-		<BrowserRouter>
-			<Routes>
-				<Route path="/" element={<Layout />}>
-					<Route path="/" element={<Home />} />
-					<Route path="register" element={<Register />} />
-					<Route path="login" element={<Login />} />
-				</Route>
-			</Routes>
-		</BrowserRouter>
+		<>
+			<Toaster />
+			<BrowserRouter>
+				<Routes>
+					<Route path="/" element={<Layout />}>
+						<Route
+							index
+							element={
+								<PrivateRoute isAuthenticated={isAuthenticated}>
+									<Home />
+								</PrivateRoute>
+							}
+						/>
+						<Route
+							path="add-todo"
+							element={
+								<PrivateRoute isAuthenticated={isAuthenticated}>
+									<AddTodo />
+								</PrivateRoute>
+							}
+						/>
+						<Route
+							path="register"
+							element={
+								<PublicRoute isAuthenticated={isAuthenticated}>
+									<Register />
+								</PublicRoute>
+							}
+						/>
+						<Route
+							path="login"
+							element={
+								<PublicRoute isAuthenticated={isAuthenticated}>
+									<Login />
+								</PublicRoute>
+							}
+						/>
+					</Route>
+				</Routes>
+			</BrowserRouter>
+		</>
 	);
 }
 
