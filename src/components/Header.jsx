@@ -21,7 +21,7 @@ const Header = () => {
 					</>
 				) : (
 					<>
-						<Link to="/add-todo">Add Todo</Link>
+						<Link to="/addtodo">Add Todo</Link>
 						<button onClick={handleLogout}>Logout</button>
 					</>
 				)}

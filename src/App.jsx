@@ -5,7 +5,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import { Toaster } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { LOGIN } from "./redux/action-types/authActionTypes";
 import AddTodo from "./pages/AddTodo";
 
@@ -20,6 +20,7 @@ const PublicRoute = ({ isAuthenticated, children }) => {
 function App() {
 	const dispatch = useDispatch();
 	const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		const token = localStorage.getItem("token");
@@ -27,8 +28,12 @@ function App() {
 		if (token && user) {
 			dispatch({ type: LOGIN, payload: { user, token } });
 		}
+		setLoading(false);
 	}, [dispatch]);
 
+	if (loading) {
+		return <div>Loading...</div>;
+	}
 	return (
 		<>
 			<Toaster />
@@ -44,7 +49,7 @@ function App() {
 							}
 						/>
 						<Route
-							path="add-todo"
+							path="addtodo"
 							element={
 								<PrivateRoute isAuthenticated={isAuthenticated}>
 									<AddTodo />
