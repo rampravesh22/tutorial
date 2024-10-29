@@ -9,7 +9,7 @@ const todoReducer = (state = initialState, action) => {
 		case FETCH_ALL_TODO:
 			return { ...state, todos: action.payload.todos };
 		case ADD_TODO:
-			return { ...state, todos: [...state.todos] };
+			return { ...state, todos: [action.payload.todo, ...state.todos] };
 
 		default:
 			return state;

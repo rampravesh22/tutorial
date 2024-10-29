@@ -1,13 +1,14 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { fetchAllTodo } from "../redux/actions/todoActions";
+import React from "react";
+import AddTodo from "./AddTodo";
+import ListTodo from "../components/ListTodo";
 
 const Home = () => {
-	const dispatch = useDispatch();
-	useEffect(() => {
-		dispatch(fetchAllTodo());
-	}, []);
-	return <div>Home</div>;
+	return (
+		<div>
+			<AddTodo />
+			<ListTodo />
+		</div>
+	);
 };
 
 export default Home;

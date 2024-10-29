@@ -21,7 +21,6 @@ function App() {
 	const dispatch = useDispatch();
 	const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 	const [loading, setLoading] = useState(true);
-
 	useEffect(() => {
 		const token = localStorage.getItem("token");
 		const user = JSON.parse(localStorage.getItem("user"));
@@ -32,7 +31,7 @@ function App() {
 	}, [dispatch]);
 
 	if (loading) {
-		return <div>Loading...</div>;
+		return null;
 	}
 	return (
 		<>
