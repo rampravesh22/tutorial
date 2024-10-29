@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTodo } from "../redux/actions/todoActions";
+import { Loader2 } from "lucide-react";
 
 const AddTodo = () => {
 	const [title, setTitle] = useState("");
@@ -8,7 +9,9 @@ const AddTodo = () => {
 	const [loading, setLoading] = useState(false);
 	const handleAddTodo = async (e) => {
 		e.preventDefault();
+		setLoading(true);
 		await dispatch(addTodo(title));
+		setLoading(false);
 		setTitle("");
 	};
 	return (
@@ -22,14 +25,15 @@ const AddTodo = () => {
 					type="text"
 					onChange={(e) => setTitle(e.target.value)}
 					value={title}
+					required
 					className="border px-2 border-zinc-400 h-10 rounded w-full"
 				/>
 				<button
 					disabled={loading}
 					type="submit"
-					className="bg-gray-800 text-white px-4 h-10 py rounded"
+					className="bg-gray-800 w-24 justify-center flex items-center text-white px-4 h-10 py rounded"
 				>
-					Add
+					{loading ? <Loader2 className="animate-spin" /> : "Add"}
 				</button>
 			</form>
 		</div>
