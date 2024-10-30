@@ -1,6 +1,6 @@
 import React from "react";
-import AddTodo from "./AddTodo";
 import ListTodo from "../components/ListTodo";
+import AddTodo from "../components/AddTodo";
 
 const Home = () => {
 	return (

@@ -7,7 +7,6 @@ import { Toaster } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { LOGIN } from "./redux/action-types/authActionTypes";
-import AddTodo from "./pages/AddTodo";
 
 const PrivateRoute = ({ isAuthenticated, children }) => {
 	return isAuthenticated ? children : <Navigate to="/login" />;
@@ -47,14 +46,7 @@ function App() {
 								</PrivateRoute>
 							}
 						/>
-						<Route
-							path="addtodo"
-							element={
-								<PrivateRoute isAuthenticated={isAuthenticated}>
-									<AddTodo />
-								</PrivateRoute>
-							}
-						/>
+
 						<Route
 							path="register"
 							element={

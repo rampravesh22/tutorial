@@ -21,8 +21,12 @@ const Header = () => {
 					</>
 				) : (
 					<>
-						<Link to="/addtodo">Add Todo</Link>
-						<button onClick={handleLogout}>Logout</button>
+						<button
+							onClick={handleLogout}
+							className="bg-red-500 px-5 py-1 rounded-md"
+						>
+							Logout
+						</button>
 					</>
 				)}
 			</div>
