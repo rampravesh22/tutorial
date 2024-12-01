@@ -1,0 +1,1197 @@
+ <Table
+                            class="sapUiTinyMarginBeginEnd"
+                            id="appsTable"
+                            autoPopinMode="true"
+                            sticky="ColumnHeaders,HeaderToolbar"
+                            growing="true"
+                            growingScrollToLoad="true"
+                            fixedLayout="false"
+                            growingThreshold="30"
+                            noDataText="{i18n>NoDataText}"
+                            items="{path: '/AppInfo', parameters: { $filter:'AppInfoToSAPUI5Component ne null', $expand: 'AppInfoToBusinessRole,UITechnologyToMaster,AppInfoToGTMLOB,AppInfoToGTMIndustry,AppInfoToParsedAppDocumentation,AppInfoToApplicationComponent,AppInfoToAppSelection,AppInfoToProductVersionBackEnd,AppInfoToSolutionCapability,AppInfoToScopeItem,AppInfoToICFNode,AppInfoToAppLauncher,AppInfoToNote,AppInfoToVideoLink,AppInfoToPresentationLink,AppInfoToProductVersionFrontEnd,AppInfoToProductVersionHANA,AppInfoToBusinessCatalog,AppInfoToBusinessGroup,AppInfoToPage,AppInfoToSpace,AppInfoToSearchComponent,AppInfoToViewExtension,AppInfoToBackendExtension,AppInfoToControllerExtension,AppInfoToBExQuery,AppInfoToTechnicalCatalog', $count: true}, sorter: {path: 'ApplicationComponent', descending: false, group: true}, groupHeaderFactory: 'formatter.createACHGroupHeader'}"
+                            sap.ui.fl:flexibility="sap/m/flexibility/EngineFlex"
+                            updateFinished= "onTableUpdateFinished"
+                        >
+                            <headerToolbar>
+                                <OverflowToolbar>
+                                    <Title
+                                        text="{i18n>AppsWithCount}"
+                                        level='H1'
+                                        id="idTitle"
+                                    />
+                                    <!-- <vm:VariantManagement for="persoTable" /> -->
+                                    <vm:VariantManagement  for="appsTable" id="variantManagement" />
+                                    <SegmentedButton id="appSelectionSegmentedButton">
+                                        <items>
+                                            <SegmentedButtonItem id="segmentedButtonAll" text="{i18n>AllWithCount}" press="onSegmentedAllAppsPress" key="segmentedButtonAll" />
+                                            <SegmentedButtonItem id="segmentedButtonSelected" text="{i18n>SelectedWithCount}" press="onSegmentedSelectedAppsPress" key="segmentedButtonSelected"/>
+                                        </items>
+                                    </SegmentedButton>
+                                    <ToolbarSpacer />
+                                    <!--
+                                    <Button
+                                        icon="sap-icon://group-2"
+                                        press="onAggregatePress"
+                                        tooltip="Aggregate Selected Records"
+                                    /> -->
+
+                                    <Button
+                                        id= "btnAppsTableSettings"
+                                        icon="sap-icon://action-settings"
+                                        press="openPersoDialog"
+                                        tooltip="Settings"
+                                    />
+                                    <Button
+                                        id="downloadExcel"
+                                        icon="sap-icon://excel-attachment"
+                                        press="onDownloadReport"
+                                        tooltip="{i18n>DownloadExcel}"
+                                    />
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <dependents>
+                                <plugins:ColumnResizer />
+                                <columnmenu:Menu
+                                    id="menu"
+                                    beforeOpen="beforeOpenColumnMenu"
+                                >
+                                    <columnmenu:QuickSort change="onSort">
+                                        <columnmenu:items>
+                                            <columnmenu:QuickSortItem />
+                                        </columnmenu:items>
+                                    </columnmenu:QuickSort>
+                                    <columnmenu:QuickGroup change="onGroup">
+                                        <columnmenu:items>
+                                            <columnmenu:QuickGroupItem />
+                                        </columnmenu:items>
+                                    </columnmenu:QuickGroup>
+                                    <columnmenu:items>
+                                        <columnmenu:ActionItem
+                                            icon="sap-icon://sort"
+                                            label="{i18n>Sort}"
+                                            press="onColumnHeaderItemPress"
+                                        />
+                                        <columnmenu:ActionItem
+                                            icon="sap-icon://group-2"
+                                            label="{i18n>Group}"
+                                            press="onColumnHeaderItemPress"
+                                        />
+                                        <columnmenu:ActionItem
+                                            icon="sap-icon://table-column"
+                                            label="{i18n>Columns}"
+                                            press="onColumnHeaderItemPress"
+                                        />
+
+                                        <!-- <columnmenu:ActionItem
+                                            icon="sap-icon://filter"
+                                            label="Filter"
+                                            press="onColumnFilter"
+                                        /> -->
+                                    </columnmenu:items>
+                                </columnmenu:Menu>
+                            </dependents>
+                            <dragDropConfig>
+                                <dnd:DragDropInfo
+                                    sourceAggregation="columns"
+                                    targetAggregation="columns"
+                                    dropPosition="Between"
+                                    drop="onColumnMove"
+                                />
+                            </dragDropConfig>
+                            <columns>
+                                <Column
+                                    id="AppName"
+                                    app:ColumnName="AppName"
+                                    headerMenu="menu"
+                                    importance="High"
+                                >
+                                    <Text text="{i18n>AppName}" />
+                                </Column>
+                                <Column
+                                    id="FioriID"
+                                    app:ColumnName="FioriID"
+                                    styleClass="fioriIDColumn"
+                                    headerMenu="menu"
+                                    importance="High"
+                                >
+                                    <Text text="{i18n>AppID}" />
+                                </Column>
+                                <Column
+                                    id="Selected"
+                                    app:ColumnName="AppInfoToAppSelection/0/FioriID"
+                                    styleClass="selectedColumn"
+                                    headerMenu="menu"
+                                    importance="High"
+                                >
+                                    <Text text="{i18n>Selected}" />
+                                </Column>
+                                <Column
+                                    visible="false"
+                                    id="BusinessRoleName"
+                                    app:ColumnName="BusinessRoleName"
+                                    headerMenu="menu"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>BusinessRoleName}" />
+                                </Column>
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    id="BusinessRoleID"
+                                    app:ColumnName="BusinessRoleID"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>BusinessRoleID}" />
+                                </Column>
+                                <Column
+                                    headerMenu="menu"
+                                    id="UITechnology"
+                                    app:ColumnName="UITechnology"
+                                    importance="High"
+                                >
+                                    <Text text="{i18n>UITechnology}" />
+                                </Column>
+                                <Column
+                                    headerMenu="menu"
+                                    id="ApplicationComponent"
+                                    app:ColumnName="ApplicationComponent"
+                                    importance="High"
+                                >
+                                    <Text text="{i18n>ApplicationComponent}" />
+                                </Column>
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    id='Database'
+                                    app:ColumnName="Database"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>Database}" />
+                                </Column>
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    id='FormFactors'
+                                    app:ColumnName="FormFactors"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>FormFactors}" />
+                                </Column>
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    id='ReleaseVersion'
+                                    app:ColumnName="ReleaseVersion"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>ReleaseVersion}" />
+                                </Column>
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    id='SAPSuite'
+                                    app:ColumnName="SAPSuite"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>SAPSuite}" />
+                                </Column>
+                                <Column
+                                    visible="false"
+                                    id="LOB"
+                                    app:ColumnName="LOB"
+                                    headerMenu="menu"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>LOB}" />
+                                </Column>
+                                <Column
+                                    visible="false"
+                                    id="Industry"
+                                    app:ColumnName="Industry"
+                                    headerMenu="menu"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>Industry}" />
+                                </Column>
+                                <Column
+                                    headerMenu="menu"
+                                    id='AppDescription'
+                                    app:ColumnName="AppInfoToParsedAppDocumentation/ParsedDescription"
+                                    importance="High"
+                                >
+                                    <Text text="{i18n>AppDesc}" />
+                                </Column>
+
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    demandPopin="true"
+                                    id='PrimaryPVOfficialName'
+                                    app:ColumnName="PrimaryPVOfficialName"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>PrimaryPVOfficialName}" />
+                                </Column>
+
+                               <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    demandPopin="true"
+                                    id='ProductBack'
+                                    app:ColumnName="ProductBack"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>ProductBack}" />
+                                </Column>
+
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    demandPopin="true"
+                                    id='NameBack'
+                                    app:ColumnName="NameBack"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>NameBack}" />
+                                </Column>
+
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    demandPopin="true"
+                                    id='InstanceBack'
+                                    app:ColumnName="InstanceBack"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>InstanceBack}" />
+                                </Column>
+
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    demandPopin="true"
+                                    id='OffNameBack'
+                                    app:ColumnName="OffNameBack"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>OffNameBack}" />
+                                </Column>
+
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    demandPopin="true"
+                                    id='SPStackBack'
+                                    app:ColumnName="SPStackBack"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>SPStackBack}" />
+                                </Column>
+
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    demandPopin="true"
+                                    id='SWCVBack'
+                                    app:ColumnName="SWCVBack"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>SWCVBack}" />
+                                </Column>
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    demandPopin="true"
+                                    id='SolCapName'
+                                    app:ColumnName="SolCapName"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>SolCapName}" />
+                                </Column>
+                                <Column
+                                    visible="false"
+                                    headerMenu = "menu"
+                                    demandPopin = "true"
+                                    id ='ScopeItemDesc'
+                                    app:ColumnName="ScopeItemDesc"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>ScopeItemDesc}"></Text>
+                                </Column>
+
+
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    demandPopin="true"
+                                    id='ScopeItemGroup'
+                                    app:ColumnName="ScopeItemGroup"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>ScopeItemGroup}" />
+                                </Column>
+
+                              <Column
+                                    visible="false"
+                                    headerMenu = "menu"
+                                    demandPopin = "true"
+                                    id ='ScopeItemID'
+                                    app:ColumnName="ScopeItemID"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>ScopeItemID}"></Text>
+                                </Column>
+
+                                <Column
+                                    visible="false"
+                                    headerMenu = "menu"
+                                    demandPopin = "true"
+                                    id ='ScopeItemProcess'
+                                    app:ColumnName="ScopeItemProcess"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>ScopeItemProcess}"></Text>
+                                </Column>
+
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    demandPopin="true"
+                                    id='ICFSAPUI5Comp'
+                                    app:ColumnName="ICFSAPUI5Comp"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>ICFSAPUI5Comp}" />
+                                </Column>
+
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    demandPopin="true"
+                                    id='ICFBSPName'
+                                    app:ColumnName="ICFBSPName"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>ICFBSPName}" />
+                                </Column>
+
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    demandPopin="true"
+                                    id='ICFBSPAppUrl'
+                                    app:ColumnName="ICFBSPAppUrl"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>ICFBSPAppUrl}" />
+                                </Column>
+
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    demandPopin="true"
+                                    id='AppLaunchTitle'
+                                    app:ColumnName="AppLaunchTitle"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>AppLaunchTitle}" />
+                                </Column>
+
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    demandPopin="true"
+                                    id='AppLaunchSubTitle'
+                                    app:ColumnName="AppLaunchSubTitle"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>AppLaunchSubTitle}" />
+                                </Column>
+
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    demandPopin="true"
+                                    id='AppLaunchParam'
+                                    app:ColumnName="AppLaunchParam"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>AppLaunchParam}" />
+                                </Column>
+
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    demandPopin="true"
+                                    id='AppLaunchInfo'
+                                    app:ColumnName="AppLaunchInfo"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>AppLaunchInfo}" />
+                                </Column>
+                            <Column
+                                    visible="false"
+                                    headerMenu = "menu"
+                                    demandPopin = "true"
+                                    id ='NoteID'
+                                    app:ColumnName="NoteID"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>NoteID}"></Text>
+                                </Column>
+                                <Column
+                                    visible="false"
+                                    headerMenu = "menu"
+                                    demandPopin = "true"
+                                    id ='NoteDesc'
+                                    app:ColumnName="NoteDesc"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>NoteDesc}"></Text>
+                                </Column>
+                                <Column
+                                    visible="false"
+                                    headerMenu = "menu"
+                                    demandPopin = "true"
+                                    id ='VideoTitle'
+                                    app:ColumnName="VideoTitle"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>VideoTitle}"></Text>
+                                </Column>
+                                <Column
+                                    visible="false"
+                                    headerMenu = "menu"
+                                    demandPopin = "true"
+                                    id ='PresentationTitle'
+                                    app:ColumnName="PresentationTitle"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>PresentationTitle}"></Text>
+                                </Column>
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    demandPopin="true"
+                                    id='ProductFront'
+                                    app:ColumnName="ProductFront"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>ProductFront}" />
+                                </Column>
+
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    demandPopin="true"
+                                    id='NameFront'
+                                    app:ColumnName="NameFront"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>NameFront}" />
+                                </Column>
+
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    demandPopin="true"
+                                    id='InstanceFront'
+                                    app:ColumnName="InstanceFront"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>InstanceFront}" />
+                                </Column>
+
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    demandPopin="true"
+                                    id='OffNameFront'
+                                    app:ColumnName="OffNameFront"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>OffNameFront}" />
+                                </Column>
+
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    demandPopin="true"
+                                    id='SPStackFront'
+                                    app:ColumnName="SPStackFront"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>SPStackFront}" />
+                                </Column>
+
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    demandPopin="true"
+                                    id='SWCVFront'
+                                    app:ColumnName="SWCVFront"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>SWCVFront}" />
+                                </Column>
+
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    demandPopin="true"
+                                    id='ProductHANA'
+                                    app:ColumnName="ProductHANA"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>ProductHANA}" />
+                                </Column>
+
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    demandPopin="true"
+                                    id='NameHANA'
+                                    app:ColumnName="NameHANA"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>NameHANA}" />
+                                </Column>
+
+                                 <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    demandPopin="true"
+                                    id='InstanceHANA'
+                                    app:ColumnName="InstanceHANA"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>InstanceHANA}" />
+                                </Column>
+
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    demandPopin="true"
+                                    id='OffNameHANA'
+                                    app:ColumnName="OffNameHANA"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>OffNameHANA}" />
+                                </Column>
+
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    demandPopin="true"
+                                    id='SPStackHANA'
+                                    app:ColumnName="SPStackHANA"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>SPStackHANA}" />
+                                </Column>
+
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    demandPopin="true"
+                                    id='SWCVHANA'
+                                    app:ColumnName="SWCVHANA"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>SWCVHANA}" />
+                                </Column>
+
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    demandPopin="true"
+                                    id='CatalogName'
+                                    app:ColumnName="CatalogName"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>CatalogName}" />
+                                </Column>
+
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    demandPopin="true"
+                                    id='CatalogDesc'
+                                    app:ColumnName="CatalogDesc"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>CatalogDesc}" />
+                                </Column>
+
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    demandPopin="true"
+                                    id='GroupName'
+                                    app:ColumnName="GroupName"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>GroupName}" />
+                                </Column>
+
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    demandPopin="true"
+                                    id='GroupDesc'
+                                    app:ColumnName="GroupDesc"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>GroupDesc}" />
+                                </Column>
+
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    demandPopin="true"
+                                    id='PageName'
+                                    app:ColumnName="PageName"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>PageName}" />
+                                </Column>
+
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    demandPopin="true"
+                                    id='PageDesc'
+                                    app:ColumnName="PageDesc"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>PageDesc}" />
+                                </Column>
+
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    demandPopin="true"
+                                    id='SpaceName'
+                                    app:ColumnName="SpaceName"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>SpaceName}" />
+                                </Column>
+
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    demandPopin="true"
+                                    id='SpaceDesc'
+                                    app:ColumnName="SpaceDesc"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>SpaceDesc}" />
+                                </Column>
+                                <Column
+                                    visible="false"
+                                    headerMenu = "menu"
+                                    demandPopin = "true"
+                                    id ='SCModel'
+                                    app:ColumnName="SCModel"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>SCModel}"></Text>
+                                </Column>
+                                <Column
+                                    visible="false"
+                                    headerMenu = "menu"
+                                    demandPopin = "true"
+                                    id ='SCName'
+                                    app:ColumnName="SCName"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>SCName}"></Text>
+                                </Column>
+                                <Column
+                                    visible="false"
+                                    headerMenu = "menu"
+                                    demandPopin = "true"
+                                    id ='VEName'
+                                    app:ColumnName="VEName"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>VEName}"></Text>
+                                </Column>
+                                <Column
+                                    visible="false"
+                                    headerMenu = "menu"
+                                    demandPopin = "true"
+                                    id ='VEDesc'
+                                    app:ColumnName="VEDesc"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>VEDesc}"></Text>
+                                </Column>
+                                <Column
+                                    visible="false"
+                                    headerMenu = "menu"
+                                    demandPopin = "true"
+                                    id ='BEName'
+                                    app:ColumnName="BEName"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>BEName}"></Text>
+                                </Column>
+                                 <Column
+                                    visible="false"
+                                    headerMenu = "menu"
+                                    demandPopin = "true"
+                                    id ='BEDesc'
+                                    app:ColumnName="BEDesc"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>BEDesc}"></Text>
+                                </Column>
+                                <Column
+                                    visible="false"
+                                    headerMenu = "menu"
+                                    demandPopin = "true"
+                                    id ='CEName'
+                                    app:ColumnName="CEName"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>CEName}"></Text>
+                                </Column>
+                                <Column
+                                    visible="false"
+                                    headerMenu = "menu"
+                                    demandPopin = "true"
+                                    id ='CEDesc'
+                                    app:ColumnName="CEDesc"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>CEDesc}"></Text>
+                                </Column>
+                                <Column
+                                    visible="false"
+                                    headerMenu = "menu"
+                                    demandPopin = "true"
+                                    id ='BExName'
+                                    app:ColumnName="BExName"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>BExName}"></Text>
+                                </Column>
+                                 <Column
+                                    visible="false"
+                                    headerMenu = "menu"
+                                    demandPopin = "true"
+                                    id ='BExDesc'
+                                    app:ColumnName="BExDesc"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>BExDesc}"></Text>
+                                </Column>
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    demandPopin="true"
+                                    id='TCName'
+                                    app:ColumnName="TCName"
+                                    importance="Low"
+                                >
+                                     <Text text="{i18n>TCName}" />
+                                </Column>
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    demandPopin="true"
+                                    id='TCDescription'
+                                    app:ColumnName="TCDescription"
+                                    importance="Low"
+                                >
+                                     <Text text="{i18n>TCDescription}" />
+                                </Column>
+                                <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    id="AppStatus"
+                                    app:ColumnName="AppStatus"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>AppStatus}" />
+                                </Column>
+                                 <Column
+                                    visible="false"
+                                    headerMenu="menu"
+                                    id="AppLaunch"
+                                    app:ColumnName="AppLaunch"
+                                    importance="Low"
+                                >
+                                    <Text text="{i18n>AppLaunch}" />
+                                </Column>
+
+                            </columns>
+                            <items >
+                                <ColumnListItem
+                                    type="Navigation"
+                                    press=".onListItemPress"
+                                    vAlign="Middle"
+                                >
+                                    <cells>
+                                        <ObjectIdentifier text="{AppName}" />
+                                        <Text text="{FioriID}"/>
+                                        <Switch state="{path: 'AppInfoToAppSelection/0/FioriID', targetType : 'any', formatter: 'formatter.formatAppSelection'}"
+                                            customTextOn=" " customTextOff=" " change="onAppSelectionChange" />
+                                        <Link
+                                            visible="{path : 'AppInfoToBusinessRole/$count',  targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToBusinessRole/$count} {i18n>Items} "
+                                            press="onSelectDialogRoleID"
+                                        />
+                                        <Link
+                                            visible="{path : 'AppInfoToBusinessRole/$count',  targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToBusinessRole/$count} {i18n>Items} "
+                                            press="onSelectDialogRoleName"
+                                        />
+                                        <ObjectIdentifier
+                                            text="{UITechnology}"
+                                        />
+                                        <ObjectIdentifier
+                                            text="{ApplicationComponent}"
+                                        />
+                                        <ObjectIdentifier text="{Database}" />
+                                        <ObjectIdentifier
+                                            text="{FormFactors}"
+                                        />
+                                        <ObjectIdentifier
+                                            text="{ReleaseVersion}"
+                                        />
+                                        <ObjectIdentifier text="{SAPSuite}" />
+                                        <Link
+                                            visible="{path : 'AppInfoToGTMLOB/$count',  targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToGTMLOB/$count} {i18n>Items} "
+                                            press="onSelectDialogLOB"
+                                        />
+                                        <Link
+                                            visible="{path : 'AppInfoToGTMIndustry/$count',  targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToGTMIndustry/$count} {i18n>Items} "
+                                            press="onSelectDialogIndustry"
+                                        />
+                                        <ExpandableText class="sapUiTinyMarginBottom sapUiTinyMarginTop"
+                                            text="{path:'AppInfoToParsedAppDocumentation/ParsedDescription'}"
+                                            maxCharacters="{constants>/APP_DESC_LEN}"
+                                            overflowMode="Popover" tooltip="{path:'AppInfoToParsedAppDocumentation/ParsedDescription'}"
+                                            />
+                                        <ObjectIdentifier
+                                                text="{PrimaryPVOfficialName}"
+                                            />
+                                        <Link
+                                            visible="{path : 'AppInfoToProductVersionBackEnd/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToProductVersionBackEnd/$count} {i18n>Items}"
+                                            press="onSelectDialogProductBack"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToProductVersionBackEnd/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToProductVersionBackEnd/$count} {i18n>Items}"
+                                            press="onSelectDialogNameBack"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToProductVersionBackEnd/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToProductVersionBackEnd/$count} {i18n>Items}"
+                                            press="onSelectDialogOffNameBack"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToProductVersionBackEnd/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToProductVersionBackEnd/$count} {i18n>Items}"
+                                            press="onSelectDialogSPStackBack"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToProductVersionBackEnd/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToProductVersionBackEnd/$count} {i18n>Items}"
+                                            press="onSelectDialogSWCVBack"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToSolutionCapability/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToSolutionCapability/$count} {i18n>Items}"
+                                            press="onSelectDialogSolCapName"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToScopeItem/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToScopeItem/$count} {i18n>Items}"
+                                            press="onSelectDialogScopeItemDesc"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToScopeItem/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToScopeItem/$count} {i18n>Items}"
+                                            press="onSelectDialogScopeItemGroup"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToScopeItem/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToScopeItem/$count} {i18n>Items}"
+                                            press="onSelectDialogScopeItemID"
+                                        />
+
+                                         <Link
+                                            visible="{path : 'AppInfoToScopeItem/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToScopeItem/$count} {i18n>Items}"
+                                            press="onSelectDialogScopeItemProcess"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToICFNode/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToICFNode/$count} {i18n>Items}"
+                                            press="onSelectDialogICFSAPUI5Comp"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToICFNode/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToICFNode/$count} {i18n>Items}"
+                                            press="onSelectDialogICFBSPName"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToICFNode/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToICFNode/$count} {i18n>Items}"
+                                            press="onSelectDialogICFBSPAppUrl"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToAppLauncher/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToAppLauncher/$count} {i18n>Items}"
+                                            press="onSelectDialogAppLaunchTitle"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToAppLauncher/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToAppLauncher/$count} {i18n>Items}"
+                                            press="onSelectDialogAppLaunchSubTitle"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToAppLauncher/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToAppLauncher/$count} {i18n>Items}"
+                                            press="onSelectDialogAppLaunchParam"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToAppLauncher/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToAppLauncher/$count} {i18n>Items}"
+                                            press="onSelectDialogAppLaunchInfo"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToNote/$count',  targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToNote/$count} {i18n>Items} "
+                                            press="onSelectDialogNoteID"
+                                        />
+
+                                          <Link
+                                            visible="{path : 'AppInfoToNote/$count',  targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToNote/$count} {i18n>Items} "
+                                            press="onSelectDialogNoteDesc"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToVideoLink/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToVideoLink/$count} {i18n>Items}"
+                                            press="onSelectDialogVideoTitle"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToPresentationLink/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToPresentationLink/$count} {i18n>Items}"
+                                            press="onSelectDialogPresentationTitle"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToProductVersionFrontEnd/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToProductVersionFrontEnd/$count} {i18n>Items}"
+                                            press="onSelectDialogProductFront"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToProductVersionFrontEnd/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToProductVersionFrontEnd/$count} {i18n>Items}"
+                                            press="onSelectDialogNameFront"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToProductVersionFrontEnd/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToProductVersionFrontEnd/$count} {i18n>Items}"
+                                            press="onSelectDialogOffNameFront"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToProductVersionFrontEnd/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToProductVersionFrontEnd/$count} {i18n>Items}"
+                                            press="onSelectDialogSPStackFront"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToProductVersionFrontEnd/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToProductVersionFrontEnd/$count} {i18n>Items}"
+                                            press="onSelectDialogSWCVFront"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToProductVersionHANA/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToProductVersionHANA/$count} {i18n>Items}"
+                                            press="onSelectDialogProductHANA"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToProductVersionHANA/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToProductVersionHANA/$count} {i18n>Items}"
+                                            press="onSelectDialogNameHANA"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToProductVersionHANA/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToProductVersionHANA/$count} {i18n>Items}"
+                                            press="onSelectDialogOffNameHANA"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToProductVersionHANA/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToProductVersionHANA/$count} {i18n>Items}"
+                                            press="onSelectDialogSPStackHANA"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToProductVersionHANA/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToProductVersionHANA/$count} {i18n>Items}"
+                                            press="onSelectDialogSWCVHANA"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToBusinessCatalog/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToBusinessCatalog/$count} {i18n>Items}"
+                                            press="onSelectDialogCatalogName"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToBusinessCatalog/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToBusinessCatalog/$count} {i18n>Items}"
+                                            press="onSelectDialogCatalogDesc"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToBusinessGroup/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToBusinessGroup/$count} {i18n>Items}"
+                                            press="onSelectDialogGroupName"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToBusinessGroup/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToBusinessGroup/$count} {i18n>Items}"
+                                            press="onSelectDialogGroupDesc"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToPage/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToPage/$count} {i18n>Items}"
+                                            press="onSelectDialogPageName"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToPage/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToPage/$count} {i18n>Items}"
+                                            press="onSelectDialogPageDesc"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToSpace/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToSpace/$count} {i18n>Items}"
+                                            press="onSelectDialogSpaceName"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToSpace/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToSpace/$count} {i18n>Items}"
+                                            press="onSelectDialogSpaceDesc"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToSearchComponent/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToSearchComponent/$count} {i18n>Items}"
+                                            press="onSelectDialogSCModel"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToSearchComponent/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToSearchComponent/$count} {i18n>Items}"
+                                            press="onSelectDialogSCName"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToViewExtension/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToViewExtension/$count} {i18n>Items}"
+                                            press="onSelectDialogVEName"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToViewExtension/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToViewExtension/$count} {i18n>Items}"
+                                            press="onSelectDialogVEDesc"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToBackendExtension/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToBackendExtension/$count} {i18n>Items}"
+                                            press="onSelectDialogBEName"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToBackendExtension/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToBackendExtension/$count} {i18n>Items}"
+                                            press="onSelectDialogBEDesc"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToControllerExtension/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToControllerExtension/$count} {i18n>Items}"
+                                            press="onSelectDialogCEName"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToControllerExtension/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToControllerExtension/$count} {i18n>Items}"
+                                            press="onSelectDialogCEDesc"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToBExQuery/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToBExQuery/$count} {i18n>Items}"
+                                            press="onSelectDialogBExName"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToBExQuery/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToBExQuery/$count} {i18n>Items}"
+                                            press="onSelectDialogBExDesc"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToTechnicalCatalog/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToTechnicalCatalog/$count} {i18n>Items}"
+                                            press="onSelectDialogTCName"
+                                        />
+
+                                        <Link
+                                            visible="{path : 'AppInfoToTechnicalCatalog/$count', targetType : 'any', formatter : 'formatter.checkCount'}"
+                                            text="{AppInfoToTechnicalCatalog/$count} {i18n>Items}"
+                                            press="onSelectDialogTCDescription"
+                                        />
+
+                                       <ObjectIdentifier
+                                            text="{AppStatus}"
+                                        />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                        <!-- </ScrollContainer> -->

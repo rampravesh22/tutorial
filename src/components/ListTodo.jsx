@@ -14,8 +14,14 @@ const ListTodo = () => {
 	const [currentId, setCurrentId] = useState(null);
 	const [loading, setLoading] = useState(false);
 	const [disableDeleteBtn, setDisableDeleteBtn] = useState(false);
+	const [fetchLoading, setFetchLoading] = useState(false);
 	useEffect(() => {
-		dispatch(fetchAllTodo());
+		const fetchTodo = async () => {
+			setFetchLoading(true);
+			await dispatch(fetchAllTodo());
+			setFetchLoading(false);
+		};
+		fetchTodo();
 	}, []);
 
 	const handleUpdateTodo = async (checked, id) => {
@@ -79,8 +85,10 @@ const ListTodo = () => {
 							</div>
 						);
 					})
-				) : (
+				) : fetchLoading ? (
 					<div className="text-center">Loading..</div>
+				) : (
+					<div className="text-center">No todos</div>
 				)}
 			</div>
 		</div>
