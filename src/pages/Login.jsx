@@ -1,7 +1,4 @@
-import axios from "axios";
 import React, { useState } from "react";
-import { BASE_URL } from "../utils/api";
-import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { login } from "../redux/actions/authActions";
 import { useNavigate } from "react-router-dom";
@@ -11,12 +8,10 @@ const Login = () => {
 	const [password, setPassword] = useState("12345");
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		dispatch(login({ email, password }, navigate));
 	};
-
 	return (
 		<div className="flex justify-center">
 			<form
@@ -25,7 +20,6 @@ const Login = () => {
 				className="flex flex-col mt-32 w-[90%] max-w-[500px] gap-6 shadow-md p-10 border"
 			>
 				<h1 className="text-center text-4xl mb-5">Login</h1>
-
 				<input
 					type="email"
 					name="email"
